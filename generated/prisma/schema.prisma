@@ -1,0 +1,138 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Rol {
+  conductor
+  administrador
+}
+
+enum Origen {
+  manual
+  rrhh_api
+}
+
+model Usuario {
+  id Int @id @default(autoincrement())
+
+  nombre String
+  cedula String @unique
+  email  String @unique
+
+  passwordHash String
+
+  rol    Rol
+  origen Origen
+
+  activo Boolean @default(true)
+
+  createdAt DateTime @default(now())
+
+  preoperacionales Preoperacional[]
+
+  refreshTokens RefreshToken[]
+
+  solicitudesCreadas   Solicitud[] @relation("SolicitudesCreadas")
+  solicitudesAprobadas Solicitud[] @relation("SolicitudesAprobadas")
+}
+
+model Vehiculo {
+  id Int @id @default(autoincrement())
+
+  placa  String  @unique
+  marca  String?
+  modelo String?
+
+  tieneGpsFisico Boolean @default(false)
+
+  polizaUrl        String?
+  soatUrl          String?
+  tecnomecanicaUrl String?
+
+  activo Boolean @default(true)
+
+  createdAt DateTime @default(now())
+
+  preoperacionales Preoperacional[]
+
+  solicitudes Solicitud[]
+}
+
+model Preoperacional {
+  id Int @id @default(autoincrement())
+
+  consecutivo Int @unique @default(autoincrement())
+
+  fecha DateTime @default(now())
+
+  respuestas Json
+
+  firmaUrl String?
+
+  observaciones String?
+
+  usuarioId Int
+  usuario   Usuario @relation(fields: [usuarioId], references: [id])
+
+  vehiculoId Int
+  vehiculo   Vehiculo @relation(fields: [vehiculoId], references: [id])
+
+  createdAt DateTime @default(now())
+
+  solicitudId Int?
+  solicitud   Solicitud? @relation(fields: [solicitudId], references: [id])
+}
+
+model RefreshToken {
+  id Int @id @default(autoincrement())
+
+  token String @unique // el refresh token en sí (o su hash, ver nota abajo)
+
+  usuarioId Int
+  usuario   Usuario @relation(fields: [usuarioId], references: [id])
+
+  expiresAt DateTime
+  revocado  Boolean  @default(false)
+
+  createdAt DateTime @default(now())
+}
+
+enum EstadoSolicitud {
+  pendiente
+  aprobada
+  rechazada
+  completada
+  cancelada
+}
+
+model Solicitud {
+  id Int @id @default(autoincrement())
+
+  usuarioSolicitanteId Int
+  usuarioSolicitante   Usuario @relation("SolicitudesCreadas", fields: [usuarioSolicitanteId], references: [id])
+
+  motivo         String
+  destino        String
+  fechaRequerida DateTime
+  estado         EstadoSolicitud @default(pendiente)
+
+  vehiculoAsignadoId Int?
+  vehiculoAsignado   Vehiculo? @relation(fields: [vehiculoAsignadoId], references: [id])
+
+  aprobadoPorId Int?
+  aprobadoPor   Usuario? @relation("SolicitudesAprobadas", fields: [aprobadoPorId], references: [id])
+
+  preoperacionales Preoperacional[]
+
+  createdAt DateTime @default(now())
+}
