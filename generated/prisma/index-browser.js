@@ -179,6 +179,29 @@ exports.Prisma.SolicitudScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.ViajeScalarFieldEnum = {
+  id: 'id',
+  vehiculoId: 'vehiculoId',
+  conductorId: 'conductorId',
+  preoperacionalId: 'preoperacionalId',
+  horaInicio: 'horaInicio',
+  horaFin: 'horaFin',
+  distanciaTotalKm: 'distanciaTotalKm',
+  velocidadPromedio: 'velocidadPromedio',
+  velocidadMaxima: 'velocidadMaxima',
+  estado: 'estado',
+  archivoRutaUrl: 'archivoRutaUrl',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.PuntoGpsScalarFieldEnum = {
+  id: 'id',
+  viajeId: 'viajeId',
+  velocidad: 'velocidad',
+  precision: 'precision',
+  timestamp: 'timestamp'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -221,12 +244,20 @@ exports.EstadoSolicitud = exports.$Enums.EstadoSolicitud = {
   cancelada: 'cancelada'
 };
 
+exports.EstadoViaje = exports.$Enums.EstadoViaje = {
+  en_curso: 'en_curso',
+  finalizado: 'finalizado',
+  pendiente_sync: 'pendiente_sync'
+};
+
 exports.Prisma.ModelName = {
   Usuario: 'Usuario',
   Vehiculo: 'Vehiculo',
   Preoperacional: 'Preoperacional',
   RefreshToken: 'RefreshToken',
-  Solicitud: 'Solicitud'
+  Solicitud: 'Solicitud',
+  Viaje: 'Viaje',
+  PuntoGps: 'PuntoGps'
 };
 
 /**

@@ -7,6 +7,8 @@ import auth from "./modules/auth/auth.routes.js"
 import usuarios from "./modules/usuarios/usuarios.routes.js";
 import vehiculos from "./modules/vehiculos/vehiculos.routes.js";
 import preoperacionales from "./modules/preoperacionales/preoperacionales.routes.js";
+import solicitudes from "./modules/solicitudes/solicitudes.routes.js";
+import viajes from "./modules/viajes/viajes.routes.js";
 
 const app = express();
 
@@ -42,6 +44,8 @@ app.use("/api/auth", auth);
 app.use("/api/usuarios", usuarios);
 app.use("/api/vehiculos", vehiculos);
 app.use("/api/preoperacionales", preoperacionales);
+app.use("/api/solicitudes", solicitudes);
+app.use("/api/viajes", viajes);
 
 app.get("/health", (req, res) => {
   res.json({ ok: true, service: "preoperacionales-api" });

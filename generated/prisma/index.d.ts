@@ -38,6 +38,16 @@ export type RefreshToken = $Result.DefaultSelection<Prisma.$RefreshTokenPayload>
  * 
  */
 export type Solicitud = $Result.DefaultSelection<Prisma.$SolicitudPayload>
+/**
+ * Model Viaje
+ * 
+ */
+export type Viaje = $Result.DefaultSelection<Prisma.$ViajePayload>
+/**
+ * Model PuntoGps
+ * 
+ */
+export type PuntoGps = $Result.DefaultSelection<Prisma.$PuntoGpsPayload>
 
 /**
  * Enums
@@ -69,6 +79,15 @@ export const EstadoSolicitud: {
 
 export type EstadoSolicitud = (typeof EstadoSolicitud)[keyof typeof EstadoSolicitud]
 
+
+export const EstadoViaje: {
+  en_curso: 'en_curso',
+  finalizado: 'finalizado',
+  pendiente_sync: 'pendiente_sync'
+};
+
+export type EstadoViaje = (typeof EstadoViaje)[keyof typeof EstadoViaje]
+
 }
 
 export type Rol = $Enums.Rol
@@ -82,6 +101,10 @@ export const Origen: typeof $Enums.Origen
 export type EstadoSolicitud = $Enums.EstadoSolicitud
 
 export const EstadoSolicitud: typeof $Enums.EstadoSolicitud
+
+export type EstadoViaje = $Enums.EstadoViaje
+
+export const EstadoViaje: typeof $Enums.EstadoViaje
 
 /**
  * ##  Prisma Client ʲˢ
@@ -253,6 +276,26 @@ export class PrismaClient<
     * ```
     */
   get solicitud(): Prisma.SolicitudDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.viaje`: Exposes CRUD operations for the **Viaje** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Viajes
+    * const viajes = await prisma.viaje.findMany()
+    * ```
+    */
+  get viaje(): Prisma.ViajeDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.puntoGps`: Exposes CRUD operations for the **PuntoGps** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more PuntoGps
+    * const puntoGps = await prisma.puntoGps.findMany()
+    * ```
+    */
+  get puntoGps(): Prisma.PuntoGpsDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -691,7 +734,9 @@ export namespace Prisma {
     Vehiculo: 'Vehiculo',
     Preoperacional: 'Preoperacional',
     RefreshToken: 'RefreshToken',
-    Solicitud: 'Solicitud'
+    Solicitud: 'Solicitud',
+    Viaje: 'Viaje',
+    PuntoGps: 'PuntoGps'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -707,7 +752,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "usuario" | "vehiculo" | "preoperacional" | "refreshToken" | "solicitud"
+      modelProps: "usuario" | "vehiculo" | "preoperacional" | "refreshToken" | "solicitud" | "viaje" | "puntoGps"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1081,6 +1126,138 @@ export namespace Prisma {
           }
         }
       }
+      Viaje: {
+        payload: Prisma.$ViajePayload<ExtArgs>
+        fields: Prisma.ViajeFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ViajeFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ViajePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ViajeFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ViajePayload>
+          }
+          findFirst: {
+            args: Prisma.ViajeFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ViajePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ViajeFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ViajePayload>
+          }
+          findMany: {
+            args: Prisma.ViajeFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ViajePayload>[]
+          }
+          create: {
+            args: Prisma.ViajeCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ViajePayload>
+          }
+          createMany: {
+            args: Prisma.ViajeCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.ViajeCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ViajePayload>[]
+          }
+          delete: {
+            args: Prisma.ViajeDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ViajePayload>
+          }
+          update: {
+            args: Prisma.ViajeUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ViajePayload>
+          }
+          deleteMany: {
+            args: Prisma.ViajeDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ViajeUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.ViajeUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ViajePayload>[]
+          }
+          upsert: {
+            args: Prisma.ViajeUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ViajePayload>
+          }
+          aggregate: {
+            args: Prisma.ViajeAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateViaje>
+          }
+          groupBy: {
+            args: Prisma.ViajeGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ViajeGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ViajeCountArgs<ExtArgs>
+            result: $Utils.Optional<ViajeCountAggregateOutputType> | number
+          }
+        }
+      }
+      PuntoGps: {
+        payload: Prisma.$PuntoGpsPayload<ExtArgs>
+        fields: Prisma.PuntoGpsFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.PuntoGpsFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PuntoGpsPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.PuntoGpsFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PuntoGpsPayload>
+          }
+          findFirst: {
+            args: Prisma.PuntoGpsFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PuntoGpsPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.PuntoGpsFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PuntoGpsPayload>
+          }
+          findMany: {
+            args: Prisma.PuntoGpsFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PuntoGpsPayload>[]
+          }
+          delete: {
+            args: Prisma.PuntoGpsDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PuntoGpsPayload>
+          }
+          update: {
+            args: Prisma.PuntoGpsUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PuntoGpsPayload>
+          }
+          deleteMany: {
+            args: Prisma.PuntoGpsDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.PuntoGpsUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.PuntoGpsUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$PuntoGpsPayload>[]
+          }
+          aggregate: {
+            args: Prisma.PuntoGpsAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregatePuntoGps>
+          }
+          groupBy: {
+            args: Prisma.PuntoGpsGroupByArgs<ExtArgs>
+            result: $Utils.Optional<PuntoGpsGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.PuntoGpsCountArgs<ExtArgs>
+            result: $Utils.Optional<PuntoGpsCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1194,6 +1371,8 @@ export namespace Prisma {
     preoperacional?: PreoperacionalOmit
     refreshToken?: RefreshTokenOmit
     solicitud?: SolicitudOmit
+    viaje?: ViajeOmit
+    puntoGps?: PuntoGpsOmit
   }
 
   /* Types for Logging */
@@ -1278,6 +1457,7 @@ export namespace Prisma {
     refreshTokens: number
     solicitudesCreadas: number
     solicitudesAprobadas: number
+    viajes: number
   }
 
   export type UsuarioCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1285,6 +1465,7 @@ export namespace Prisma {
     refreshTokens?: boolean | UsuarioCountOutputTypeCountRefreshTokensArgs
     solicitudesCreadas?: boolean | UsuarioCountOutputTypeCountSolicitudesCreadasArgs
     solicitudesAprobadas?: boolean | UsuarioCountOutputTypeCountSolicitudesAprobadasArgs
+    viajes?: boolean | UsuarioCountOutputTypeCountViajesArgs
   }
 
   // Custom InputTypes
@@ -1326,6 +1507,13 @@ export namespace Prisma {
     where?: SolicitudWhereInput
   }
 
+  /**
+   * UsuarioCountOutputType without action
+   */
+  export type UsuarioCountOutputTypeCountViajesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ViajeWhereInput
+  }
+
 
   /**
    * Count Type VehiculoCountOutputType
@@ -1334,11 +1522,13 @@ export namespace Prisma {
   export type VehiculoCountOutputType = {
     preoperacionales: number
     solicitudes: number
+    viajes: number
   }
 
   export type VehiculoCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     preoperacionales?: boolean | VehiculoCountOutputTypeCountPreoperacionalesArgs
     solicitudes?: boolean | VehiculoCountOutputTypeCountSolicitudesArgs
+    viajes?: boolean | VehiculoCountOutputTypeCountViajesArgs
   }
 
   // Custom InputTypes
@@ -1364,6 +1554,44 @@ export namespace Prisma {
    */
   export type VehiculoCountOutputTypeCountSolicitudesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: SolicitudWhereInput
+  }
+
+  /**
+   * VehiculoCountOutputType without action
+   */
+  export type VehiculoCountOutputTypeCountViajesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ViajeWhereInput
+  }
+
+
+  /**
+   * Count Type PreoperacionalCountOutputType
+   */
+
+  export type PreoperacionalCountOutputType = {
+    viajes: number
+  }
+
+  export type PreoperacionalCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    viajes?: boolean | PreoperacionalCountOutputTypeCountViajesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * PreoperacionalCountOutputType without action
+   */
+  export type PreoperacionalCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PreoperacionalCountOutputType
+     */
+    select?: PreoperacionalCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * PreoperacionalCountOutputType without action
+   */
+  export type PreoperacionalCountOutputTypeCountViajesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ViajeWhereInput
   }
 
 
@@ -1395,6 +1623,37 @@ export namespace Prisma {
    */
   export type SolicitudCountOutputTypeCountPreoperacionalesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: PreoperacionalWhereInput
+  }
+
+
+  /**
+   * Count Type ViajeCountOutputType
+   */
+
+  export type ViajeCountOutputType = {
+    puntosGps: number
+  }
+
+  export type ViajeCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    puntosGps?: boolean | ViajeCountOutputTypeCountPuntosGpsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * ViajeCountOutputType without action
+   */
+  export type ViajeCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ViajeCountOutputType
+     */
+    select?: ViajeCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * ViajeCountOutputType without action
+   */
+  export type ViajeCountOutputTypeCountPuntosGpsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PuntoGpsWhereInput
   }
 
 
@@ -1636,6 +1895,7 @@ export namespace Prisma {
     refreshTokens?: boolean | Usuario$refreshTokensArgs<ExtArgs>
     solicitudesCreadas?: boolean | Usuario$solicitudesCreadasArgs<ExtArgs>
     solicitudesAprobadas?: boolean | Usuario$solicitudesAprobadasArgs<ExtArgs>
+    viajes?: boolean | Usuario$viajesArgs<ExtArgs>
     _count?: boolean | UsuarioCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["usuario"]>
 
@@ -1681,6 +1941,7 @@ export namespace Prisma {
     refreshTokens?: boolean | Usuario$refreshTokensArgs<ExtArgs>
     solicitudesCreadas?: boolean | Usuario$solicitudesCreadasArgs<ExtArgs>
     solicitudesAprobadas?: boolean | Usuario$solicitudesAprobadasArgs<ExtArgs>
+    viajes?: boolean | Usuario$viajesArgs<ExtArgs>
     _count?: boolean | UsuarioCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UsuarioIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -1693,6 +1954,7 @@ export namespace Prisma {
       refreshTokens: Prisma.$RefreshTokenPayload<ExtArgs>[]
       solicitudesCreadas: Prisma.$SolicitudPayload<ExtArgs>[]
       solicitudesAprobadas: Prisma.$SolicitudPayload<ExtArgs>[]
+      viajes: Prisma.$ViajePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -2102,6 +2364,7 @@ export namespace Prisma {
     refreshTokens<T extends Usuario$refreshTokensArgs<ExtArgs> = {}>(args?: Subset<T, Usuario$refreshTokensArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RefreshTokenPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     solicitudesCreadas<T extends Usuario$solicitudesCreadasArgs<ExtArgs> = {}>(args?: Subset<T, Usuario$solicitudesCreadasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SolicitudPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     solicitudesAprobadas<T extends Usuario$solicitudesAprobadasArgs<ExtArgs> = {}>(args?: Subset<T, Usuario$solicitudesAprobadasArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SolicitudPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    viajes<T extends Usuario$viajesArgs<ExtArgs> = {}>(args?: Subset<T, Usuario$viajesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ViajePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2629,6 +2892,30 @@ export namespace Prisma {
   }
 
   /**
+   * Usuario.viajes
+   */
+  export type Usuario$viajesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Viaje
+     */
+    select?: ViajeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Viaje
+     */
+    omit?: ViajeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ViajeInclude<ExtArgs> | null
+    where?: ViajeWhereInput
+    orderBy?: ViajeOrderByWithRelationInput | ViajeOrderByWithRelationInput[]
+    cursor?: ViajeWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ViajeScalarFieldEnum | ViajeScalarFieldEnum[]
+  }
+
+  /**
    * Usuario without action
    */
   export type UsuarioDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2887,6 +3174,7 @@ export namespace Prisma {
     createdAt?: boolean
     preoperacionales?: boolean | Vehiculo$preoperacionalesArgs<ExtArgs>
     solicitudes?: boolean | Vehiculo$solicitudesArgs<ExtArgs>
+    viajes?: boolean | Vehiculo$viajesArgs<ExtArgs>
     _count?: boolean | VehiculoCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["vehiculo"]>
 
@@ -2933,6 +3221,7 @@ export namespace Prisma {
   export type VehiculoInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     preoperacionales?: boolean | Vehiculo$preoperacionalesArgs<ExtArgs>
     solicitudes?: boolean | Vehiculo$solicitudesArgs<ExtArgs>
+    viajes?: boolean | Vehiculo$viajesArgs<ExtArgs>
     _count?: boolean | VehiculoCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type VehiculoIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -2943,6 +3232,7 @@ export namespace Prisma {
     objects: {
       preoperacionales: Prisma.$PreoperacionalPayload<ExtArgs>[]
       solicitudes: Prisma.$SolicitudPayload<ExtArgs>[]
+      viajes: Prisma.$ViajePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -3351,6 +3641,7 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     preoperacionales<T extends Vehiculo$preoperacionalesArgs<ExtArgs> = {}>(args?: Subset<T, Vehiculo$preoperacionalesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PreoperacionalPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     solicitudes<T extends Vehiculo$solicitudesArgs<ExtArgs> = {}>(args?: Subset<T, Vehiculo$solicitudesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SolicitudPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    viajes<T extends Vehiculo$viajesArgs<ExtArgs> = {}>(args?: Subset<T, Vehiculo$viajesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ViajePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3831,6 +4122,30 @@ export namespace Prisma {
   }
 
   /**
+   * Vehiculo.viajes
+   */
+  export type Vehiculo$viajesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Viaje
+     */
+    select?: ViajeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Viaje
+     */
+    omit?: ViajeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ViajeInclude<ExtArgs> | null
+    where?: ViajeWhereInput
+    orderBy?: ViajeOrderByWithRelationInput | ViajeOrderByWithRelationInput[]
+    cursor?: ViajeWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ViajeScalarFieldEnum | ViajeScalarFieldEnum[]
+  }
+
+  /**
    * Vehiculo without action
    */
   export type VehiculoDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -4102,6 +4417,8 @@ export namespace Prisma {
     usuario?: boolean | UsuarioDefaultArgs<ExtArgs>
     vehiculo?: boolean | VehiculoDefaultArgs<ExtArgs>
     solicitud?: boolean | Preoperacional$solicitudArgs<ExtArgs>
+    viajes?: boolean | Preoperacional$viajesArgs<ExtArgs>
+    _count?: boolean | PreoperacionalCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["preoperacional"]>
 
   export type PreoperacionalSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -4154,6 +4471,8 @@ export namespace Prisma {
     usuario?: boolean | UsuarioDefaultArgs<ExtArgs>
     vehiculo?: boolean | VehiculoDefaultArgs<ExtArgs>
     solicitud?: boolean | Preoperacional$solicitudArgs<ExtArgs>
+    viajes?: boolean | Preoperacional$viajesArgs<ExtArgs>
+    _count?: boolean | PreoperacionalCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type PreoperacionalIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     usuario?: boolean | UsuarioDefaultArgs<ExtArgs>
@@ -4172,6 +4491,7 @@ export namespace Prisma {
       usuario: Prisma.$UsuarioPayload<ExtArgs>
       vehiculo: Prisma.$VehiculoPayload<ExtArgs>
       solicitud: Prisma.$SolicitudPayload<ExtArgs> | null
+      viajes: Prisma.$ViajePayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -4581,6 +4901,7 @@ export namespace Prisma {
     usuario<T extends UsuarioDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UsuarioDefaultArgs<ExtArgs>>): Prisma__UsuarioClient<$Result.GetResult<Prisma.$UsuarioPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     vehiculo<T extends VehiculoDefaultArgs<ExtArgs> = {}>(args?: Subset<T, VehiculoDefaultArgs<ExtArgs>>): Prisma__VehiculoClient<$Result.GetResult<Prisma.$VehiculoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     solicitud<T extends Preoperacional$solicitudArgs<ExtArgs> = {}>(args?: Subset<T, Preoperacional$solicitudArgs<ExtArgs>>): Prisma__SolicitudClient<$Result.GetResult<Prisma.$SolicitudPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    viajes<T extends Preoperacional$viajesArgs<ExtArgs> = {}>(args?: Subset<T, Preoperacional$viajesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ViajePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5037,6 +5358,30 @@ export namespace Prisma {
      */
     include?: SolicitudInclude<ExtArgs> | null
     where?: SolicitudWhereInput
+  }
+
+  /**
+   * Preoperacional.viajes
+   */
+  export type Preoperacional$viajesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Viaje
+     */
+    select?: ViajeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Viaje
+     */
+    omit?: ViajeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ViajeInclude<ExtArgs> | null
+    where?: ViajeWhereInput
+    orderBy?: ViajeOrderByWithRelationInput | ViajeOrderByWithRelationInput[]
+    cursor?: ViajeWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ViajeScalarFieldEnum | ViajeScalarFieldEnum[]
   }
 
   /**
@@ -7418,6 +7763,2216 @@ export namespace Prisma {
 
 
   /**
+   * Model Viaje
+   */
+
+  export type AggregateViaje = {
+    _count: ViajeCountAggregateOutputType | null
+    _avg: ViajeAvgAggregateOutputType | null
+    _sum: ViajeSumAggregateOutputType | null
+    _min: ViajeMinAggregateOutputType | null
+    _max: ViajeMaxAggregateOutputType | null
+  }
+
+  export type ViajeAvgAggregateOutputType = {
+    vehiculoId: number | null
+    conductorId: number | null
+    preoperacionalId: number | null
+    distanciaTotalKm: number | null
+    velocidadPromedio: number | null
+    velocidadMaxima: number | null
+  }
+
+  export type ViajeSumAggregateOutputType = {
+    vehiculoId: number | null
+    conductorId: number | null
+    preoperacionalId: number | null
+    distanciaTotalKm: number | null
+    velocidadPromedio: number | null
+    velocidadMaxima: number | null
+  }
+
+  export type ViajeMinAggregateOutputType = {
+    id: string | null
+    vehiculoId: number | null
+    conductorId: number | null
+    preoperacionalId: number | null
+    horaInicio: Date | null
+    horaFin: Date | null
+    distanciaTotalKm: number | null
+    velocidadPromedio: number | null
+    velocidadMaxima: number | null
+    estado: $Enums.EstadoViaje | null
+    archivoRutaUrl: string | null
+    createdAt: Date | null
+  }
+
+  export type ViajeMaxAggregateOutputType = {
+    id: string | null
+    vehiculoId: number | null
+    conductorId: number | null
+    preoperacionalId: number | null
+    horaInicio: Date | null
+    horaFin: Date | null
+    distanciaTotalKm: number | null
+    velocidadPromedio: number | null
+    velocidadMaxima: number | null
+    estado: $Enums.EstadoViaje | null
+    archivoRutaUrl: string | null
+    createdAt: Date | null
+  }
+
+  export type ViajeCountAggregateOutputType = {
+    id: number
+    vehiculoId: number
+    conductorId: number
+    preoperacionalId: number
+    horaInicio: number
+    horaFin: number
+    distanciaTotalKm: number
+    velocidadPromedio: number
+    velocidadMaxima: number
+    estado: number
+    archivoRutaUrl: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type ViajeAvgAggregateInputType = {
+    vehiculoId?: true
+    conductorId?: true
+    preoperacionalId?: true
+    distanciaTotalKm?: true
+    velocidadPromedio?: true
+    velocidadMaxima?: true
+  }
+
+  export type ViajeSumAggregateInputType = {
+    vehiculoId?: true
+    conductorId?: true
+    preoperacionalId?: true
+    distanciaTotalKm?: true
+    velocidadPromedio?: true
+    velocidadMaxima?: true
+  }
+
+  export type ViajeMinAggregateInputType = {
+    id?: true
+    vehiculoId?: true
+    conductorId?: true
+    preoperacionalId?: true
+    horaInicio?: true
+    horaFin?: true
+    distanciaTotalKm?: true
+    velocidadPromedio?: true
+    velocidadMaxima?: true
+    estado?: true
+    archivoRutaUrl?: true
+    createdAt?: true
+  }
+
+  export type ViajeMaxAggregateInputType = {
+    id?: true
+    vehiculoId?: true
+    conductorId?: true
+    preoperacionalId?: true
+    horaInicio?: true
+    horaFin?: true
+    distanciaTotalKm?: true
+    velocidadPromedio?: true
+    velocidadMaxima?: true
+    estado?: true
+    archivoRutaUrl?: true
+    createdAt?: true
+  }
+
+  export type ViajeCountAggregateInputType = {
+    id?: true
+    vehiculoId?: true
+    conductorId?: true
+    preoperacionalId?: true
+    horaInicio?: true
+    horaFin?: true
+    distanciaTotalKm?: true
+    velocidadPromedio?: true
+    velocidadMaxima?: true
+    estado?: true
+    archivoRutaUrl?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type ViajeAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Viaje to aggregate.
+     */
+    where?: ViajeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Viajes to fetch.
+     */
+    orderBy?: ViajeOrderByWithRelationInput | ViajeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ViajeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Viajes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Viajes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Viajes
+    **/
+    _count?: true | ViajeCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ViajeAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ViajeSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ViajeMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ViajeMaxAggregateInputType
+  }
+
+  export type GetViajeAggregateType<T extends ViajeAggregateArgs> = {
+        [P in keyof T & keyof AggregateViaje]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateViaje[P]>
+      : GetScalarType<T[P], AggregateViaje[P]>
+  }
+
+
+
+
+  export type ViajeGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ViajeWhereInput
+    orderBy?: ViajeOrderByWithAggregationInput | ViajeOrderByWithAggregationInput[]
+    by: ViajeScalarFieldEnum[] | ViajeScalarFieldEnum
+    having?: ViajeScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ViajeCountAggregateInputType | true
+    _avg?: ViajeAvgAggregateInputType
+    _sum?: ViajeSumAggregateInputType
+    _min?: ViajeMinAggregateInputType
+    _max?: ViajeMaxAggregateInputType
+  }
+
+  export type ViajeGroupByOutputType = {
+    id: string
+    vehiculoId: number
+    conductorId: number
+    preoperacionalId: number | null
+    horaInicio: Date
+    horaFin: Date | null
+    distanciaTotalKm: number | null
+    velocidadPromedio: number | null
+    velocidadMaxima: number | null
+    estado: $Enums.EstadoViaje
+    archivoRutaUrl: string | null
+    createdAt: Date
+    _count: ViajeCountAggregateOutputType | null
+    _avg: ViajeAvgAggregateOutputType | null
+    _sum: ViajeSumAggregateOutputType | null
+    _min: ViajeMinAggregateOutputType | null
+    _max: ViajeMaxAggregateOutputType | null
+  }
+
+  type GetViajeGroupByPayload<T extends ViajeGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ViajeGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ViajeGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ViajeGroupByOutputType[P]>
+            : GetScalarType<T[P], ViajeGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ViajeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    vehiculoId?: boolean
+    conductorId?: boolean
+    preoperacionalId?: boolean
+    horaInicio?: boolean
+    horaFin?: boolean
+    distanciaTotalKm?: boolean
+    velocidadPromedio?: boolean
+    velocidadMaxima?: boolean
+    estado?: boolean
+    archivoRutaUrl?: boolean
+    createdAt?: boolean
+    vehiculo?: boolean | VehiculoDefaultArgs<ExtArgs>
+    conductor?: boolean | UsuarioDefaultArgs<ExtArgs>
+    preoperacional?: boolean | Viaje$preoperacionalArgs<ExtArgs>
+    puntosGps?: boolean | Viaje$puntosGpsArgs<ExtArgs>
+    _count?: boolean | ViajeCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["viaje"]>
+
+  export type ViajeSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    vehiculoId?: boolean
+    conductorId?: boolean
+    preoperacionalId?: boolean
+    horaInicio?: boolean
+    horaFin?: boolean
+    distanciaTotalKm?: boolean
+    velocidadPromedio?: boolean
+    velocidadMaxima?: boolean
+    estado?: boolean
+    archivoRutaUrl?: boolean
+    createdAt?: boolean
+    vehiculo?: boolean | VehiculoDefaultArgs<ExtArgs>
+    conductor?: boolean | UsuarioDefaultArgs<ExtArgs>
+    preoperacional?: boolean | Viaje$preoperacionalArgs<ExtArgs>
+  }, ExtArgs["result"]["viaje"]>
+
+  export type ViajeSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    vehiculoId?: boolean
+    conductorId?: boolean
+    preoperacionalId?: boolean
+    horaInicio?: boolean
+    horaFin?: boolean
+    distanciaTotalKm?: boolean
+    velocidadPromedio?: boolean
+    velocidadMaxima?: boolean
+    estado?: boolean
+    archivoRutaUrl?: boolean
+    createdAt?: boolean
+    vehiculo?: boolean | VehiculoDefaultArgs<ExtArgs>
+    conductor?: boolean | UsuarioDefaultArgs<ExtArgs>
+    preoperacional?: boolean | Viaje$preoperacionalArgs<ExtArgs>
+  }, ExtArgs["result"]["viaje"]>
+
+  export type ViajeSelectScalar = {
+    id?: boolean
+    vehiculoId?: boolean
+    conductorId?: boolean
+    preoperacionalId?: boolean
+    horaInicio?: boolean
+    horaFin?: boolean
+    distanciaTotalKm?: boolean
+    velocidadPromedio?: boolean
+    velocidadMaxima?: boolean
+    estado?: boolean
+    archivoRutaUrl?: boolean
+    createdAt?: boolean
+  }
+
+  export type ViajeOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "vehiculoId" | "conductorId" | "preoperacionalId" | "horaInicio" | "horaFin" | "distanciaTotalKm" | "velocidadPromedio" | "velocidadMaxima" | "estado" | "archivoRutaUrl" | "createdAt", ExtArgs["result"]["viaje"]>
+  export type ViajeInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    vehiculo?: boolean | VehiculoDefaultArgs<ExtArgs>
+    conductor?: boolean | UsuarioDefaultArgs<ExtArgs>
+    preoperacional?: boolean | Viaje$preoperacionalArgs<ExtArgs>
+    puntosGps?: boolean | Viaje$puntosGpsArgs<ExtArgs>
+    _count?: boolean | ViajeCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type ViajeIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    vehiculo?: boolean | VehiculoDefaultArgs<ExtArgs>
+    conductor?: boolean | UsuarioDefaultArgs<ExtArgs>
+    preoperacional?: boolean | Viaje$preoperacionalArgs<ExtArgs>
+  }
+  export type ViajeIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    vehiculo?: boolean | VehiculoDefaultArgs<ExtArgs>
+    conductor?: boolean | UsuarioDefaultArgs<ExtArgs>
+    preoperacional?: boolean | Viaje$preoperacionalArgs<ExtArgs>
+  }
+
+  export type $ViajePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Viaje"
+    objects: {
+      vehiculo: Prisma.$VehiculoPayload<ExtArgs>
+      conductor: Prisma.$UsuarioPayload<ExtArgs>
+      preoperacional: Prisma.$PreoperacionalPayload<ExtArgs> | null
+      puntosGps: Prisma.$PuntoGpsPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      vehiculoId: number
+      conductorId: number
+      preoperacionalId: number | null
+      horaInicio: Date
+      horaFin: Date | null
+      distanciaTotalKm: number | null
+      velocidadPromedio: number | null
+      velocidadMaxima: number | null
+      estado: $Enums.EstadoViaje
+      archivoRutaUrl: string | null
+      createdAt: Date
+    }, ExtArgs["result"]["viaje"]>
+    composites: {}
+  }
+
+  type ViajeGetPayload<S extends boolean | null | undefined | ViajeDefaultArgs> = $Result.GetResult<Prisma.$ViajePayload, S>
+
+  type ViajeCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ViajeFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ViajeCountAggregateInputType | true
+    }
+
+  export interface ViajeDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Viaje'], meta: { name: 'Viaje' } }
+    /**
+     * Find zero or one Viaje that matches the filter.
+     * @param {ViajeFindUniqueArgs} args - Arguments to find a Viaje
+     * @example
+     * // Get one Viaje
+     * const viaje = await prisma.viaje.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ViajeFindUniqueArgs>(args: SelectSubset<T, ViajeFindUniqueArgs<ExtArgs>>): Prisma__ViajeClient<$Result.GetResult<Prisma.$ViajePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Viaje that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ViajeFindUniqueOrThrowArgs} args - Arguments to find a Viaje
+     * @example
+     * // Get one Viaje
+     * const viaje = await prisma.viaje.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ViajeFindUniqueOrThrowArgs>(args: SelectSubset<T, ViajeFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ViajeClient<$Result.GetResult<Prisma.$ViajePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Viaje that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ViajeFindFirstArgs} args - Arguments to find a Viaje
+     * @example
+     * // Get one Viaje
+     * const viaje = await prisma.viaje.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ViajeFindFirstArgs>(args?: SelectSubset<T, ViajeFindFirstArgs<ExtArgs>>): Prisma__ViajeClient<$Result.GetResult<Prisma.$ViajePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Viaje that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ViajeFindFirstOrThrowArgs} args - Arguments to find a Viaje
+     * @example
+     * // Get one Viaje
+     * const viaje = await prisma.viaje.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ViajeFindFirstOrThrowArgs>(args?: SelectSubset<T, ViajeFindFirstOrThrowArgs<ExtArgs>>): Prisma__ViajeClient<$Result.GetResult<Prisma.$ViajePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Viajes that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ViajeFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Viajes
+     * const viajes = await prisma.viaje.findMany()
+     * 
+     * // Get first 10 Viajes
+     * const viajes = await prisma.viaje.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const viajeWithIdOnly = await prisma.viaje.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ViajeFindManyArgs>(args?: SelectSubset<T, ViajeFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ViajePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Viaje.
+     * @param {ViajeCreateArgs} args - Arguments to create a Viaje.
+     * @example
+     * // Create one Viaje
+     * const Viaje = await prisma.viaje.create({
+     *   data: {
+     *     // ... data to create a Viaje
+     *   }
+     * })
+     * 
+     */
+    create<T extends ViajeCreateArgs>(args: SelectSubset<T, ViajeCreateArgs<ExtArgs>>): Prisma__ViajeClient<$Result.GetResult<Prisma.$ViajePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Viajes.
+     * @param {ViajeCreateManyArgs} args - Arguments to create many Viajes.
+     * @example
+     * // Create many Viajes
+     * const viaje = await prisma.viaje.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ViajeCreateManyArgs>(args?: SelectSubset<T, ViajeCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Viajes and returns the data saved in the database.
+     * @param {ViajeCreateManyAndReturnArgs} args - Arguments to create many Viajes.
+     * @example
+     * // Create many Viajes
+     * const viaje = await prisma.viaje.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Viajes and only return the `id`
+     * const viajeWithIdOnly = await prisma.viaje.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends ViajeCreateManyAndReturnArgs>(args?: SelectSubset<T, ViajeCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ViajePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Viaje.
+     * @param {ViajeDeleteArgs} args - Arguments to delete one Viaje.
+     * @example
+     * // Delete one Viaje
+     * const Viaje = await prisma.viaje.delete({
+     *   where: {
+     *     // ... filter to delete one Viaje
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ViajeDeleteArgs>(args: SelectSubset<T, ViajeDeleteArgs<ExtArgs>>): Prisma__ViajeClient<$Result.GetResult<Prisma.$ViajePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Viaje.
+     * @param {ViajeUpdateArgs} args - Arguments to update one Viaje.
+     * @example
+     * // Update one Viaje
+     * const viaje = await prisma.viaje.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ViajeUpdateArgs>(args: SelectSubset<T, ViajeUpdateArgs<ExtArgs>>): Prisma__ViajeClient<$Result.GetResult<Prisma.$ViajePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Viajes.
+     * @param {ViajeDeleteManyArgs} args - Arguments to filter Viajes to delete.
+     * @example
+     * // Delete a few Viajes
+     * const { count } = await prisma.viaje.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ViajeDeleteManyArgs>(args?: SelectSubset<T, ViajeDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Viajes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ViajeUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Viajes
+     * const viaje = await prisma.viaje.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ViajeUpdateManyArgs>(args: SelectSubset<T, ViajeUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Viajes and returns the data updated in the database.
+     * @param {ViajeUpdateManyAndReturnArgs} args - Arguments to update many Viajes.
+     * @example
+     * // Update many Viajes
+     * const viaje = await prisma.viaje.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Viajes and only return the `id`
+     * const viajeWithIdOnly = await prisma.viaje.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends ViajeUpdateManyAndReturnArgs>(args: SelectSubset<T, ViajeUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ViajePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Viaje.
+     * @param {ViajeUpsertArgs} args - Arguments to update or create a Viaje.
+     * @example
+     * // Update or create a Viaje
+     * const viaje = await prisma.viaje.upsert({
+     *   create: {
+     *     // ... data to create a Viaje
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Viaje we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ViajeUpsertArgs>(args: SelectSubset<T, ViajeUpsertArgs<ExtArgs>>): Prisma__ViajeClient<$Result.GetResult<Prisma.$ViajePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Viajes.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ViajeCountArgs} args - Arguments to filter Viajes to count.
+     * @example
+     * // Count the number of Viajes
+     * const count = await prisma.viaje.count({
+     *   where: {
+     *     // ... the filter for the Viajes we want to count
+     *   }
+     * })
+    **/
+    count<T extends ViajeCountArgs>(
+      args?: Subset<T, ViajeCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ViajeCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Viaje.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ViajeAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ViajeAggregateArgs>(args: Subset<T, ViajeAggregateArgs>): Prisma.PrismaPromise<GetViajeAggregateType<T>>
+
+    /**
+     * Group by Viaje.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ViajeGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ViajeGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ViajeGroupByArgs['orderBy'] }
+        : { orderBy?: ViajeGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ViajeGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetViajeGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Viaje model
+   */
+  readonly fields: ViajeFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Viaje.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ViajeClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    vehiculo<T extends VehiculoDefaultArgs<ExtArgs> = {}>(args?: Subset<T, VehiculoDefaultArgs<ExtArgs>>): Prisma__VehiculoClient<$Result.GetResult<Prisma.$VehiculoPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    conductor<T extends UsuarioDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UsuarioDefaultArgs<ExtArgs>>): Prisma__UsuarioClient<$Result.GetResult<Prisma.$UsuarioPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    preoperacional<T extends Viaje$preoperacionalArgs<ExtArgs> = {}>(args?: Subset<T, Viaje$preoperacionalArgs<ExtArgs>>): Prisma__PreoperacionalClient<$Result.GetResult<Prisma.$PreoperacionalPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    puntosGps<T extends Viaje$puntosGpsArgs<ExtArgs> = {}>(args?: Subset<T, Viaje$puntosGpsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PuntoGpsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Viaje model
+   */
+  interface ViajeFieldRefs {
+    readonly id: FieldRef<"Viaje", 'String'>
+    readonly vehiculoId: FieldRef<"Viaje", 'Int'>
+    readonly conductorId: FieldRef<"Viaje", 'Int'>
+    readonly preoperacionalId: FieldRef<"Viaje", 'Int'>
+    readonly horaInicio: FieldRef<"Viaje", 'DateTime'>
+    readonly horaFin: FieldRef<"Viaje", 'DateTime'>
+    readonly distanciaTotalKm: FieldRef<"Viaje", 'Float'>
+    readonly velocidadPromedio: FieldRef<"Viaje", 'Float'>
+    readonly velocidadMaxima: FieldRef<"Viaje", 'Float'>
+    readonly estado: FieldRef<"Viaje", 'EstadoViaje'>
+    readonly archivoRutaUrl: FieldRef<"Viaje", 'String'>
+    readonly createdAt: FieldRef<"Viaje", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Viaje findUnique
+   */
+  export type ViajeFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Viaje
+     */
+    select?: ViajeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Viaje
+     */
+    omit?: ViajeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ViajeInclude<ExtArgs> | null
+    /**
+     * Filter, which Viaje to fetch.
+     */
+    where: ViajeWhereUniqueInput
+  }
+
+  /**
+   * Viaje findUniqueOrThrow
+   */
+  export type ViajeFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Viaje
+     */
+    select?: ViajeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Viaje
+     */
+    omit?: ViajeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ViajeInclude<ExtArgs> | null
+    /**
+     * Filter, which Viaje to fetch.
+     */
+    where: ViajeWhereUniqueInput
+  }
+
+  /**
+   * Viaje findFirst
+   */
+  export type ViajeFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Viaje
+     */
+    select?: ViajeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Viaje
+     */
+    omit?: ViajeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ViajeInclude<ExtArgs> | null
+    /**
+     * Filter, which Viaje to fetch.
+     */
+    where?: ViajeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Viajes to fetch.
+     */
+    orderBy?: ViajeOrderByWithRelationInput | ViajeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Viajes.
+     */
+    cursor?: ViajeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Viajes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Viajes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Viajes.
+     */
+    distinct?: ViajeScalarFieldEnum | ViajeScalarFieldEnum[]
+  }
+
+  /**
+   * Viaje findFirstOrThrow
+   */
+  export type ViajeFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Viaje
+     */
+    select?: ViajeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Viaje
+     */
+    omit?: ViajeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ViajeInclude<ExtArgs> | null
+    /**
+     * Filter, which Viaje to fetch.
+     */
+    where?: ViajeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Viajes to fetch.
+     */
+    orderBy?: ViajeOrderByWithRelationInput | ViajeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Viajes.
+     */
+    cursor?: ViajeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Viajes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Viajes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Viajes.
+     */
+    distinct?: ViajeScalarFieldEnum | ViajeScalarFieldEnum[]
+  }
+
+  /**
+   * Viaje findMany
+   */
+  export type ViajeFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Viaje
+     */
+    select?: ViajeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Viaje
+     */
+    omit?: ViajeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ViajeInclude<ExtArgs> | null
+    /**
+     * Filter, which Viajes to fetch.
+     */
+    where?: ViajeWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Viajes to fetch.
+     */
+    orderBy?: ViajeOrderByWithRelationInput | ViajeOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Viajes.
+     */
+    cursor?: ViajeWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Viajes from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Viajes.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Viajes.
+     */
+    distinct?: ViajeScalarFieldEnum | ViajeScalarFieldEnum[]
+  }
+
+  /**
+   * Viaje create
+   */
+  export type ViajeCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Viaje
+     */
+    select?: ViajeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Viaje
+     */
+    omit?: ViajeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ViajeInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Viaje.
+     */
+    data: XOR<ViajeCreateInput, ViajeUncheckedCreateInput>
+  }
+
+  /**
+   * Viaje createMany
+   */
+  export type ViajeCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Viajes.
+     */
+    data: ViajeCreateManyInput | ViajeCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Viaje createManyAndReturn
+   */
+  export type ViajeCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Viaje
+     */
+    select?: ViajeSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Viaje
+     */
+    omit?: ViajeOmit<ExtArgs> | null
+    /**
+     * The data used to create many Viajes.
+     */
+    data: ViajeCreateManyInput | ViajeCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ViajeIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Viaje update
+   */
+  export type ViajeUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Viaje
+     */
+    select?: ViajeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Viaje
+     */
+    omit?: ViajeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ViajeInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Viaje.
+     */
+    data: XOR<ViajeUpdateInput, ViajeUncheckedUpdateInput>
+    /**
+     * Choose, which Viaje to update.
+     */
+    where: ViajeWhereUniqueInput
+  }
+
+  /**
+   * Viaje updateMany
+   */
+  export type ViajeUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Viajes.
+     */
+    data: XOR<ViajeUpdateManyMutationInput, ViajeUncheckedUpdateManyInput>
+    /**
+     * Filter which Viajes to update
+     */
+    where?: ViajeWhereInput
+    /**
+     * Limit how many Viajes to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Viaje updateManyAndReturn
+   */
+  export type ViajeUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Viaje
+     */
+    select?: ViajeSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Viaje
+     */
+    omit?: ViajeOmit<ExtArgs> | null
+    /**
+     * The data used to update Viajes.
+     */
+    data: XOR<ViajeUpdateManyMutationInput, ViajeUncheckedUpdateManyInput>
+    /**
+     * Filter which Viajes to update
+     */
+    where?: ViajeWhereInput
+    /**
+     * Limit how many Viajes to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ViajeIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Viaje upsert
+   */
+  export type ViajeUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Viaje
+     */
+    select?: ViajeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Viaje
+     */
+    omit?: ViajeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ViajeInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Viaje to update in case it exists.
+     */
+    where: ViajeWhereUniqueInput
+    /**
+     * In case the Viaje found by the `where` argument doesn't exist, create a new Viaje with this data.
+     */
+    create: XOR<ViajeCreateInput, ViajeUncheckedCreateInput>
+    /**
+     * In case the Viaje was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ViajeUpdateInput, ViajeUncheckedUpdateInput>
+  }
+
+  /**
+   * Viaje delete
+   */
+  export type ViajeDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Viaje
+     */
+    select?: ViajeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Viaje
+     */
+    omit?: ViajeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ViajeInclude<ExtArgs> | null
+    /**
+     * Filter which Viaje to delete.
+     */
+    where: ViajeWhereUniqueInput
+  }
+
+  /**
+   * Viaje deleteMany
+   */
+  export type ViajeDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Viajes to delete
+     */
+    where?: ViajeWhereInput
+    /**
+     * Limit how many Viajes to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Viaje.preoperacional
+   */
+  export type Viaje$preoperacionalArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Preoperacional
+     */
+    select?: PreoperacionalSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Preoperacional
+     */
+    omit?: PreoperacionalOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PreoperacionalInclude<ExtArgs> | null
+    where?: PreoperacionalWhereInput
+  }
+
+  /**
+   * Viaje.puntosGps
+   */
+  export type Viaje$puntosGpsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PuntoGps
+     */
+    select?: PuntoGpsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PuntoGps
+     */
+    omit?: PuntoGpsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PuntoGpsInclude<ExtArgs> | null
+    where?: PuntoGpsWhereInput
+    orderBy?: PuntoGpsOrderByWithRelationInput | PuntoGpsOrderByWithRelationInput[]
+    cursor?: PuntoGpsWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PuntoGpsScalarFieldEnum | PuntoGpsScalarFieldEnum[]
+  }
+
+  /**
+   * Viaje without action
+   */
+  export type ViajeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Viaje
+     */
+    select?: ViajeSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Viaje
+     */
+    omit?: ViajeOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ViajeInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model PuntoGps
+   */
+
+  export type AggregatePuntoGps = {
+    _count: PuntoGpsCountAggregateOutputType | null
+    _avg: PuntoGpsAvgAggregateOutputType | null
+    _sum: PuntoGpsSumAggregateOutputType | null
+    _min: PuntoGpsMinAggregateOutputType | null
+    _max: PuntoGpsMaxAggregateOutputType | null
+  }
+
+  export type PuntoGpsAvgAggregateOutputType = {
+    id: number | null
+    velocidad: number | null
+    precision: number | null
+  }
+
+  export type PuntoGpsSumAggregateOutputType = {
+    id: number | null
+    velocidad: number | null
+    precision: number | null
+  }
+
+  export type PuntoGpsMinAggregateOutputType = {
+    id: number | null
+    viajeId: string | null
+    velocidad: number | null
+    precision: number | null
+    timestamp: Date | null
+  }
+
+  export type PuntoGpsMaxAggregateOutputType = {
+    id: number | null
+    viajeId: string | null
+    velocidad: number | null
+    precision: number | null
+    timestamp: Date | null
+  }
+
+  export type PuntoGpsCountAggregateOutputType = {
+    id: number
+    viajeId: number
+    velocidad: number
+    precision: number
+    timestamp: number
+    _all: number
+  }
+
+
+  export type PuntoGpsAvgAggregateInputType = {
+    id?: true
+    velocidad?: true
+    precision?: true
+  }
+
+  export type PuntoGpsSumAggregateInputType = {
+    id?: true
+    velocidad?: true
+    precision?: true
+  }
+
+  export type PuntoGpsMinAggregateInputType = {
+    id?: true
+    viajeId?: true
+    velocidad?: true
+    precision?: true
+    timestamp?: true
+  }
+
+  export type PuntoGpsMaxAggregateInputType = {
+    id?: true
+    viajeId?: true
+    velocidad?: true
+    precision?: true
+    timestamp?: true
+  }
+
+  export type PuntoGpsCountAggregateInputType = {
+    id?: true
+    viajeId?: true
+    velocidad?: true
+    precision?: true
+    timestamp?: true
+    _all?: true
+  }
+
+  export type PuntoGpsAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PuntoGps to aggregate.
+     */
+    where?: PuntoGpsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PuntoGps to fetch.
+     */
+    orderBy?: PuntoGpsOrderByWithRelationInput | PuntoGpsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: PuntoGpsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PuntoGps from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PuntoGps.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned PuntoGps
+    **/
+    _count?: true | PuntoGpsCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: PuntoGpsAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: PuntoGpsSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: PuntoGpsMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: PuntoGpsMaxAggregateInputType
+  }
+
+  export type GetPuntoGpsAggregateType<T extends PuntoGpsAggregateArgs> = {
+        [P in keyof T & keyof AggregatePuntoGps]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregatePuntoGps[P]>
+      : GetScalarType<T[P], AggregatePuntoGps[P]>
+  }
+
+
+
+
+  export type PuntoGpsGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PuntoGpsWhereInput
+    orderBy?: PuntoGpsOrderByWithAggregationInput | PuntoGpsOrderByWithAggregationInput[]
+    by: PuntoGpsScalarFieldEnum[] | PuntoGpsScalarFieldEnum
+    having?: PuntoGpsScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: PuntoGpsCountAggregateInputType | true
+    _avg?: PuntoGpsAvgAggregateInputType
+    _sum?: PuntoGpsSumAggregateInputType
+    _min?: PuntoGpsMinAggregateInputType
+    _max?: PuntoGpsMaxAggregateInputType
+  }
+
+  export type PuntoGpsGroupByOutputType = {
+    id: number
+    viajeId: string
+    velocidad: number | null
+    precision: number | null
+    timestamp: Date
+    _count: PuntoGpsCountAggregateOutputType | null
+    _avg: PuntoGpsAvgAggregateOutputType | null
+    _sum: PuntoGpsSumAggregateOutputType | null
+    _min: PuntoGpsMinAggregateOutputType | null
+    _max: PuntoGpsMaxAggregateOutputType | null
+  }
+
+  type GetPuntoGpsGroupByPayload<T extends PuntoGpsGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<PuntoGpsGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof PuntoGpsGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], PuntoGpsGroupByOutputType[P]>
+            : GetScalarType<T[P], PuntoGpsGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type PuntoGpsSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    viajeId?: boolean
+    velocidad?: boolean
+    precision?: boolean
+    timestamp?: boolean
+    viaje?: boolean | ViajeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["puntoGps"]>
+
+
+  export type PuntoGpsSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    viajeId?: boolean
+    velocidad?: boolean
+    precision?: boolean
+    timestamp?: boolean
+    viaje?: boolean | ViajeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["puntoGps"]>
+
+  export type PuntoGpsSelectScalar = {
+    id?: boolean
+    viajeId?: boolean
+    velocidad?: boolean
+    precision?: boolean
+    timestamp?: boolean
+  }
+
+  export type PuntoGpsOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "viajeId" | "velocidad" | "precision" | "timestamp", ExtArgs["result"]["puntoGps"]>
+  export type PuntoGpsInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    viaje?: boolean | ViajeDefaultArgs<ExtArgs>
+  }
+  export type PuntoGpsIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    viaje?: boolean | ViajeDefaultArgs<ExtArgs>
+  }
+
+  export type $PuntoGpsPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "PuntoGps"
+    objects: {
+      viaje: Prisma.$ViajePayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      viajeId: string
+      velocidad: number | null
+      precision: number | null
+      timestamp: Date
+    }, ExtArgs["result"]["puntoGps"]>
+    composites: {}
+  }
+
+  type PuntoGpsGetPayload<S extends boolean | null | undefined | PuntoGpsDefaultArgs> = $Result.GetResult<Prisma.$PuntoGpsPayload, S>
+
+  type PuntoGpsCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<PuntoGpsFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: PuntoGpsCountAggregateInputType | true
+    }
+
+  export interface PuntoGpsDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['PuntoGps'], meta: { name: 'PuntoGps' } }
+    /**
+     * Find zero or one PuntoGps that matches the filter.
+     * @param {PuntoGpsFindUniqueArgs} args - Arguments to find a PuntoGps
+     * @example
+     * // Get one PuntoGps
+     * const puntoGps = await prisma.puntoGps.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends PuntoGpsFindUniqueArgs>(args: SelectSubset<T, PuntoGpsFindUniqueArgs<ExtArgs>>): Prisma__PuntoGpsClient<$Result.GetResult<Prisma.$PuntoGpsPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one PuntoGps that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {PuntoGpsFindUniqueOrThrowArgs} args - Arguments to find a PuntoGps
+     * @example
+     * // Get one PuntoGps
+     * const puntoGps = await prisma.puntoGps.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends PuntoGpsFindUniqueOrThrowArgs>(args: SelectSubset<T, PuntoGpsFindUniqueOrThrowArgs<ExtArgs>>): Prisma__PuntoGpsClient<$Result.GetResult<Prisma.$PuntoGpsPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PuntoGps that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PuntoGpsFindFirstArgs} args - Arguments to find a PuntoGps
+     * @example
+     * // Get one PuntoGps
+     * const puntoGps = await prisma.puntoGps.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends PuntoGpsFindFirstArgs>(args?: SelectSubset<T, PuntoGpsFindFirstArgs<ExtArgs>>): Prisma__PuntoGpsClient<$Result.GetResult<Prisma.$PuntoGpsPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first PuntoGps that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PuntoGpsFindFirstOrThrowArgs} args - Arguments to find a PuntoGps
+     * @example
+     * // Get one PuntoGps
+     * const puntoGps = await prisma.puntoGps.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends PuntoGpsFindFirstOrThrowArgs>(args?: SelectSubset<T, PuntoGpsFindFirstOrThrowArgs<ExtArgs>>): Prisma__PuntoGpsClient<$Result.GetResult<Prisma.$PuntoGpsPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more PuntoGps that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PuntoGpsFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all PuntoGps
+     * const puntoGps = await prisma.puntoGps.findMany()
+     * 
+     * // Get first 10 PuntoGps
+     * const puntoGps = await prisma.puntoGps.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const puntoGpsWithIdOnly = await prisma.puntoGps.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends PuntoGpsFindManyArgs>(args?: SelectSubset<T, PuntoGpsFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PuntoGpsPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Delete a PuntoGps.
+     * @param {PuntoGpsDeleteArgs} args - Arguments to delete one PuntoGps.
+     * @example
+     * // Delete one PuntoGps
+     * const PuntoGps = await prisma.puntoGps.delete({
+     *   where: {
+     *     // ... filter to delete one PuntoGps
+     *   }
+     * })
+     * 
+     */
+    delete<T extends PuntoGpsDeleteArgs>(args: SelectSubset<T, PuntoGpsDeleteArgs<ExtArgs>>): Prisma__PuntoGpsClient<$Result.GetResult<Prisma.$PuntoGpsPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one PuntoGps.
+     * @param {PuntoGpsUpdateArgs} args - Arguments to update one PuntoGps.
+     * @example
+     * // Update one PuntoGps
+     * const puntoGps = await prisma.puntoGps.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends PuntoGpsUpdateArgs>(args: SelectSubset<T, PuntoGpsUpdateArgs<ExtArgs>>): Prisma__PuntoGpsClient<$Result.GetResult<Prisma.$PuntoGpsPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more PuntoGps.
+     * @param {PuntoGpsDeleteManyArgs} args - Arguments to filter PuntoGps to delete.
+     * @example
+     * // Delete a few PuntoGps
+     * const { count } = await prisma.puntoGps.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends PuntoGpsDeleteManyArgs>(args?: SelectSubset<T, PuntoGpsDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PuntoGps.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PuntoGpsUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many PuntoGps
+     * const puntoGps = await prisma.puntoGps.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends PuntoGpsUpdateManyArgs>(args: SelectSubset<T, PuntoGpsUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more PuntoGps and returns the data updated in the database.
+     * @param {PuntoGpsUpdateManyAndReturnArgs} args - Arguments to update many PuntoGps.
+     * @example
+     * // Update many PuntoGps
+     * const puntoGps = await prisma.puntoGps.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more PuntoGps and only return the `id`
+     * const puntoGpsWithIdOnly = await prisma.puntoGps.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends PuntoGpsUpdateManyAndReturnArgs>(args: SelectSubset<T, PuntoGpsUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PuntoGpsPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+
+    /**
+     * Count the number of PuntoGps.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PuntoGpsCountArgs} args - Arguments to filter PuntoGps to count.
+     * @example
+     * // Count the number of PuntoGps
+     * const count = await prisma.puntoGps.count({
+     *   where: {
+     *     // ... the filter for the PuntoGps we want to count
+     *   }
+     * })
+    **/
+    count<T extends PuntoGpsCountArgs>(
+      args?: Subset<T, PuntoGpsCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], PuntoGpsCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a PuntoGps.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PuntoGpsAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends PuntoGpsAggregateArgs>(args: Subset<T, PuntoGpsAggregateArgs>): Prisma.PrismaPromise<GetPuntoGpsAggregateType<T>>
+
+    /**
+     * Group by PuntoGps.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {PuntoGpsGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends PuntoGpsGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: PuntoGpsGroupByArgs['orderBy'] }
+        : { orderBy?: PuntoGpsGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, PuntoGpsGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetPuntoGpsGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the PuntoGps model
+   */
+  readonly fields: PuntoGpsFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for PuntoGps.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__PuntoGpsClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    viaje<T extends ViajeDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ViajeDefaultArgs<ExtArgs>>): Prisma__ViajeClient<$Result.GetResult<Prisma.$ViajePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the PuntoGps model
+   */
+  interface PuntoGpsFieldRefs {
+    readonly id: FieldRef<"PuntoGps", 'Int'>
+    readonly viajeId: FieldRef<"PuntoGps", 'String'>
+    readonly velocidad: FieldRef<"PuntoGps", 'Float'>
+    readonly precision: FieldRef<"PuntoGps", 'Float'>
+    readonly timestamp: FieldRef<"PuntoGps", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * PuntoGps findUnique
+   */
+  export type PuntoGpsFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PuntoGps
+     */
+    select?: PuntoGpsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PuntoGps
+     */
+    omit?: PuntoGpsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PuntoGpsInclude<ExtArgs> | null
+    /**
+     * Filter, which PuntoGps to fetch.
+     */
+    where: PuntoGpsWhereUniqueInput
+  }
+
+  /**
+   * PuntoGps findUniqueOrThrow
+   */
+  export type PuntoGpsFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PuntoGps
+     */
+    select?: PuntoGpsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PuntoGps
+     */
+    omit?: PuntoGpsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PuntoGpsInclude<ExtArgs> | null
+    /**
+     * Filter, which PuntoGps to fetch.
+     */
+    where: PuntoGpsWhereUniqueInput
+  }
+
+  /**
+   * PuntoGps findFirst
+   */
+  export type PuntoGpsFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PuntoGps
+     */
+    select?: PuntoGpsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PuntoGps
+     */
+    omit?: PuntoGpsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PuntoGpsInclude<ExtArgs> | null
+    /**
+     * Filter, which PuntoGps to fetch.
+     */
+    where?: PuntoGpsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PuntoGps to fetch.
+     */
+    orderBy?: PuntoGpsOrderByWithRelationInput | PuntoGpsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PuntoGps.
+     */
+    cursor?: PuntoGpsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PuntoGps from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PuntoGps.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PuntoGps.
+     */
+    distinct?: PuntoGpsScalarFieldEnum | PuntoGpsScalarFieldEnum[]
+  }
+
+  /**
+   * PuntoGps findFirstOrThrow
+   */
+  export type PuntoGpsFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PuntoGps
+     */
+    select?: PuntoGpsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PuntoGps
+     */
+    omit?: PuntoGpsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PuntoGpsInclude<ExtArgs> | null
+    /**
+     * Filter, which PuntoGps to fetch.
+     */
+    where?: PuntoGpsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PuntoGps to fetch.
+     */
+    orderBy?: PuntoGpsOrderByWithRelationInput | PuntoGpsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for PuntoGps.
+     */
+    cursor?: PuntoGpsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PuntoGps from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PuntoGps.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PuntoGps.
+     */
+    distinct?: PuntoGpsScalarFieldEnum | PuntoGpsScalarFieldEnum[]
+  }
+
+  /**
+   * PuntoGps findMany
+   */
+  export type PuntoGpsFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PuntoGps
+     */
+    select?: PuntoGpsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PuntoGps
+     */
+    omit?: PuntoGpsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PuntoGpsInclude<ExtArgs> | null
+    /**
+     * Filter, which PuntoGps to fetch.
+     */
+    where?: PuntoGpsWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of PuntoGps to fetch.
+     */
+    orderBy?: PuntoGpsOrderByWithRelationInput | PuntoGpsOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing PuntoGps.
+     */
+    cursor?: PuntoGpsWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` PuntoGps from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` PuntoGps.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of PuntoGps.
+     */
+    distinct?: PuntoGpsScalarFieldEnum | PuntoGpsScalarFieldEnum[]
+  }
+
+  /**
+   * PuntoGps update
+   */
+  export type PuntoGpsUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PuntoGps
+     */
+    select?: PuntoGpsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PuntoGps
+     */
+    omit?: PuntoGpsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PuntoGpsInclude<ExtArgs> | null
+    /**
+     * The data needed to update a PuntoGps.
+     */
+    data: XOR<PuntoGpsUpdateInput, PuntoGpsUncheckedUpdateInput>
+    /**
+     * Choose, which PuntoGps to update.
+     */
+    where: PuntoGpsWhereUniqueInput
+  }
+
+  /**
+   * PuntoGps updateMany
+   */
+  export type PuntoGpsUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update PuntoGps.
+     */
+    data: XOR<PuntoGpsUpdateManyMutationInput, PuntoGpsUncheckedUpdateManyInput>
+    /**
+     * Filter which PuntoGps to update
+     */
+    where?: PuntoGpsWhereInput
+    /**
+     * Limit how many PuntoGps to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * PuntoGps updateManyAndReturn
+   */
+  export type PuntoGpsUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PuntoGps
+     */
+    select?: PuntoGpsSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the PuntoGps
+     */
+    omit?: PuntoGpsOmit<ExtArgs> | null
+    /**
+     * The data used to update PuntoGps.
+     */
+    data: XOR<PuntoGpsUpdateManyMutationInput, PuntoGpsUncheckedUpdateManyInput>
+    /**
+     * Filter which PuntoGps to update
+     */
+    where?: PuntoGpsWhereInput
+    /**
+     * Limit how many PuntoGps to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PuntoGpsIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * PuntoGps delete
+   */
+  export type PuntoGpsDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PuntoGps
+     */
+    select?: PuntoGpsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PuntoGps
+     */
+    omit?: PuntoGpsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PuntoGpsInclude<ExtArgs> | null
+    /**
+     * Filter which PuntoGps to delete.
+     */
+    where: PuntoGpsWhereUniqueInput
+  }
+
+  /**
+   * PuntoGps deleteMany
+   */
+  export type PuntoGpsDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which PuntoGps to delete
+     */
+    where?: PuntoGpsWhereInput
+    /**
+     * Limit how many PuntoGps to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * PuntoGps without action
+   */
+  export type PuntoGpsDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PuntoGps
+     */
+    select?: PuntoGpsSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the PuntoGps
+     */
+    omit?: PuntoGpsOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: PuntoGpsInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -7503,6 +10058,35 @@ export namespace Prisma {
   };
 
   export type SolicitudScalarFieldEnum = (typeof SolicitudScalarFieldEnum)[keyof typeof SolicitudScalarFieldEnum]
+
+
+  export const ViajeScalarFieldEnum: {
+    id: 'id',
+    vehiculoId: 'vehiculoId',
+    conductorId: 'conductorId',
+    preoperacionalId: 'preoperacionalId',
+    horaInicio: 'horaInicio',
+    horaFin: 'horaFin',
+    distanciaTotalKm: 'distanciaTotalKm',
+    velocidadPromedio: 'velocidadPromedio',
+    velocidadMaxima: 'velocidadMaxima',
+    estado: 'estado',
+    archivoRutaUrl: 'archivoRutaUrl',
+    createdAt: 'createdAt'
+  };
+
+  export type ViajeScalarFieldEnum = (typeof ViajeScalarFieldEnum)[keyof typeof ViajeScalarFieldEnum]
+
+
+  export const PuntoGpsScalarFieldEnum: {
+    id: 'id',
+    viajeId: 'viajeId',
+    velocidad: 'velocidad',
+    precision: 'precision',
+    timestamp: 'timestamp'
+  };
+
+  export type PuntoGpsScalarFieldEnum = (typeof PuntoGpsScalarFieldEnum)[keyof typeof PuntoGpsScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -7667,6 +10251,20 @@ export namespace Prisma {
    */
   export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
+
+
+  /**
+   * Reference to a field of type 'EstadoViaje'
+   */
+  export type EnumEstadoViajeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EstadoViaje'>
+    
+
+
+  /**
+   * Reference to a field of type 'EstadoViaje[]'
+   */
+  export type ListEnumEstadoViajeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'EstadoViaje[]'>
+    
   /**
    * Deep Input Types
    */
@@ -7689,6 +10287,7 @@ export namespace Prisma {
     refreshTokens?: RefreshTokenListRelationFilter
     solicitudesCreadas?: SolicitudListRelationFilter
     solicitudesAprobadas?: SolicitudListRelationFilter
+    viajes?: ViajeListRelationFilter
   }
 
   export type UsuarioOrderByWithRelationInput = {
@@ -7705,6 +10304,7 @@ export namespace Prisma {
     refreshTokens?: RefreshTokenOrderByRelationAggregateInput
     solicitudesCreadas?: SolicitudOrderByRelationAggregateInput
     solicitudesAprobadas?: SolicitudOrderByRelationAggregateInput
+    viajes?: ViajeOrderByRelationAggregateInput
   }
 
   export type UsuarioWhereUniqueInput = Prisma.AtLeast<{
@@ -7724,6 +10324,7 @@ export namespace Prisma {
     refreshTokens?: RefreshTokenListRelationFilter
     solicitudesCreadas?: SolicitudListRelationFilter
     solicitudesAprobadas?: SolicitudListRelationFilter
+    viajes?: ViajeListRelationFilter
   }, "id" | "cedula" | "email">
 
   export type UsuarioOrderByWithAggregationInput = {
@@ -7774,6 +10375,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Vehiculo"> | Date | string
     preoperacionales?: PreoperacionalListRelationFilter
     solicitudes?: SolicitudListRelationFilter
+    viajes?: ViajeListRelationFilter
   }
 
   export type VehiculoOrderByWithRelationInput = {
@@ -7789,6 +10391,7 @@ export namespace Prisma {
     createdAt?: SortOrder
     preoperacionales?: PreoperacionalOrderByRelationAggregateInput
     solicitudes?: SolicitudOrderByRelationAggregateInput
+    viajes?: ViajeOrderByRelationAggregateInput
   }
 
   export type VehiculoWhereUniqueInput = Prisma.AtLeast<{
@@ -7807,6 +10410,7 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Vehiculo"> | Date | string
     preoperacionales?: PreoperacionalListRelationFilter
     solicitudes?: SolicitudListRelationFilter
+    viajes?: ViajeListRelationFilter
   }, "id" | "placa">
 
   export type VehiculoOrderByWithAggregationInput = {
@@ -7860,6 +10464,7 @@ export namespace Prisma {
     usuario?: XOR<UsuarioScalarRelationFilter, UsuarioWhereInput>
     vehiculo?: XOR<VehiculoScalarRelationFilter, VehiculoWhereInput>
     solicitud?: XOR<SolicitudNullableScalarRelationFilter, SolicitudWhereInput> | null
+    viajes?: ViajeListRelationFilter
   }
 
   export type PreoperacionalOrderByWithRelationInput = {
@@ -7876,6 +10481,7 @@ export namespace Prisma {
     usuario?: UsuarioOrderByWithRelationInput
     vehiculo?: VehiculoOrderByWithRelationInput
     solicitud?: SolicitudOrderByWithRelationInput
+    viajes?: ViajeOrderByRelationAggregateInput
   }
 
   export type PreoperacionalWhereUniqueInput = Prisma.AtLeast<{
@@ -7895,6 +10501,7 @@ export namespace Prisma {
     usuario?: XOR<UsuarioScalarRelationFilter, UsuarioWhereInput>
     vehiculo?: XOR<VehiculoScalarRelationFilter, VehiculoWhereInput>
     solicitud?: XOR<SolicitudNullableScalarRelationFilter, SolicitudWhereInput> | null
+    viajes?: ViajeListRelationFilter
   }, "id" | "consecutivo">
 
   export type PreoperacionalOrderByWithAggregationInput = {
@@ -8079,6 +10686,164 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"Solicitud"> | Date | string
   }
 
+  export type ViajeWhereInput = {
+    AND?: ViajeWhereInput | ViajeWhereInput[]
+    OR?: ViajeWhereInput[]
+    NOT?: ViajeWhereInput | ViajeWhereInput[]
+    id?: StringFilter<"Viaje"> | string
+    vehiculoId?: IntFilter<"Viaje"> | number
+    conductorId?: IntFilter<"Viaje"> | number
+    preoperacionalId?: IntNullableFilter<"Viaje"> | number | null
+    horaInicio?: DateTimeFilter<"Viaje"> | Date | string
+    horaFin?: DateTimeNullableFilter<"Viaje"> | Date | string | null
+    distanciaTotalKm?: FloatNullableFilter<"Viaje"> | number | null
+    velocidadPromedio?: FloatNullableFilter<"Viaje"> | number | null
+    velocidadMaxima?: FloatNullableFilter<"Viaje"> | number | null
+    estado?: EnumEstadoViajeFilter<"Viaje"> | $Enums.EstadoViaje
+    archivoRutaUrl?: StringNullableFilter<"Viaje"> | string | null
+    createdAt?: DateTimeFilter<"Viaje"> | Date | string
+    vehiculo?: XOR<VehiculoScalarRelationFilter, VehiculoWhereInput>
+    conductor?: XOR<UsuarioScalarRelationFilter, UsuarioWhereInput>
+    preoperacional?: XOR<PreoperacionalNullableScalarRelationFilter, PreoperacionalWhereInput> | null
+    puntosGps?: PuntoGpsListRelationFilter
+  }
+
+  export type ViajeOrderByWithRelationInput = {
+    id?: SortOrder
+    vehiculoId?: SortOrder
+    conductorId?: SortOrder
+    preoperacionalId?: SortOrderInput | SortOrder
+    horaInicio?: SortOrder
+    horaFin?: SortOrderInput | SortOrder
+    distanciaTotalKm?: SortOrderInput | SortOrder
+    velocidadPromedio?: SortOrderInput | SortOrder
+    velocidadMaxima?: SortOrderInput | SortOrder
+    estado?: SortOrder
+    archivoRutaUrl?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    vehiculo?: VehiculoOrderByWithRelationInput
+    conductor?: UsuarioOrderByWithRelationInput
+    preoperacional?: PreoperacionalOrderByWithRelationInput
+    puntosGps?: PuntoGpsOrderByRelationAggregateInput
+  }
+
+  export type ViajeWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: ViajeWhereInput | ViajeWhereInput[]
+    OR?: ViajeWhereInput[]
+    NOT?: ViajeWhereInput | ViajeWhereInput[]
+    vehiculoId?: IntFilter<"Viaje"> | number
+    conductorId?: IntFilter<"Viaje"> | number
+    preoperacionalId?: IntNullableFilter<"Viaje"> | number | null
+    horaInicio?: DateTimeFilter<"Viaje"> | Date | string
+    horaFin?: DateTimeNullableFilter<"Viaje"> | Date | string | null
+    distanciaTotalKm?: FloatNullableFilter<"Viaje"> | number | null
+    velocidadPromedio?: FloatNullableFilter<"Viaje"> | number | null
+    velocidadMaxima?: FloatNullableFilter<"Viaje"> | number | null
+    estado?: EnumEstadoViajeFilter<"Viaje"> | $Enums.EstadoViaje
+    archivoRutaUrl?: StringNullableFilter<"Viaje"> | string | null
+    createdAt?: DateTimeFilter<"Viaje"> | Date | string
+    vehiculo?: XOR<VehiculoScalarRelationFilter, VehiculoWhereInput>
+    conductor?: XOR<UsuarioScalarRelationFilter, UsuarioWhereInput>
+    preoperacional?: XOR<PreoperacionalNullableScalarRelationFilter, PreoperacionalWhereInput> | null
+    puntosGps?: PuntoGpsListRelationFilter
+  }, "id">
+
+  export type ViajeOrderByWithAggregationInput = {
+    id?: SortOrder
+    vehiculoId?: SortOrder
+    conductorId?: SortOrder
+    preoperacionalId?: SortOrderInput | SortOrder
+    horaInicio?: SortOrder
+    horaFin?: SortOrderInput | SortOrder
+    distanciaTotalKm?: SortOrderInput | SortOrder
+    velocidadPromedio?: SortOrderInput | SortOrder
+    velocidadMaxima?: SortOrderInput | SortOrder
+    estado?: SortOrder
+    archivoRutaUrl?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    _count?: ViajeCountOrderByAggregateInput
+    _avg?: ViajeAvgOrderByAggregateInput
+    _max?: ViajeMaxOrderByAggregateInput
+    _min?: ViajeMinOrderByAggregateInput
+    _sum?: ViajeSumOrderByAggregateInput
+  }
+
+  export type ViajeScalarWhereWithAggregatesInput = {
+    AND?: ViajeScalarWhereWithAggregatesInput | ViajeScalarWhereWithAggregatesInput[]
+    OR?: ViajeScalarWhereWithAggregatesInput[]
+    NOT?: ViajeScalarWhereWithAggregatesInput | ViajeScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Viaje"> | string
+    vehiculoId?: IntWithAggregatesFilter<"Viaje"> | number
+    conductorId?: IntWithAggregatesFilter<"Viaje"> | number
+    preoperacionalId?: IntNullableWithAggregatesFilter<"Viaje"> | number | null
+    horaInicio?: DateTimeWithAggregatesFilter<"Viaje"> | Date | string
+    horaFin?: DateTimeNullableWithAggregatesFilter<"Viaje"> | Date | string | null
+    distanciaTotalKm?: FloatNullableWithAggregatesFilter<"Viaje"> | number | null
+    velocidadPromedio?: FloatNullableWithAggregatesFilter<"Viaje"> | number | null
+    velocidadMaxima?: FloatNullableWithAggregatesFilter<"Viaje"> | number | null
+    estado?: EnumEstadoViajeWithAggregatesFilter<"Viaje"> | $Enums.EstadoViaje
+    archivoRutaUrl?: StringNullableWithAggregatesFilter<"Viaje"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"Viaje"> | Date | string
+  }
+
+  export type PuntoGpsWhereInput = {
+    AND?: PuntoGpsWhereInput | PuntoGpsWhereInput[]
+    OR?: PuntoGpsWhereInput[]
+    NOT?: PuntoGpsWhereInput | PuntoGpsWhereInput[]
+    id?: IntFilter<"PuntoGps"> | number
+    viajeId?: StringFilter<"PuntoGps"> | string
+    velocidad?: FloatNullableFilter<"PuntoGps"> | number | null
+    precision?: FloatNullableFilter<"PuntoGps"> | number | null
+    timestamp?: DateTimeFilter<"PuntoGps"> | Date | string
+    viaje?: XOR<ViajeScalarRelationFilter, ViajeWhereInput>
+  }
+
+  export type PuntoGpsOrderByWithRelationInput = {
+    id?: SortOrder
+    viajeId?: SortOrder
+    velocidad?: SortOrderInput | SortOrder
+    precision?: SortOrderInput | SortOrder
+    timestamp?: SortOrder
+    viaje?: ViajeOrderByWithRelationInput
+  }
+
+  export type PuntoGpsWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: PuntoGpsWhereInput | PuntoGpsWhereInput[]
+    OR?: PuntoGpsWhereInput[]
+    NOT?: PuntoGpsWhereInput | PuntoGpsWhereInput[]
+    viajeId?: StringFilter<"PuntoGps"> | string
+    velocidad?: FloatNullableFilter<"PuntoGps"> | number | null
+    precision?: FloatNullableFilter<"PuntoGps"> | number | null
+    timestamp?: DateTimeFilter<"PuntoGps"> | Date | string
+    viaje?: XOR<ViajeScalarRelationFilter, ViajeWhereInput>
+  }, "id">
+
+  export type PuntoGpsOrderByWithAggregationInput = {
+    id?: SortOrder
+    viajeId?: SortOrder
+    velocidad?: SortOrderInput | SortOrder
+    precision?: SortOrderInput | SortOrder
+    timestamp?: SortOrder
+    _count?: PuntoGpsCountOrderByAggregateInput
+    _avg?: PuntoGpsAvgOrderByAggregateInput
+    _max?: PuntoGpsMaxOrderByAggregateInput
+    _min?: PuntoGpsMinOrderByAggregateInput
+    _sum?: PuntoGpsSumOrderByAggregateInput
+  }
+
+  export type PuntoGpsScalarWhereWithAggregatesInput = {
+    AND?: PuntoGpsScalarWhereWithAggregatesInput | PuntoGpsScalarWhereWithAggregatesInput[]
+    OR?: PuntoGpsScalarWhereWithAggregatesInput[]
+    NOT?: PuntoGpsScalarWhereWithAggregatesInput | PuntoGpsScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"PuntoGps"> | number
+    viajeId?: StringWithAggregatesFilter<"PuntoGps"> | string
+    velocidad?: FloatNullableWithAggregatesFilter<"PuntoGps"> | number | null
+    precision?: FloatNullableWithAggregatesFilter<"PuntoGps"> | number | null
+    timestamp?: DateTimeWithAggregatesFilter<"PuntoGps"> | Date | string
+  }
+
   export type UsuarioCreateInput = {
     nombre: string
     cedula: string
@@ -8092,6 +10857,7 @@ export namespace Prisma {
     refreshTokens?: RefreshTokenCreateNestedManyWithoutUsuarioInput
     solicitudesCreadas?: SolicitudCreateNestedManyWithoutUsuarioSolicitanteInput
     solicitudesAprobadas?: SolicitudCreateNestedManyWithoutAprobadoPorInput
+    viajes?: ViajeCreateNestedManyWithoutConductorInput
   }
 
   export type UsuarioUncheckedCreateInput = {
@@ -8108,6 +10874,7 @@ export namespace Prisma {
     refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutUsuarioInput
     solicitudesCreadas?: SolicitudUncheckedCreateNestedManyWithoutUsuarioSolicitanteInput
     solicitudesAprobadas?: SolicitudUncheckedCreateNestedManyWithoutAprobadoPorInput
+    viajes?: ViajeUncheckedCreateNestedManyWithoutConductorInput
   }
 
   export type UsuarioUpdateInput = {
@@ -8123,6 +10890,7 @@ export namespace Prisma {
     refreshTokens?: RefreshTokenUpdateManyWithoutUsuarioNestedInput
     solicitudesCreadas?: SolicitudUpdateManyWithoutUsuarioSolicitanteNestedInput
     solicitudesAprobadas?: SolicitudUpdateManyWithoutAprobadoPorNestedInput
+    viajes?: ViajeUpdateManyWithoutConductorNestedInput
   }
 
   export type UsuarioUncheckedUpdateInput = {
@@ -8139,6 +10907,7 @@ export namespace Prisma {
     refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutUsuarioNestedInput
     solicitudesCreadas?: SolicitudUncheckedUpdateManyWithoutUsuarioSolicitanteNestedInput
     solicitudesAprobadas?: SolicitudUncheckedUpdateManyWithoutAprobadoPorNestedInput
+    viajes?: ViajeUncheckedUpdateManyWithoutConductorNestedInput
   }
 
   export type UsuarioCreateManyInput = {
@@ -8188,6 +10957,7 @@ export namespace Prisma {
     createdAt?: Date | string
     preoperacionales?: PreoperacionalCreateNestedManyWithoutVehiculoInput
     solicitudes?: SolicitudCreateNestedManyWithoutVehiculoAsignadoInput
+    viajes?: ViajeCreateNestedManyWithoutVehiculoInput
   }
 
   export type VehiculoUncheckedCreateInput = {
@@ -8203,6 +10973,7 @@ export namespace Prisma {
     createdAt?: Date | string
     preoperacionales?: PreoperacionalUncheckedCreateNestedManyWithoutVehiculoInput
     solicitudes?: SolicitudUncheckedCreateNestedManyWithoutVehiculoAsignadoInput
+    viajes?: ViajeUncheckedCreateNestedManyWithoutVehiculoInput
   }
 
   export type VehiculoUpdateInput = {
@@ -8217,6 +10988,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     preoperacionales?: PreoperacionalUpdateManyWithoutVehiculoNestedInput
     solicitudes?: SolicitudUpdateManyWithoutVehiculoAsignadoNestedInput
+    viajes?: ViajeUpdateManyWithoutVehiculoNestedInput
   }
 
   export type VehiculoUncheckedUpdateInput = {
@@ -8232,6 +11004,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     preoperacionales?: PreoperacionalUncheckedUpdateManyWithoutVehiculoNestedInput
     solicitudes?: SolicitudUncheckedUpdateManyWithoutVehiculoAsignadoNestedInput
+    viajes?: ViajeUncheckedUpdateManyWithoutVehiculoNestedInput
   }
 
   export type VehiculoCreateManyInput = {
@@ -8282,6 +11055,7 @@ export namespace Prisma {
     usuario: UsuarioCreateNestedOneWithoutPreoperacionalesInput
     vehiculo: VehiculoCreateNestedOneWithoutPreoperacionalesInput
     solicitud?: SolicitudCreateNestedOneWithoutPreoperacionalesInput
+    viajes?: ViajeCreateNestedManyWithoutPreoperacionalInput
   }
 
   export type PreoperacionalUncheckedCreateInput = {
@@ -8295,6 +11069,7 @@ export namespace Prisma {
     vehiculoId: number
     createdAt?: Date | string
     solicitudId?: number | null
+    viajes?: ViajeUncheckedCreateNestedManyWithoutPreoperacionalInput
   }
 
   export type PreoperacionalUpdateInput = {
@@ -8306,6 +11081,7 @@ export namespace Prisma {
     usuario?: UsuarioUpdateOneRequiredWithoutPreoperacionalesNestedInput
     vehiculo?: VehiculoUpdateOneRequiredWithoutPreoperacionalesNestedInput
     solicitud?: SolicitudUpdateOneWithoutPreoperacionalesNestedInput
+    viajes?: ViajeUpdateManyWithoutPreoperacionalNestedInput
   }
 
   export type PreoperacionalUncheckedUpdateInput = {
@@ -8319,6 +11095,7 @@ export namespace Prisma {
     vehiculoId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     solicitudId?: NullableIntFieldUpdateOperationsInput | number | null
+    viajes?: ViajeUncheckedUpdateManyWithoutPreoperacionalNestedInput
   }
 
   export type PreoperacionalCreateManyInput = {
@@ -8496,6 +11273,141 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type ViajeCreateInput = {
+    id: string
+    horaInicio: Date | string
+    horaFin?: Date | string | null
+    distanciaTotalKm?: number | null
+    velocidadPromedio?: number | null
+    velocidadMaxima?: number | null
+    estado?: $Enums.EstadoViaje
+    archivoRutaUrl?: string | null
+    createdAt?: Date | string
+    vehiculo: VehiculoCreateNestedOneWithoutViajesInput
+    conductor: UsuarioCreateNestedOneWithoutViajesInput
+    preoperacional?: PreoperacionalCreateNestedOneWithoutViajesInput
+    puntosGps?: PuntoGpsCreateNestedManyWithoutViajeInput
+  }
+
+  export type ViajeUncheckedCreateInput = {
+    id: string
+    vehiculoId: number
+    conductorId: number
+    preoperacionalId?: number | null
+    horaInicio: Date | string
+    horaFin?: Date | string | null
+    distanciaTotalKm?: number | null
+    velocidadPromedio?: number | null
+    velocidadMaxima?: number | null
+    estado?: $Enums.EstadoViaje
+    archivoRutaUrl?: string | null
+    createdAt?: Date | string
+    puntosGps?: PuntoGpsUncheckedCreateNestedManyWithoutViajeInput
+  }
+
+  export type ViajeUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    horaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
+    horaFin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    distanciaTotalKm?: NullableFloatFieldUpdateOperationsInput | number | null
+    velocidadPromedio?: NullableFloatFieldUpdateOperationsInput | number | null
+    velocidadMaxima?: NullableFloatFieldUpdateOperationsInput | number | null
+    estado?: EnumEstadoViajeFieldUpdateOperationsInput | $Enums.EstadoViaje
+    archivoRutaUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    vehiculo?: VehiculoUpdateOneRequiredWithoutViajesNestedInput
+    conductor?: UsuarioUpdateOneRequiredWithoutViajesNestedInput
+    preoperacional?: PreoperacionalUpdateOneWithoutViajesNestedInput
+    puntosGps?: PuntoGpsUpdateManyWithoutViajeNestedInput
+  }
+
+  export type ViajeUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    vehiculoId?: IntFieldUpdateOperationsInput | number
+    conductorId?: IntFieldUpdateOperationsInput | number
+    preoperacionalId?: NullableIntFieldUpdateOperationsInput | number | null
+    horaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
+    horaFin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    distanciaTotalKm?: NullableFloatFieldUpdateOperationsInput | number | null
+    velocidadPromedio?: NullableFloatFieldUpdateOperationsInput | number | null
+    velocidadMaxima?: NullableFloatFieldUpdateOperationsInput | number | null
+    estado?: EnumEstadoViajeFieldUpdateOperationsInput | $Enums.EstadoViaje
+    archivoRutaUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    puntosGps?: PuntoGpsUncheckedUpdateManyWithoutViajeNestedInput
+  }
+
+  export type ViajeCreateManyInput = {
+    id: string
+    vehiculoId: number
+    conductorId: number
+    preoperacionalId?: number | null
+    horaInicio: Date | string
+    horaFin?: Date | string | null
+    distanciaTotalKm?: number | null
+    velocidadPromedio?: number | null
+    velocidadMaxima?: number | null
+    estado?: $Enums.EstadoViaje
+    archivoRutaUrl?: string | null
+    createdAt?: Date | string
+  }
+
+  export type ViajeUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    horaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
+    horaFin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    distanciaTotalKm?: NullableFloatFieldUpdateOperationsInput | number | null
+    velocidadPromedio?: NullableFloatFieldUpdateOperationsInput | number | null
+    velocidadMaxima?: NullableFloatFieldUpdateOperationsInput | number | null
+    estado?: EnumEstadoViajeFieldUpdateOperationsInput | $Enums.EstadoViaje
+    archivoRutaUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ViajeUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    vehiculoId?: IntFieldUpdateOperationsInput | number
+    conductorId?: IntFieldUpdateOperationsInput | number
+    preoperacionalId?: NullableIntFieldUpdateOperationsInput | number | null
+    horaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
+    horaFin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    distanciaTotalKm?: NullableFloatFieldUpdateOperationsInput | number | null
+    velocidadPromedio?: NullableFloatFieldUpdateOperationsInput | number | null
+    velocidadMaxima?: NullableFloatFieldUpdateOperationsInput | number | null
+    estado?: EnumEstadoViajeFieldUpdateOperationsInput | $Enums.EstadoViaje
+    archivoRutaUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PuntoGpsUpdateInput = {
+    velocidad?: NullableFloatFieldUpdateOperationsInput | number | null
+    precision?: NullableFloatFieldUpdateOperationsInput | number | null
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+    viaje?: ViajeUpdateOneRequiredWithoutPuntosGpsNestedInput
+  }
+
+  export type PuntoGpsUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    viajeId?: StringFieldUpdateOperationsInput | string
+    velocidad?: NullableFloatFieldUpdateOperationsInput | number | null
+    precision?: NullableFloatFieldUpdateOperationsInput | number | null
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PuntoGpsUpdateManyMutationInput = {
+    velocidad?: NullableFloatFieldUpdateOperationsInput | number | null
+    precision?: NullableFloatFieldUpdateOperationsInput | number | null
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PuntoGpsUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    viajeId?: StringFieldUpdateOperationsInput | string
+    velocidad?: NullableFloatFieldUpdateOperationsInput | number | null
+    precision?: NullableFloatFieldUpdateOperationsInput | number | null
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -8570,6 +11482,12 @@ export namespace Prisma {
     none?: SolicitudWhereInput
   }
 
+  export type ViajeListRelationFilter = {
+    every?: ViajeWhereInput
+    some?: ViajeWhereInput
+    none?: ViajeWhereInput
+  }
+
   export type PreoperacionalOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
@@ -8579,6 +11497,10 @@ export namespace Prisma {
   }
 
   export type SolicitudOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ViajeOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -9045,6 +11967,194 @@ export namespace Prisma {
     _max?: NestedEnumEstadoSolicitudFilter<$PrismaModel>
   }
 
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type FloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type EnumEstadoViajeFilter<$PrismaModel = never> = {
+    equals?: $Enums.EstadoViaje | EnumEstadoViajeFieldRefInput<$PrismaModel>
+    in?: $Enums.EstadoViaje[] | ListEnumEstadoViajeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.EstadoViaje[] | ListEnumEstadoViajeFieldRefInput<$PrismaModel>
+    not?: NestedEnumEstadoViajeFilter<$PrismaModel> | $Enums.EstadoViaje
+  }
+
+  export type PreoperacionalNullableScalarRelationFilter = {
+    is?: PreoperacionalWhereInput | null
+    isNot?: PreoperacionalWhereInput | null
+  }
+
+  export type PuntoGpsListRelationFilter = {
+    every?: PuntoGpsWhereInput
+    some?: PuntoGpsWhereInput
+    none?: PuntoGpsWhereInput
+  }
+
+  export type PuntoGpsOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ViajeCountOrderByAggregateInput = {
+    id?: SortOrder
+    vehiculoId?: SortOrder
+    conductorId?: SortOrder
+    preoperacionalId?: SortOrder
+    horaInicio?: SortOrder
+    horaFin?: SortOrder
+    distanciaTotalKm?: SortOrder
+    velocidadPromedio?: SortOrder
+    velocidadMaxima?: SortOrder
+    estado?: SortOrder
+    archivoRutaUrl?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ViajeAvgOrderByAggregateInput = {
+    vehiculoId?: SortOrder
+    conductorId?: SortOrder
+    preoperacionalId?: SortOrder
+    distanciaTotalKm?: SortOrder
+    velocidadPromedio?: SortOrder
+    velocidadMaxima?: SortOrder
+  }
+
+  export type ViajeMaxOrderByAggregateInput = {
+    id?: SortOrder
+    vehiculoId?: SortOrder
+    conductorId?: SortOrder
+    preoperacionalId?: SortOrder
+    horaInicio?: SortOrder
+    horaFin?: SortOrder
+    distanciaTotalKm?: SortOrder
+    velocidadPromedio?: SortOrder
+    velocidadMaxima?: SortOrder
+    estado?: SortOrder
+    archivoRutaUrl?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ViajeMinOrderByAggregateInput = {
+    id?: SortOrder
+    vehiculoId?: SortOrder
+    conductorId?: SortOrder
+    preoperacionalId?: SortOrder
+    horaInicio?: SortOrder
+    horaFin?: SortOrder
+    distanciaTotalKm?: SortOrder
+    velocidadPromedio?: SortOrder
+    velocidadMaxima?: SortOrder
+    estado?: SortOrder
+    archivoRutaUrl?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type ViajeSumOrderByAggregateInput = {
+    vehiculoId?: SortOrder
+    conductorId?: SortOrder
+    preoperacionalId?: SortOrder
+    distanciaTotalKm?: SortOrder
+    velocidadPromedio?: SortOrder
+    velocidadMaxima?: SortOrder
+  }
+
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
+  export type FloatNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedFloatNullableFilter<$PrismaModel>
+    _min?: NestedFloatNullableFilter<$PrismaModel>
+    _max?: NestedFloatNullableFilter<$PrismaModel>
+  }
+
+  export type EnumEstadoViajeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.EstadoViaje | EnumEstadoViajeFieldRefInput<$PrismaModel>
+    in?: $Enums.EstadoViaje[] | ListEnumEstadoViajeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.EstadoViaje[] | ListEnumEstadoViajeFieldRefInput<$PrismaModel>
+    not?: NestedEnumEstadoViajeWithAggregatesFilter<$PrismaModel> | $Enums.EstadoViaje
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumEstadoViajeFilter<$PrismaModel>
+    _max?: NestedEnumEstadoViajeFilter<$PrismaModel>
+  }
+
+  export type ViajeScalarRelationFilter = {
+    is?: ViajeWhereInput
+    isNot?: ViajeWhereInput
+  }
+
+  export type PuntoGpsCountOrderByAggregateInput = {
+    id?: SortOrder
+    viajeId?: SortOrder
+    velocidad?: SortOrder
+    precision?: SortOrder
+    timestamp?: SortOrder
+  }
+
+  export type PuntoGpsAvgOrderByAggregateInput = {
+    id?: SortOrder
+    velocidad?: SortOrder
+    precision?: SortOrder
+  }
+
+  export type PuntoGpsMaxOrderByAggregateInput = {
+    id?: SortOrder
+    viajeId?: SortOrder
+    velocidad?: SortOrder
+    precision?: SortOrder
+    timestamp?: SortOrder
+  }
+
+  export type PuntoGpsMinOrderByAggregateInput = {
+    id?: SortOrder
+    viajeId?: SortOrder
+    velocidad?: SortOrder
+    precision?: SortOrder
+    timestamp?: SortOrder
+  }
+
+  export type PuntoGpsSumOrderByAggregateInput = {
+    id?: SortOrder
+    velocidad?: SortOrder
+    precision?: SortOrder
+  }
+
   export type PreoperacionalCreateNestedManyWithoutUsuarioInput = {
     create?: XOR<PreoperacionalCreateWithoutUsuarioInput, PreoperacionalUncheckedCreateWithoutUsuarioInput> | PreoperacionalCreateWithoutUsuarioInput[] | PreoperacionalUncheckedCreateWithoutUsuarioInput[]
     connectOrCreate?: PreoperacionalCreateOrConnectWithoutUsuarioInput | PreoperacionalCreateOrConnectWithoutUsuarioInput[]
@@ -9073,6 +12183,13 @@ export namespace Prisma {
     connect?: SolicitudWhereUniqueInput | SolicitudWhereUniqueInput[]
   }
 
+  export type ViajeCreateNestedManyWithoutConductorInput = {
+    create?: XOR<ViajeCreateWithoutConductorInput, ViajeUncheckedCreateWithoutConductorInput> | ViajeCreateWithoutConductorInput[] | ViajeUncheckedCreateWithoutConductorInput[]
+    connectOrCreate?: ViajeCreateOrConnectWithoutConductorInput | ViajeCreateOrConnectWithoutConductorInput[]
+    createMany?: ViajeCreateManyConductorInputEnvelope
+    connect?: ViajeWhereUniqueInput | ViajeWhereUniqueInput[]
+  }
+
   export type PreoperacionalUncheckedCreateNestedManyWithoutUsuarioInput = {
     create?: XOR<PreoperacionalCreateWithoutUsuarioInput, PreoperacionalUncheckedCreateWithoutUsuarioInput> | PreoperacionalCreateWithoutUsuarioInput[] | PreoperacionalUncheckedCreateWithoutUsuarioInput[]
     connectOrCreate?: PreoperacionalCreateOrConnectWithoutUsuarioInput | PreoperacionalCreateOrConnectWithoutUsuarioInput[]
@@ -9099,6 +12216,13 @@ export namespace Prisma {
     connectOrCreate?: SolicitudCreateOrConnectWithoutAprobadoPorInput | SolicitudCreateOrConnectWithoutAprobadoPorInput[]
     createMany?: SolicitudCreateManyAprobadoPorInputEnvelope
     connect?: SolicitudWhereUniqueInput | SolicitudWhereUniqueInput[]
+  }
+
+  export type ViajeUncheckedCreateNestedManyWithoutConductorInput = {
+    create?: XOR<ViajeCreateWithoutConductorInput, ViajeUncheckedCreateWithoutConductorInput> | ViajeCreateWithoutConductorInput[] | ViajeUncheckedCreateWithoutConductorInput[]
+    connectOrCreate?: ViajeCreateOrConnectWithoutConductorInput | ViajeCreateOrConnectWithoutConductorInput[]
+    createMany?: ViajeCreateManyConductorInputEnvelope
+    connect?: ViajeWhereUniqueInput | ViajeWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -9177,6 +12301,20 @@ export namespace Prisma {
     deleteMany?: SolicitudScalarWhereInput | SolicitudScalarWhereInput[]
   }
 
+  export type ViajeUpdateManyWithoutConductorNestedInput = {
+    create?: XOR<ViajeCreateWithoutConductorInput, ViajeUncheckedCreateWithoutConductorInput> | ViajeCreateWithoutConductorInput[] | ViajeUncheckedCreateWithoutConductorInput[]
+    connectOrCreate?: ViajeCreateOrConnectWithoutConductorInput | ViajeCreateOrConnectWithoutConductorInput[]
+    upsert?: ViajeUpsertWithWhereUniqueWithoutConductorInput | ViajeUpsertWithWhereUniqueWithoutConductorInput[]
+    createMany?: ViajeCreateManyConductorInputEnvelope
+    set?: ViajeWhereUniqueInput | ViajeWhereUniqueInput[]
+    disconnect?: ViajeWhereUniqueInput | ViajeWhereUniqueInput[]
+    delete?: ViajeWhereUniqueInput | ViajeWhereUniqueInput[]
+    connect?: ViajeWhereUniqueInput | ViajeWhereUniqueInput[]
+    update?: ViajeUpdateWithWhereUniqueWithoutConductorInput | ViajeUpdateWithWhereUniqueWithoutConductorInput[]
+    updateMany?: ViajeUpdateManyWithWhereWithoutConductorInput | ViajeUpdateManyWithWhereWithoutConductorInput[]
+    deleteMany?: ViajeScalarWhereInput | ViajeScalarWhereInput[]
+  }
+
   export type IntFieldUpdateOperationsInput = {
     set?: number
     increment?: number
@@ -9241,6 +12379,20 @@ export namespace Prisma {
     deleteMany?: SolicitudScalarWhereInput | SolicitudScalarWhereInput[]
   }
 
+  export type ViajeUncheckedUpdateManyWithoutConductorNestedInput = {
+    create?: XOR<ViajeCreateWithoutConductorInput, ViajeUncheckedCreateWithoutConductorInput> | ViajeCreateWithoutConductorInput[] | ViajeUncheckedCreateWithoutConductorInput[]
+    connectOrCreate?: ViajeCreateOrConnectWithoutConductorInput | ViajeCreateOrConnectWithoutConductorInput[]
+    upsert?: ViajeUpsertWithWhereUniqueWithoutConductorInput | ViajeUpsertWithWhereUniqueWithoutConductorInput[]
+    createMany?: ViajeCreateManyConductorInputEnvelope
+    set?: ViajeWhereUniqueInput | ViajeWhereUniqueInput[]
+    disconnect?: ViajeWhereUniqueInput | ViajeWhereUniqueInput[]
+    delete?: ViajeWhereUniqueInput | ViajeWhereUniqueInput[]
+    connect?: ViajeWhereUniqueInput | ViajeWhereUniqueInput[]
+    update?: ViajeUpdateWithWhereUniqueWithoutConductorInput | ViajeUpdateWithWhereUniqueWithoutConductorInput[]
+    updateMany?: ViajeUpdateManyWithWhereWithoutConductorInput | ViajeUpdateManyWithWhereWithoutConductorInput[]
+    deleteMany?: ViajeScalarWhereInput | ViajeScalarWhereInput[]
+  }
+
   export type PreoperacionalCreateNestedManyWithoutVehiculoInput = {
     create?: XOR<PreoperacionalCreateWithoutVehiculoInput, PreoperacionalUncheckedCreateWithoutVehiculoInput> | PreoperacionalCreateWithoutVehiculoInput[] | PreoperacionalUncheckedCreateWithoutVehiculoInput[]
     connectOrCreate?: PreoperacionalCreateOrConnectWithoutVehiculoInput | PreoperacionalCreateOrConnectWithoutVehiculoInput[]
@@ -9255,6 +12407,13 @@ export namespace Prisma {
     connect?: SolicitudWhereUniqueInput | SolicitudWhereUniqueInput[]
   }
 
+  export type ViajeCreateNestedManyWithoutVehiculoInput = {
+    create?: XOR<ViajeCreateWithoutVehiculoInput, ViajeUncheckedCreateWithoutVehiculoInput> | ViajeCreateWithoutVehiculoInput[] | ViajeUncheckedCreateWithoutVehiculoInput[]
+    connectOrCreate?: ViajeCreateOrConnectWithoutVehiculoInput | ViajeCreateOrConnectWithoutVehiculoInput[]
+    createMany?: ViajeCreateManyVehiculoInputEnvelope
+    connect?: ViajeWhereUniqueInput | ViajeWhereUniqueInput[]
+  }
+
   export type PreoperacionalUncheckedCreateNestedManyWithoutVehiculoInput = {
     create?: XOR<PreoperacionalCreateWithoutVehiculoInput, PreoperacionalUncheckedCreateWithoutVehiculoInput> | PreoperacionalCreateWithoutVehiculoInput[] | PreoperacionalUncheckedCreateWithoutVehiculoInput[]
     connectOrCreate?: PreoperacionalCreateOrConnectWithoutVehiculoInput | PreoperacionalCreateOrConnectWithoutVehiculoInput[]
@@ -9267,6 +12426,13 @@ export namespace Prisma {
     connectOrCreate?: SolicitudCreateOrConnectWithoutVehiculoAsignadoInput | SolicitudCreateOrConnectWithoutVehiculoAsignadoInput[]
     createMany?: SolicitudCreateManyVehiculoAsignadoInputEnvelope
     connect?: SolicitudWhereUniqueInput | SolicitudWhereUniqueInput[]
+  }
+
+  export type ViajeUncheckedCreateNestedManyWithoutVehiculoInput = {
+    create?: XOR<ViajeCreateWithoutVehiculoInput, ViajeUncheckedCreateWithoutVehiculoInput> | ViajeCreateWithoutVehiculoInput[] | ViajeUncheckedCreateWithoutVehiculoInput[]
+    connectOrCreate?: ViajeCreateOrConnectWithoutVehiculoInput | ViajeCreateOrConnectWithoutVehiculoInput[]
+    createMany?: ViajeCreateManyVehiculoInputEnvelope
+    connect?: ViajeWhereUniqueInput | ViajeWhereUniqueInput[]
   }
 
   export type NullableStringFieldUpdateOperationsInput = {
@@ -9301,6 +12467,20 @@ export namespace Prisma {
     deleteMany?: SolicitudScalarWhereInput | SolicitudScalarWhereInput[]
   }
 
+  export type ViajeUpdateManyWithoutVehiculoNestedInput = {
+    create?: XOR<ViajeCreateWithoutVehiculoInput, ViajeUncheckedCreateWithoutVehiculoInput> | ViajeCreateWithoutVehiculoInput[] | ViajeUncheckedCreateWithoutVehiculoInput[]
+    connectOrCreate?: ViajeCreateOrConnectWithoutVehiculoInput | ViajeCreateOrConnectWithoutVehiculoInput[]
+    upsert?: ViajeUpsertWithWhereUniqueWithoutVehiculoInput | ViajeUpsertWithWhereUniqueWithoutVehiculoInput[]
+    createMany?: ViajeCreateManyVehiculoInputEnvelope
+    set?: ViajeWhereUniqueInput | ViajeWhereUniqueInput[]
+    disconnect?: ViajeWhereUniqueInput | ViajeWhereUniqueInput[]
+    delete?: ViajeWhereUniqueInput | ViajeWhereUniqueInput[]
+    connect?: ViajeWhereUniqueInput | ViajeWhereUniqueInput[]
+    update?: ViajeUpdateWithWhereUniqueWithoutVehiculoInput | ViajeUpdateWithWhereUniqueWithoutVehiculoInput[]
+    updateMany?: ViajeUpdateManyWithWhereWithoutVehiculoInput | ViajeUpdateManyWithWhereWithoutVehiculoInput[]
+    deleteMany?: ViajeScalarWhereInput | ViajeScalarWhereInput[]
+  }
+
   export type PreoperacionalUncheckedUpdateManyWithoutVehiculoNestedInput = {
     create?: XOR<PreoperacionalCreateWithoutVehiculoInput, PreoperacionalUncheckedCreateWithoutVehiculoInput> | PreoperacionalCreateWithoutVehiculoInput[] | PreoperacionalUncheckedCreateWithoutVehiculoInput[]
     connectOrCreate?: PreoperacionalCreateOrConnectWithoutVehiculoInput | PreoperacionalCreateOrConnectWithoutVehiculoInput[]
@@ -9329,6 +12509,20 @@ export namespace Prisma {
     deleteMany?: SolicitudScalarWhereInput | SolicitudScalarWhereInput[]
   }
 
+  export type ViajeUncheckedUpdateManyWithoutVehiculoNestedInput = {
+    create?: XOR<ViajeCreateWithoutVehiculoInput, ViajeUncheckedCreateWithoutVehiculoInput> | ViajeCreateWithoutVehiculoInput[] | ViajeUncheckedCreateWithoutVehiculoInput[]
+    connectOrCreate?: ViajeCreateOrConnectWithoutVehiculoInput | ViajeCreateOrConnectWithoutVehiculoInput[]
+    upsert?: ViajeUpsertWithWhereUniqueWithoutVehiculoInput | ViajeUpsertWithWhereUniqueWithoutVehiculoInput[]
+    createMany?: ViajeCreateManyVehiculoInputEnvelope
+    set?: ViajeWhereUniqueInput | ViajeWhereUniqueInput[]
+    disconnect?: ViajeWhereUniqueInput | ViajeWhereUniqueInput[]
+    delete?: ViajeWhereUniqueInput | ViajeWhereUniqueInput[]
+    connect?: ViajeWhereUniqueInput | ViajeWhereUniqueInput[]
+    update?: ViajeUpdateWithWhereUniqueWithoutVehiculoInput | ViajeUpdateWithWhereUniqueWithoutVehiculoInput[]
+    updateMany?: ViajeUpdateManyWithWhereWithoutVehiculoInput | ViajeUpdateManyWithWhereWithoutVehiculoInput[]
+    deleteMany?: ViajeScalarWhereInput | ViajeScalarWhereInput[]
+  }
+
   export type UsuarioCreateNestedOneWithoutPreoperacionalesInput = {
     create?: XOR<UsuarioCreateWithoutPreoperacionalesInput, UsuarioUncheckedCreateWithoutPreoperacionalesInput>
     connectOrCreate?: UsuarioCreateOrConnectWithoutPreoperacionalesInput
@@ -9345,6 +12539,20 @@ export namespace Prisma {
     create?: XOR<SolicitudCreateWithoutPreoperacionalesInput, SolicitudUncheckedCreateWithoutPreoperacionalesInput>
     connectOrCreate?: SolicitudCreateOrConnectWithoutPreoperacionalesInput
     connect?: SolicitudWhereUniqueInput
+  }
+
+  export type ViajeCreateNestedManyWithoutPreoperacionalInput = {
+    create?: XOR<ViajeCreateWithoutPreoperacionalInput, ViajeUncheckedCreateWithoutPreoperacionalInput> | ViajeCreateWithoutPreoperacionalInput[] | ViajeUncheckedCreateWithoutPreoperacionalInput[]
+    connectOrCreate?: ViajeCreateOrConnectWithoutPreoperacionalInput | ViajeCreateOrConnectWithoutPreoperacionalInput[]
+    createMany?: ViajeCreateManyPreoperacionalInputEnvelope
+    connect?: ViajeWhereUniqueInput | ViajeWhereUniqueInput[]
+  }
+
+  export type ViajeUncheckedCreateNestedManyWithoutPreoperacionalInput = {
+    create?: XOR<ViajeCreateWithoutPreoperacionalInput, ViajeUncheckedCreateWithoutPreoperacionalInput> | ViajeCreateWithoutPreoperacionalInput[] | ViajeUncheckedCreateWithoutPreoperacionalInput[]
+    connectOrCreate?: ViajeCreateOrConnectWithoutPreoperacionalInput | ViajeCreateOrConnectWithoutPreoperacionalInput[]
+    createMany?: ViajeCreateManyPreoperacionalInputEnvelope
+    connect?: ViajeWhereUniqueInput | ViajeWhereUniqueInput[]
   }
 
   export type UsuarioUpdateOneRequiredWithoutPreoperacionalesNestedInput = {
@@ -9373,12 +12581,40 @@ export namespace Prisma {
     update?: XOR<XOR<SolicitudUpdateToOneWithWhereWithoutPreoperacionalesInput, SolicitudUpdateWithoutPreoperacionalesInput>, SolicitudUncheckedUpdateWithoutPreoperacionalesInput>
   }
 
+  export type ViajeUpdateManyWithoutPreoperacionalNestedInput = {
+    create?: XOR<ViajeCreateWithoutPreoperacionalInput, ViajeUncheckedCreateWithoutPreoperacionalInput> | ViajeCreateWithoutPreoperacionalInput[] | ViajeUncheckedCreateWithoutPreoperacionalInput[]
+    connectOrCreate?: ViajeCreateOrConnectWithoutPreoperacionalInput | ViajeCreateOrConnectWithoutPreoperacionalInput[]
+    upsert?: ViajeUpsertWithWhereUniqueWithoutPreoperacionalInput | ViajeUpsertWithWhereUniqueWithoutPreoperacionalInput[]
+    createMany?: ViajeCreateManyPreoperacionalInputEnvelope
+    set?: ViajeWhereUniqueInput | ViajeWhereUniqueInput[]
+    disconnect?: ViajeWhereUniqueInput | ViajeWhereUniqueInput[]
+    delete?: ViajeWhereUniqueInput | ViajeWhereUniqueInput[]
+    connect?: ViajeWhereUniqueInput | ViajeWhereUniqueInput[]
+    update?: ViajeUpdateWithWhereUniqueWithoutPreoperacionalInput | ViajeUpdateWithWhereUniqueWithoutPreoperacionalInput[]
+    updateMany?: ViajeUpdateManyWithWhereWithoutPreoperacionalInput | ViajeUpdateManyWithWhereWithoutPreoperacionalInput[]
+    deleteMany?: ViajeScalarWhereInput | ViajeScalarWhereInput[]
+  }
+
   export type NullableIntFieldUpdateOperationsInput = {
     set?: number | null
     increment?: number
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type ViajeUncheckedUpdateManyWithoutPreoperacionalNestedInput = {
+    create?: XOR<ViajeCreateWithoutPreoperacionalInput, ViajeUncheckedCreateWithoutPreoperacionalInput> | ViajeCreateWithoutPreoperacionalInput[] | ViajeUncheckedCreateWithoutPreoperacionalInput[]
+    connectOrCreate?: ViajeCreateOrConnectWithoutPreoperacionalInput | ViajeCreateOrConnectWithoutPreoperacionalInput[]
+    upsert?: ViajeUpsertWithWhereUniqueWithoutPreoperacionalInput | ViajeUpsertWithWhereUniqueWithoutPreoperacionalInput[]
+    createMany?: ViajeCreateManyPreoperacionalInputEnvelope
+    set?: ViajeWhereUniqueInput | ViajeWhereUniqueInput[]
+    disconnect?: ViajeWhereUniqueInput | ViajeWhereUniqueInput[]
+    delete?: ViajeWhereUniqueInput | ViajeWhereUniqueInput[]
+    connect?: ViajeWhereUniqueInput | ViajeWhereUniqueInput[]
+    update?: ViajeUpdateWithWhereUniqueWithoutPreoperacionalInput | ViajeUpdateWithWhereUniqueWithoutPreoperacionalInput[]
+    updateMany?: ViajeUpdateManyWithWhereWithoutPreoperacionalInput | ViajeUpdateManyWithWhereWithoutPreoperacionalInput[]
+    deleteMany?: ViajeScalarWhereInput | ViajeScalarWhereInput[]
   }
 
   export type UsuarioCreateNestedOneWithoutRefreshTokensInput = {
@@ -9485,6 +12721,102 @@ export namespace Prisma {
     update?: PreoperacionalUpdateWithWhereUniqueWithoutSolicitudInput | PreoperacionalUpdateWithWhereUniqueWithoutSolicitudInput[]
     updateMany?: PreoperacionalUpdateManyWithWhereWithoutSolicitudInput | PreoperacionalUpdateManyWithWhereWithoutSolicitudInput[]
     deleteMany?: PreoperacionalScalarWhereInput | PreoperacionalScalarWhereInput[]
+  }
+
+  export type VehiculoCreateNestedOneWithoutViajesInput = {
+    create?: XOR<VehiculoCreateWithoutViajesInput, VehiculoUncheckedCreateWithoutViajesInput>
+    connectOrCreate?: VehiculoCreateOrConnectWithoutViajesInput
+    connect?: VehiculoWhereUniqueInput
+  }
+
+  export type UsuarioCreateNestedOneWithoutViajesInput = {
+    create?: XOR<UsuarioCreateWithoutViajesInput, UsuarioUncheckedCreateWithoutViajesInput>
+    connectOrCreate?: UsuarioCreateOrConnectWithoutViajesInput
+    connect?: UsuarioWhereUniqueInput
+  }
+
+  export type PreoperacionalCreateNestedOneWithoutViajesInput = {
+    create?: XOR<PreoperacionalCreateWithoutViajesInput, PreoperacionalUncheckedCreateWithoutViajesInput>
+    connectOrCreate?: PreoperacionalCreateOrConnectWithoutViajesInput
+    connect?: PreoperacionalWhereUniqueInput
+  }
+
+  export type PuntoGpsCreateNestedManyWithoutViajeInput = {
+    connect?: PuntoGpsWhereUniqueInput | PuntoGpsWhereUniqueInput[]
+  }
+
+  export type PuntoGpsUncheckedCreateNestedManyWithoutViajeInput = {
+    connect?: PuntoGpsWhereUniqueInput | PuntoGpsWhereUniqueInput[]
+  }
+
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
+  }
+
+  export type NullableFloatFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type EnumEstadoViajeFieldUpdateOperationsInput = {
+    set?: $Enums.EstadoViaje
+  }
+
+  export type VehiculoUpdateOneRequiredWithoutViajesNestedInput = {
+    create?: XOR<VehiculoCreateWithoutViajesInput, VehiculoUncheckedCreateWithoutViajesInput>
+    connectOrCreate?: VehiculoCreateOrConnectWithoutViajesInput
+    upsert?: VehiculoUpsertWithoutViajesInput
+    connect?: VehiculoWhereUniqueInput
+    update?: XOR<XOR<VehiculoUpdateToOneWithWhereWithoutViajesInput, VehiculoUpdateWithoutViajesInput>, VehiculoUncheckedUpdateWithoutViajesInput>
+  }
+
+  export type UsuarioUpdateOneRequiredWithoutViajesNestedInput = {
+    create?: XOR<UsuarioCreateWithoutViajesInput, UsuarioUncheckedCreateWithoutViajesInput>
+    connectOrCreate?: UsuarioCreateOrConnectWithoutViajesInput
+    upsert?: UsuarioUpsertWithoutViajesInput
+    connect?: UsuarioWhereUniqueInput
+    update?: XOR<XOR<UsuarioUpdateToOneWithWhereWithoutViajesInput, UsuarioUpdateWithoutViajesInput>, UsuarioUncheckedUpdateWithoutViajesInput>
+  }
+
+  export type PreoperacionalUpdateOneWithoutViajesNestedInput = {
+    create?: XOR<PreoperacionalCreateWithoutViajesInput, PreoperacionalUncheckedCreateWithoutViajesInput>
+    connectOrCreate?: PreoperacionalCreateOrConnectWithoutViajesInput
+    upsert?: PreoperacionalUpsertWithoutViajesInput
+    disconnect?: PreoperacionalWhereInput | boolean
+    delete?: PreoperacionalWhereInput | boolean
+    connect?: PreoperacionalWhereUniqueInput
+    update?: XOR<XOR<PreoperacionalUpdateToOneWithWhereWithoutViajesInput, PreoperacionalUpdateWithoutViajesInput>, PreoperacionalUncheckedUpdateWithoutViajesInput>
+  }
+
+  export type PuntoGpsUpdateManyWithoutViajeNestedInput = {
+    set?: PuntoGpsWhereUniqueInput | PuntoGpsWhereUniqueInput[]
+    disconnect?: PuntoGpsWhereUniqueInput | PuntoGpsWhereUniqueInput[]
+    delete?: PuntoGpsWhereUniqueInput | PuntoGpsWhereUniqueInput[]
+    connect?: PuntoGpsWhereUniqueInput | PuntoGpsWhereUniqueInput[]
+    update?: PuntoGpsUpdateWithWhereUniqueWithoutViajeInput | PuntoGpsUpdateWithWhereUniqueWithoutViajeInput[]
+    updateMany?: PuntoGpsUpdateManyWithWhereWithoutViajeInput | PuntoGpsUpdateManyWithWhereWithoutViajeInput[]
+    deleteMany?: PuntoGpsScalarWhereInput | PuntoGpsScalarWhereInput[]
+  }
+
+  export type PuntoGpsUncheckedUpdateManyWithoutViajeNestedInput = {
+    set?: PuntoGpsWhereUniqueInput | PuntoGpsWhereUniqueInput[]
+    disconnect?: PuntoGpsWhereUniqueInput | PuntoGpsWhereUniqueInput[]
+    delete?: PuntoGpsWhereUniqueInput | PuntoGpsWhereUniqueInput[]
+    connect?: PuntoGpsWhereUniqueInput | PuntoGpsWhereUniqueInput[]
+    update?: PuntoGpsUpdateWithWhereUniqueWithoutViajeInput | PuntoGpsUpdateWithWhereUniqueWithoutViajeInput[]
+    updateMany?: PuntoGpsUpdateManyWithWhereWithoutViajeInput | PuntoGpsUpdateManyWithWhereWithoutViajeInput[]
+    deleteMany?: PuntoGpsScalarWhereInput | PuntoGpsScalarWhereInput[]
+  }
+
+  export type ViajeUpdateOneRequiredWithoutPuntosGpsNestedInput = {
+    create?: XOR<ViajeCreateWithoutPuntosGpsInput, ViajeUncheckedCreateWithoutPuntosGpsInput>
+    connectOrCreate?: ViajeCreateOrConnectWithoutPuntosGpsInput
+    upsert?: ViajeUpsertWithoutPuntosGpsInput
+    connect?: ViajeWhereUniqueInput
+    update?: XOR<XOR<ViajeUpdateToOneWithWhereWithoutPuntosGpsInput, ViajeUpdateWithoutPuntosGpsInput>, ViajeUncheckedUpdateWithoutPuntosGpsInput>
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -9737,6 +13069,64 @@ export namespace Prisma {
     _max?: NestedEnumEstadoSolicitudFilter<$PrismaModel>
   }
 
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
+  export type NestedEnumEstadoViajeFilter<$PrismaModel = never> = {
+    equals?: $Enums.EstadoViaje | EnumEstadoViajeFieldRefInput<$PrismaModel>
+    in?: $Enums.EstadoViaje[] | ListEnumEstadoViajeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.EstadoViaje[] | ListEnumEstadoViajeFieldRefInput<$PrismaModel>
+    not?: NestedEnumEstadoViajeFilter<$PrismaModel> | $Enums.EstadoViaje
+  }
+
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
+  }
+
+  export type NestedFloatNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedFloatNullableFilter<$PrismaModel>
+    _min?: NestedFloatNullableFilter<$PrismaModel>
+    _max?: NestedFloatNullableFilter<$PrismaModel>
+  }
+
+  export type NestedEnumEstadoViajeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.EstadoViaje | EnumEstadoViajeFieldRefInput<$PrismaModel>
+    in?: $Enums.EstadoViaje[] | ListEnumEstadoViajeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.EstadoViaje[] | ListEnumEstadoViajeFieldRefInput<$PrismaModel>
+    not?: NestedEnumEstadoViajeWithAggregatesFilter<$PrismaModel> | $Enums.EstadoViaje
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumEstadoViajeFilter<$PrismaModel>
+    _max?: NestedEnumEstadoViajeFilter<$PrismaModel>
+  }
+
   export type PreoperacionalCreateWithoutUsuarioInput = {
     consecutivo?: number
     fecha?: Date | string
@@ -9746,6 +13136,7 @@ export namespace Prisma {
     createdAt?: Date | string
     vehiculo: VehiculoCreateNestedOneWithoutPreoperacionalesInput
     solicitud?: SolicitudCreateNestedOneWithoutPreoperacionalesInput
+    viajes?: ViajeCreateNestedManyWithoutPreoperacionalInput
   }
 
   export type PreoperacionalUncheckedCreateWithoutUsuarioInput = {
@@ -9758,6 +13149,7 @@ export namespace Prisma {
     vehiculoId: number
     createdAt?: Date | string
     solicitudId?: number | null
+    viajes?: ViajeUncheckedCreateNestedManyWithoutPreoperacionalInput
   }
 
   export type PreoperacionalCreateOrConnectWithoutUsuarioInput = {
@@ -9858,6 +13250,46 @@ export namespace Prisma {
 
   export type SolicitudCreateManyAprobadoPorInputEnvelope = {
     data: SolicitudCreateManyAprobadoPorInput | SolicitudCreateManyAprobadoPorInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ViajeCreateWithoutConductorInput = {
+    id: string
+    horaInicio: Date | string
+    horaFin?: Date | string | null
+    distanciaTotalKm?: number | null
+    velocidadPromedio?: number | null
+    velocidadMaxima?: number | null
+    estado?: $Enums.EstadoViaje
+    archivoRutaUrl?: string | null
+    createdAt?: Date | string
+    vehiculo: VehiculoCreateNestedOneWithoutViajesInput
+    preoperacional?: PreoperacionalCreateNestedOneWithoutViajesInput
+    puntosGps?: PuntoGpsCreateNestedManyWithoutViajeInput
+  }
+
+  export type ViajeUncheckedCreateWithoutConductorInput = {
+    id: string
+    vehiculoId: number
+    preoperacionalId?: number | null
+    horaInicio: Date | string
+    horaFin?: Date | string | null
+    distanciaTotalKm?: number | null
+    velocidadPromedio?: number | null
+    velocidadMaxima?: number | null
+    estado?: $Enums.EstadoViaje
+    archivoRutaUrl?: string | null
+    createdAt?: Date | string
+    puntosGps?: PuntoGpsUncheckedCreateNestedManyWithoutViajeInput
+  }
+
+  export type ViajeCreateOrConnectWithoutConductorInput = {
+    where: ViajeWhereUniqueInput
+    create: XOR<ViajeCreateWithoutConductorInput, ViajeUncheckedCreateWithoutConductorInput>
+  }
+
+  export type ViajeCreateManyConductorInputEnvelope = {
+    data: ViajeCreateManyConductorInput | ViajeCreateManyConductorInput[]
     skipDuplicates?: boolean
   }
 
@@ -9968,6 +13400,40 @@ export namespace Prisma {
     data: XOR<SolicitudUpdateManyMutationInput, SolicitudUncheckedUpdateManyWithoutAprobadoPorInput>
   }
 
+  export type ViajeUpsertWithWhereUniqueWithoutConductorInput = {
+    where: ViajeWhereUniqueInput
+    update: XOR<ViajeUpdateWithoutConductorInput, ViajeUncheckedUpdateWithoutConductorInput>
+    create: XOR<ViajeCreateWithoutConductorInput, ViajeUncheckedCreateWithoutConductorInput>
+  }
+
+  export type ViajeUpdateWithWhereUniqueWithoutConductorInput = {
+    where: ViajeWhereUniqueInput
+    data: XOR<ViajeUpdateWithoutConductorInput, ViajeUncheckedUpdateWithoutConductorInput>
+  }
+
+  export type ViajeUpdateManyWithWhereWithoutConductorInput = {
+    where: ViajeScalarWhereInput
+    data: XOR<ViajeUpdateManyMutationInput, ViajeUncheckedUpdateManyWithoutConductorInput>
+  }
+
+  export type ViajeScalarWhereInput = {
+    AND?: ViajeScalarWhereInput | ViajeScalarWhereInput[]
+    OR?: ViajeScalarWhereInput[]
+    NOT?: ViajeScalarWhereInput | ViajeScalarWhereInput[]
+    id?: StringFilter<"Viaje"> | string
+    vehiculoId?: IntFilter<"Viaje"> | number
+    conductorId?: IntFilter<"Viaje"> | number
+    preoperacionalId?: IntNullableFilter<"Viaje"> | number | null
+    horaInicio?: DateTimeFilter<"Viaje"> | Date | string
+    horaFin?: DateTimeNullableFilter<"Viaje"> | Date | string | null
+    distanciaTotalKm?: FloatNullableFilter<"Viaje"> | number | null
+    velocidadPromedio?: FloatNullableFilter<"Viaje"> | number | null
+    velocidadMaxima?: FloatNullableFilter<"Viaje"> | number | null
+    estado?: EnumEstadoViajeFilter<"Viaje"> | $Enums.EstadoViaje
+    archivoRutaUrl?: StringNullableFilter<"Viaje"> | string | null
+    createdAt?: DateTimeFilter<"Viaje"> | Date | string
+  }
+
   export type PreoperacionalCreateWithoutVehiculoInput = {
     consecutivo?: number
     fecha?: Date | string
@@ -9977,6 +13443,7 @@ export namespace Prisma {
     createdAt?: Date | string
     usuario: UsuarioCreateNestedOneWithoutPreoperacionalesInput
     solicitud?: SolicitudCreateNestedOneWithoutPreoperacionalesInput
+    viajes?: ViajeCreateNestedManyWithoutPreoperacionalInput
   }
 
   export type PreoperacionalUncheckedCreateWithoutVehiculoInput = {
@@ -9989,6 +13456,7 @@ export namespace Prisma {
     usuarioId: number
     createdAt?: Date | string
     solicitudId?: number | null
+    viajes?: ViajeUncheckedCreateNestedManyWithoutPreoperacionalInput
   }
 
   export type PreoperacionalCreateOrConnectWithoutVehiculoInput = {
@@ -10034,6 +13502,46 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type ViajeCreateWithoutVehiculoInput = {
+    id: string
+    horaInicio: Date | string
+    horaFin?: Date | string | null
+    distanciaTotalKm?: number | null
+    velocidadPromedio?: number | null
+    velocidadMaxima?: number | null
+    estado?: $Enums.EstadoViaje
+    archivoRutaUrl?: string | null
+    createdAt?: Date | string
+    conductor: UsuarioCreateNestedOneWithoutViajesInput
+    preoperacional?: PreoperacionalCreateNestedOneWithoutViajesInput
+    puntosGps?: PuntoGpsCreateNestedManyWithoutViajeInput
+  }
+
+  export type ViajeUncheckedCreateWithoutVehiculoInput = {
+    id: string
+    conductorId: number
+    preoperacionalId?: number | null
+    horaInicio: Date | string
+    horaFin?: Date | string | null
+    distanciaTotalKm?: number | null
+    velocidadPromedio?: number | null
+    velocidadMaxima?: number | null
+    estado?: $Enums.EstadoViaje
+    archivoRutaUrl?: string | null
+    createdAt?: Date | string
+    puntosGps?: PuntoGpsUncheckedCreateNestedManyWithoutViajeInput
+  }
+
+  export type ViajeCreateOrConnectWithoutVehiculoInput = {
+    where: ViajeWhereUniqueInput
+    create: XOR<ViajeCreateWithoutVehiculoInput, ViajeUncheckedCreateWithoutVehiculoInput>
+  }
+
+  export type ViajeCreateManyVehiculoInputEnvelope = {
+    data: ViajeCreateManyVehiculoInput | ViajeCreateManyVehiculoInput[]
+    skipDuplicates?: boolean
+  }
+
   export type PreoperacionalUpsertWithWhereUniqueWithoutVehiculoInput = {
     where: PreoperacionalWhereUniqueInput
     update: XOR<PreoperacionalUpdateWithoutVehiculoInput, PreoperacionalUncheckedUpdateWithoutVehiculoInput>
@@ -10066,6 +13574,22 @@ export namespace Prisma {
     data: XOR<SolicitudUpdateManyMutationInput, SolicitudUncheckedUpdateManyWithoutVehiculoAsignadoInput>
   }
 
+  export type ViajeUpsertWithWhereUniqueWithoutVehiculoInput = {
+    where: ViajeWhereUniqueInput
+    update: XOR<ViajeUpdateWithoutVehiculoInput, ViajeUncheckedUpdateWithoutVehiculoInput>
+    create: XOR<ViajeCreateWithoutVehiculoInput, ViajeUncheckedCreateWithoutVehiculoInput>
+  }
+
+  export type ViajeUpdateWithWhereUniqueWithoutVehiculoInput = {
+    where: ViajeWhereUniqueInput
+    data: XOR<ViajeUpdateWithoutVehiculoInput, ViajeUncheckedUpdateWithoutVehiculoInput>
+  }
+
+  export type ViajeUpdateManyWithWhereWithoutVehiculoInput = {
+    where: ViajeScalarWhereInput
+    data: XOR<ViajeUpdateManyMutationInput, ViajeUncheckedUpdateManyWithoutVehiculoInput>
+  }
+
   export type UsuarioCreateWithoutPreoperacionalesInput = {
     nombre: string
     cedula: string
@@ -10078,6 +13602,7 @@ export namespace Prisma {
     refreshTokens?: RefreshTokenCreateNestedManyWithoutUsuarioInput
     solicitudesCreadas?: SolicitudCreateNestedManyWithoutUsuarioSolicitanteInput
     solicitudesAprobadas?: SolicitudCreateNestedManyWithoutAprobadoPorInput
+    viajes?: ViajeCreateNestedManyWithoutConductorInput
   }
 
   export type UsuarioUncheckedCreateWithoutPreoperacionalesInput = {
@@ -10093,6 +13618,7 @@ export namespace Prisma {
     refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutUsuarioInput
     solicitudesCreadas?: SolicitudUncheckedCreateNestedManyWithoutUsuarioSolicitanteInput
     solicitudesAprobadas?: SolicitudUncheckedCreateNestedManyWithoutAprobadoPorInput
+    viajes?: ViajeUncheckedCreateNestedManyWithoutConductorInput
   }
 
   export type UsuarioCreateOrConnectWithoutPreoperacionalesInput = {
@@ -10111,6 +13637,7 @@ export namespace Prisma {
     activo?: boolean
     createdAt?: Date | string
     solicitudes?: SolicitudCreateNestedManyWithoutVehiculoAsignadoInput
+    viajes?: ViajeCreateNestedManyWithoutVehiculoInput
   }
 
   export type VehiculoUncheckedCreateWithoutPreoperacionalesInput = {
@@ -10125,6 +13652,7 @@ export namespace Prisma {
     activo?: boolean
     createdAt?: Date | string
     solicitudes?: SolicitudUncheckedCreateNestedManyWithoutVehiculoAsignadoInput
+    viajes?: ViajeUncheckedCreateNestedManyWithoutVehiculoInput
   }
 
   export type VehiculoCreateOrConnectWithoutPreoperacionalesInput = {
@@ -10160,6 +13688,46 @@ export namespace Prisma {
     create: XOR<SolicitudCreateWithoutPreoperacionalesInput, SolicitudUncheckedCreateWithoutPreoperacionalesInput>
   }
 
+  export type ViajeCreateWithoutPreoperacionalInput = {
+    id: string
+    horaInicio: Date | string
+    horaFin?: Date | string | null
+    distanciaTotalKm?: number | null
+    velocidadPromedio?: number | null
+    velocidadMaxima?: number | null
+    estado?: $Enums.EstadoViaje
+    archivoRutaUrl?: string | null
+    createdAt?: Date | string
+    vehiculo: VehiculoCreateNestedOneWithoutViajesInput
+    conductor: UsuarioCreateNestedOneWithoutViajesInput
+    puntosGps?: PuntoGpsCreateNestedManyWithoutViajeInput
+  }
+
+  export type ViajeUncheckedCreateWithoutPreoperacionalInput = {
+    id: string
+    vehiculoId: number
+    conductorId: number
+    horaInicio: Date | string
+    horaFin?: Date | string | null
+    distanciaTotalKm?: number | null
+    velocidadPromedio?: number | null
+    velocidadMaxima?: number | null
+    estado?: $Enums.EstadoViaje
+    archivoRutaUrl?: string | null
+    createdAt?: Date | string
+    puntosGps?: PuntoGpsUncheckedCreateNestedManyWithoutViajeInput
+  }
+
+  export type ViajeCreateOrConnectWithoutPreoperacionalInput = {
+    where: ViajeWhereUniqueInput
+    create: XOR<ViajeCreateWithoutPreoperacionalInput, ViajeUncheckedCreateWithoutPreoperacionalInput>
+  }
+
+  export type ViajeCreateManyPreoperacionalInputEnvelope = {
+    data: ViajeCreateManyPreoperacionalInput | ViajeCreateManyPreoperacionalInput[]
+    skipDuplicates?: boolean
+  }
+
   export type UsuarioUpsertWithoutPreoperacionalesInput = {
     update: XOR<UsuarioUpdateWithoutPreoperacionalesInput, UsuarioUncheckedUpdateWithoutPreoperacionalesInput>
     create: XOR<UsuarioCreateWithoutPreoperacionalesInput, UsuarioUncheckedCreateWithoutPreoperacionalesInput>
@@ -10183,6 +13751,7 @@ export namespace Prisma {
     refreshTokens?: RefreshTokenUpdateManyWithoutUsuarioNestedInput
     solicitudesCreadas?: SolicitudUpdateManyWithoutUsuarioSolicitanteNestedInput
     solicitudesAprobadas?: SolicitudUpdateManyWithoutAprobadoPorNestedInput
+    viajes?: ViajeUpdateManyWithoutConductorNestedInput
   }
 
   export type UsuarioUncheckedUpdateWithoutPreoperacionalesInput = {
@@ -10198,6 +13767,7 @@ export namespace Prisma {
     refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutUsuarioNestedInput
     solicitudesCreadas?: SolicitudUncheckedUpdateManyWithoutUsuarioSolicitanteNestedInput
     solicitudesAprobadas?: SolicitudUncheckedUpdateManyWithoutAprobadoPorNestedInput
+    viajes?: ViajeUncheckedUpdateManyWithoutConductorNestedInput
   }
 
   export type VehiculoUpsertWithoutPreoperacionalesInput = {
@@ -10222,6 +13792,7 @@ export namespace Prisma {
     activo?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     solicitudes?: SolicitudUpdateManyWithoutVehiculoAsignadoNestedInput
+    viajes?: ViajeUpdateManyWithoutVehiculoNestedInput
   }
 
   export type VehiculoUncheckedUpdateWithoutPreoperacionalesInput = {
@@ -10236,6 +13807,7 @@ export namespace Prisma {
     activo?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     solicitudes?: SolicitudUncheckedUpdateManyWithoutVehiculoAsignadoNestedInput
+    viajes?: ViajeUncheckedUpdateManyWithoutVehiculoNestedInput
   }
 
   export type SolicitudUpsertWithoutPreoperacionalesInput = {
@@ -10272,6 +13844,22 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type ViajeUpsertWithWhereUniqueWithoutPreoperacionalInput = {
+    where: ViajeWhereUniqueInput
+    update: XOR<ViajeUpdateWithoutPreoperacionalInput, ViajeUncheckedUpdateWithoutPreoperacionalInput>
+    create: XOR<ViajeCreateWithoutPreoperacionalInput, ViajeUncheckedCreateWithoutPreoperacionalInput>
+  }
+
+  export type ViajeUpdateWithWhereUniqueWithoutPreoperacionalInput = {
+    where: ViajeWhereUniqueInput
+    data: XOR<ViajeUpdateWithoutPreoperacionalInput, ViajeUncheckedUpdateWithoutPreoperacionalInput>
+  }
+
+  export type ViajeUpdateManyWithWhereWithoutPreoperacionalInput = {
+    where: ViajeScalarWhereInput
+    data: XOR<ViajeUpdateManyMutationInput, ViajeUncheckedUpdateManyWithoutPreoperacionalInput>
+  }
+
   export type UsuarioCreateWithoutRefreshTokensInput = {
     nombre: string
     cedula: string
@@ -10284,6 +13872,7 @@ export namespace Prisma {
     preoperacionales?: PreoperacionalCreateNestedManyWithoutUsuarioInput
     solicitudesCreadas?: SolicitudCreateNestedManyWithoutUsuarioSolicitanteInput
     solicitudesAprobadas?: SolicitudCreateNestedManyWithoutAprobadoPorInput
+    viajes?: ViajeCreateNestedManyWithoutConductorInput
   }
 
   export type UsuarioUncheckedCreateWithoutRefreshTokensInput = {
@@ -10299,6 +13888,7 @@ export namespace Prisma {
     preoperacionales?: PreoperacionalUncheckedCreateNestedManyWithoutUsuarioInput
     solicitudesCreadas?: SolicitudUncheckedCreateNestedManyWithoutUsuarioSolicitanteInput
     solicitudesAprobadas?: SolicitudUncheckedCreateNestedManyWithoutAprobadoPorInput
+    viajes?: ViajeUncheckedCreateNestedManyWithoutConductorInput
   }
 
   export type UsuarioCreateOrConnectWithoutRefreshTokensInput = {
@@ -10329,6 +13919,7 @@ export namespace Prisma {
     preoperacionales?: PreoperacionalUpdateManyWithoutUsuarioNestedInput
     solicitudesCreadas?: SolicitudUpdateManyWithoutUsuarioSolicitanteNestedInput
     solicitudesAprobadas?: SolicitudUpdateManyWithoutAprobadoPorNestedInput
+    viajes?: ViajeUpdateManyWithoutConductorNestedInput
   }
 
   export type UsuarioUncheckedUpdateWithoutRefreshTokensInput = {
@@ -10344,6 +13935,7 @@ export namespace Prisma {
     preoperacionales?: PreoperacionalUncheckedUpdateManyWithoutUsuarioNestedInput
     solicitudesCreadas?: SolicitudUncheckedUpdateManyWithoutUsuarioSolicitanteNestedInput
     solicitudesAprobadas?: SolicitudUncheckedUpdateManyWithoutAprobadoPorNestedInput
+    viajes?: ViajeUncheckedUpdateManyWithoutConductorNestedInput
   }
 
   export type UsuarioCreateWithoutSolicitudesCreadasInput = {
@@ -10358,6 +13950,7 @@ export namespace Prisma {
     preoperacionales?: PreoperacionalCreateNestedManyWithoutUsuarioInput
     refreshTokens?: RefreshTokenCreateNestedManyWithoutUsuarioInput
     solicitudesAprobadas?: SolicitudCreateNestedManyWithoutAprobadoPorInput
+    viajes?: ViajeCreateNestedManyWithoutConductorInput
   }
 
   export type UsuarioUncheckedCreateWithoutSolicitudesCreadasInput = {
@@ -10373,6 +13966,7 @@ export namespace Prisma {
     preoperacionales?: PreoperacionalUncheckedCreateNestedManyWithoutUsuarioInput
     refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutUsuarioInput
     solicitudesAprobadas?: SolicitudUncheckedCreateNestedManyWithoutAprobadoPorInput
+    viajes?: ViajeUncheckedCreateNestedManyWithoutConductorInput
   }
 
   export type UsuarioCreateOrConnectWithoutSolicitudesCreadasInput = {
@@ -10391,6 +13985,7 @@ export namespace Prisma {
     activo?: boolean
     createdAt?: Date | string
     preoperacionales?: PreoperacionalCreateNestedManyWithoutVehiculoInput
+    viajes?: ViajeCreateNestedManyWithoutVehiculoInput
   }
 
   export type VehiculoUncheckedCreateWithoutSolicitudesInput = {
@@ -10405,6 +14000,7 @@ export namespace Prisma {
     activo?: boolean
     createdAt?: Date | string
     preoperacionales?: PreoperacionalUncheckedCreateNestedManyWithoutVehiculoInput
+    viajes?: ViajeUncheckedCreateNestedManyWithoutVehiculoInput
   }
 
   export type VehiculoCreateOrConnectWithoutSolicitudesInput = {
@@ -10424,6 +14020,7 @@ export namespace Prisma {
     preoperacionales?: PreoperacionalCreateNestedManyWithoutUsuarioInput
     refreshTokens?: RefreshTokenCreateNestedManyWithoutUsuarioInput
     solicitudesCreadas?: SolicitudCreateNestedManyWithoutUsuarioSolicitanteInput
+    viajes?: ViajeCreateNestedManyWithoutConductorInput
   }
 
   export type UsuarioUncheckedCreateWithoutSolicitudesAprobadasInput = {
@@ -10439,6 +14036,7 @@ export namespace Prisma {
     preoperacionales?: PreoperacionalUncheckedCreateNestedManyWithoutUsuarioInput
     refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutUsuarioInput
     solicitudesCreadas?: SolicitudUncheckedCreateNestedManyWithoutUsuarioSolicitanteInput
+    viajes?: ViajeUncheckedCreateNestedManyWithoutConductorInput
   }
 
   export type UsuarioCreateOrConnectWithoutSolicitudesAprobadasInput = {
@@ -10455,6 +14053,7 @@ export namespace Prisma {
     createdAt?: Date | string
     usuario: UsuarioCreateNestedOneWithoutPreoperacionalesInput
     vehiculo: VehiculoCreateNestedOneWithoutPreoperacionalesInput
+    viajes?: ViajeCreateNestedManyWithoutPreoperacionalInput
   }
 
   export type PreoperacionalUncheckedCreateWithoutSolicitudInput = {
@@ -10467,6 +14066,7 @@ export namespace Prisma {
     usuarioId: number
     vehiculoId: number
     createdAt?: Date | string
+    viajes?: ViajeUncheckedCreateNestedManyWithoutPreoperacionalInput
   }
 
   export type PreoperacionalCreateOrConnectWithoutSolicitudInput = {
@@ -10502,6 +14102,7 @@ export namespace Prisma {
     preoperacionales?: PreoperacionalUpdateManyWithoutUsuarioNestedInput
     refreshTokens?: RefreshTokenUpdateManyWithoutUsuarioNestedInput
     solicitudesAprobadas?: SolicitudUpdateManyWithoutAprobadoPorNestedInput
+    viajes?: ViajeUpdateManyWithoutConductorNestedInput
   }
 
   export type UsuarioUncheckedUpdateWithoutSolicitudesCreadasInput = {
@@ -10517,6 +14118,7 @@ export namespace Prisma {
     preoperacionales?: PreoperacionalUncheckedUpdateManyWithoutUsuarioNestedInput
     refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutUsuarioNestedInput
     solicitudesAprobadas?: SolicitudUncheckedUpdateManyWithoutAprobadoPorNestedInput
+    viajes?: ViajeUncheckedUpdateManyWithoutConductorNestedInput
   }
 
   export type VehiculoUpsertWithoutSolicitudesInput = {
@@ -10541,6 +14143,7 @@ export namespace Prisma {
     activo?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     preoperacionales?: PreoperacionalUpdateManyWithoutVehiculoNestedInput
+    viajes?: ViajeUpdateManyWithoutVehiculoNestedInput
   }
 
   export type VehiculoUncheckedUpdateWithoutSolicitudesInput = {
@@ -10555,6 +14158,7 @@ export namespace Prisma {
     activo?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     preoperacionales?: PreoperacionalUncheckedUpdateManyWithoutVehiculoNestedInput
+    viajes?: ViajeUncheckedUpdateManyWithoutVehiculoNestedInput
   }
 
   export type UsuarioUpsertWithoutSolicitudesAprobadasInput = {
@@ -10580,6 +14184,7 @@ export namespace Prisma {
     preoperacionales?: PreoperacionalUpdateManyWithoutUsuarioNestedInput
     refreshTokens?: RefreshTokenUpdateManyWithoutUsuarioNestedInput
     solicitudesCreadas?: SolicitudUpdateManyWithoutUsuarioSolicitanteNestedInput
+    viajes?: ViajeUpdateManyWithoutConductorNestedInput
   }
 
   export type UsuarioUncheckedUpdateWithoutSolicitudesAprobadasInput = {
@@ -10595,6 +14200,7 @@ export namespace Prisma {
     preoperacionales?: PreoperacionalUncheckedUpdateManyWithoutUsuarioNestedInput
     refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutUsuarioNestedInput
     solicitudesCreadas?: SolicitudUncheckedUpdateManyWithoutUsuarioSolicitanteNestedInput
+    viajes?: ViajeUncheckedUpdateManyWithoutConductorNestedInput
   }
 
   export type PreoperacionalUpsertWithWhereUniqueWithoutSolicitudInput = {
@@ -10611,6 +14217,320 @@ export namespace Prisma {
   export type PreoperacionalUpdateManyWithWhereWithoutSolicitudInput = {
     where: PreoperacionalScalarWhereInput
     data: XOR<PreoperacionalUpdateManyMutationInput, PreoperacionalUncheckedUpdateManyWithoutSolicitudInput>
+  }
+
+  export type VehiculoCreateWithoutViajesInput = {
+    placa: string
+    marca?: string | null
+    modelo?: string | null
+    tieneGpsFisico?: boolean
+    polizaUrl?: string | null
+    soatUrl?: string | null
+    tecnomecanicaUrl?: string | null
+    activo?: boolean
+    createdAt?: Date | string
+    preoperacionales?: PreoperacionalCreateNestedManyWithoutVehiculoInput
+    solicitudes?: SolicitudCreateNestedManyWithoutVehiculoAsignadoInput
+  }
+
+  export type VehiculoUncheckedCreateWithoutViajesInput = {
+    id?: number
+    placa: string
+    marca?: string | null
+    modelo?: string | null
+    tieneGpsFisico?: boolean
+    polizaUrl?: string | null
+    soatUrl?: string | null
+    tecnomecanicaUrl?: string | null
+    activo?: boolean
+    createdAt?: Date | string
+    preoperacionales?: PreoperacionalUncheckedCreateNestedManyWithoutVehiculoInput
+    solicitudes?: SolicitudUncheckedCreateNestedManyWithoutVehiculoAsignadoInput
+  }
+
+  export type VehiculoCreateOrConnectWithoutViajesInput = {
+    where: VehiculoWhereUniqueInput
+    create: XOR<VehiculoCreateWithoutViajesInput, VehiculoUncheckedCreateWithoutViajesInput>
+  }
+
+  export type UsuarioCreateWithoutViajesInput = {
+    nombre: string
+    cedula: string
+    email: string
+    passwordHash: string
+    rol: $Enums.Rol
+    origen: $Enums.Origen
+    activo?: boolean
+    createdAt?: Date | string
+    preoperacionales?: PreoperacionalCreateNestedManyWithoutUsuarioInput
+    refreshTokens?: RefreshTokenCreateNestedManyWithoutUsuarioInput
+    solicitudesCreadas?: SolicitudCreateNestedManyWithoutUsuarioSolicitanteInput
+    solicitudesAprobadas?: SolicitudCreateNestedManyWithoutAprobadoPorInput
+  }
+
+  export type UsuarioUncheckedCreateWithoutViajesInput = {
+    id?: number
+    nombre: string
+    cedula: string
+    email: string
+    passwordHash: string
+    rol: $Enums.Rol
+    origen: $Enums.Origen
+    activo?: boolean
+    createdAt?: Date | string
+    preoperacionales?: PreoperacionalUncheckedCreateNestedManyWithoutUsuarioInput
+    refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutUsuarioInput
+    solicitudesCreadas?: SolicitudUncheckedCreateNestedManyWithoutUsuarioSolicitanteInput
+    solicitudesAprobadas?: SolicitudUncheckedCreateNestedManyWithoutAprobadoPorInput
+  }
+
+  export type UsuarioCreateOrConnectWithoutViajesInput = {
+    where: UsuarioWhereUniqueInput
+    create: XOR<UsuarioCreateWithoutViajesInput, UsuarioUncheckedCreateWithoutViajesInput>
+  }
+
+  export type PreoperacionalCreateWithoutViajesInput = {
+    consecutivo?: number
+    fecha?: Date | string
+    respuestas: JsonNullValueInput | InputJsonValue
+    firmaUrl?: string | null
+    observaciones?: string | null
+    createdAt?: Date | string
+    usuario: UsuarioCreateNestedOneWithoutPreoperacionalesInput
+    vehiculo: VehiculoCreateNestedOneWithoutPreoperacionalesInput
+    solicitud?: SolicitudCreateNestedOneWithoutPreoperacionalesInput
+  }
+
+  export type PreoperacionalUncheckedCreateWithoutViajesInput = {
+    id?: number
+    consecutivo?: number
+    fecha?: Date | string
+    respuestas: JsonNullValueInput | InputJsonValue
+    firmaUrl?: string | null
+    observaciones?: string | null
+    usuarioId: number
+    vehiculoId: number
+    createdAt?: Date | string
+    solicitudId?: number | null
+  }
+
+  export type PreoperacionalCreateOrConnectWithoutViajesInput = {
+    where: PreoperacionalWhereUniqueInput
+    create: XOR<PreoperacionalCreateWithoutViajesInput, PreoperacionalUncheckedCreateWithoutViajesInput>
+  }
+
+  export type VehiculoUpsertWithoutViajesInput = {
+    update: XOR<VehiculoUpdateWithoutViajesInput, VehiculoUncheckedUpdateWithoutViajesInput>
+    create: XOR<VehiculoCreateWithoutViajesInput, VehiculoUncheckedCreateWithoutViajesInput>
+    where?: VehiculoWhereInput
+  }
+
+  export type VehiculoUpdateToOneWithWhereWithoutViajesInput = {
+    where?: VehiculoWhereInput
+    data: XOR<VehiculoUpdateWithoutViajesInput, VehiculoUncheckedUpdateWithoutViajesInput>
+  }
+
+  export type VehiculoUpdateWithoutViajesInput = {
+    placa?: StringFieldUpdateOperationsInput | string
+    marca?: NullableStringFieldUpdateOperationsInput | string | null
+    modelo?: NullableStringFieldUpdateOperationsInput | string | null
+    tieneGpsFisico?: BoolFieldUpdateOperationsInput | boolean
+    polizaUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    soatUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    tecnomecanicaUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    activo?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    preoperacionales?: PreoperacionalUpdateManyWithoutVehiculoNestedInput
+    solicitudes?: SolicitudUpdateManyWithoutVehiculoAsignadoNestedInput
+  }
+
+  export type VehiculoUncheckedUpdateWithoutViajesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    placa?: StringFieldUpdateOperationsInput | string
+    marca?: NullableStringFieldUpdateOperationsInput | string | null
+    modelo?: NullableStringFieldUpdateOperationsInput | string | null
+    tieneGpsFisico?: BoolFieldUpdateOperationsInput | boolean
+    polizaUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    soatUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    tecnomecanicaUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    activo?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    preoperacionales?: PreoperacionalUncheckedUpdateManyWithoutVehiculoNestedInput
+    solicitudes?: SolicitudUncheckedUpdateManyWithoutVehiculoAsignadoNestedInput
+  }
+
+  export type UsuarioUpsertWithoutViajesInput = {
+    update: XOR<UsuarioUpdateWithoutViajesInput, UsuarioUncheckedUpdateWithoutViajesInput>
+    create: XOR<UsuarioCreateWithoutViajesInput, UsuarioUncheckedCreateWithoutViajesInput>
+    where?: UsuarioWhereInput
+  }
+
+  export type UsuarioUpdateToOneWithWhereWithoutViajesInput = {
+    where?: UsuarioWhereInput
+    data: XOR<UsuarioUpdateWithoutViajesInput, UsuarioUncheckedUpdateWithoutViajesInput>
+  }
+
+  export type UsuarioUpdateWithoutViajesInput = {
+    nombre?: StringFieldUpdateOperationsInput | string
+    cedula?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    rol?: EnumRolFieldUpdateOperationsInput | $Enums.Rol
+    origen?: EnumOrigenFieldUpdateOperationsInput | $Enums.Origen
+    activo?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    preoperacionales?: PreoperacionalUpdateManyWithoutUsuarioNestedInput
+    refreshTokens?: RefreshTokenUpdateManyWithoutUsuarioNestedInput
+    solicitudesCreadas?: SolicitudUpdateManyWithoutUsuarioSolicitanteNestedInput
+    solicitudesAprobadas?: SolicitudUpdateManyWithoutAprobadoPorNestedInput
+  }
+
+  export type UsuarioUncheckedUpdateWithoutViajesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    nombre?: StringFieldUpdateOperationsInput | string
+    cedula?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    passwordHash?: StringFieldUpdateOperationsInput | string
+    rol?: EnumRolFieldUpdateOperationsInput | $Enums.Rol
+    origen?: EnumOrigenFieldUpdateOperationsInput | $Enums.Origen
+    activo?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    preoperacionales?: PreoperacionalUncheckedUpdateManyWithoutUsuarioNestedInput
+    refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutUsuarioNestedInput
+    solicitudesCreadas?: SolicitudUncheckedUpdateManyWithoutUsuarioSolicitanteNestedInput
+    solicitudesAprobadas?: SolicitudUncheckedUpdateManyWithoutAprobadoPorNestedInput
+  }
+
+  export type PreoperacionalUpsertWithoutViajesInput = {
+    update: XOR<PreoperacionalUpdateWithoutViajesInput, PreoperacionalUncheckedUpdateWithoutViajesInput>
+    create: XOR<PreoperacionalCreateWithoutViajesInput, PreoperacionalUncheckedCreateWithoutViajesInput>
+    where?: PreoperacionalWhereInput
+  }
+
+  export type PreoperacionalUpdateToOneWithWhereWithoutViajesInput = {
+    where?: PreoperacionalWhereInput
+    data: XOR<PreoperacionalUpdateWithoutViajesInput, PreoperacionalUncheckedUpdateWithoutViajesInput>
+  }
+
+  export type PreoperacionalUpdateWithoutViajesInput = {
+    fecha?: DateTimeFieldUpdateOperationsInput | Date | string
+    respuestas?: JsonNullValueInput | InputJsonValue
+    firmaUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    observaciones?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    usuario?: UsuarioUpdateOneRequiredWithoutPreoperacionalesNestedInput
+    vehiculo?: VehiculoUpdateOneRequiredWithoutPreoperacionalesNestedInput
+    solicitud?: SolicitudUpdateOneWithoutPreoperacionalesNestedInput
+  }
+
+  export type PreoperacionalUncheckedUpdateWithoutViajesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    consecutivo?: IntFieldUpdateOperationsInput | number
+    fecha?: DateTimeFieldUpdateOperationsInput | Date | string
+    respuestas?: JsonNullValueInput | InputJsonValue
+    firmaUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    observaciones?: NullableStringFieldUpdateOperationsInput | string | null
+    usuarioId?: IntFieldUpdateOperationsInput | number
+    vehiculoId?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    solicitudId?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type PuntoGpsUpdateWithWhereUniqueWithoutViajeInput = {
+    where: PuntoGpsWhereUniqueInput
+    data: XOR<PuntoGpsUpdateWithoutViajeInput, PuntoGpsUncheckedUpdateWithoutViajeInput>
+  }
+
+  export type PuntoGpsUpdateManyWithWhereWithoutViajeInput = {
+    where: PuntoGpsScalarWhereInput
+    data: XOR<PuntoGpsUpdateManyMutationInput, PuntoGpsUncheckedUpdateManyWithoutViajeInput>
+  }
+
+  export type PuntoGpsScalarWhereInput = {
+    AND?: PuntoGpsScalarWhereInput | PuntoGpsScalarWhereInput[]
+    OR?: PuntoGpsScalarWhereInput[]
+    NOT?: PuntoGpsScalarWhereInput | PuntoGpsScalarWhereInput[]
+    id?: IntFilter<"PuntoGps"> | number
+    viajeId?: StringFilter<"PuntoGps"> | string
+    velocidad?: FloatNullableFilter<"PuntoGps"> | number | null
+    precision?: FloatNullableFilter<"PuntoGps"> | number | null
+    timestamp?: DateTimeFilter<"PuntoGps"> | Date | string
+  }
+
+  export type ViajeCreateWithoutPuntosGpsInput = {
+    id: string
+    horaInicio: Date | string
+    horaFin?: Date | string | null
+    distanciaTotalKm?: number | null
+    velocidadPromedio?: number | null
+    velocidadMaxima?: number | null
+    estado?: $Enums.EstadoViaje
+    archivoRutaUrl?: string | null
+    createdAt?: Date | string
+    vehiculo: VehiculoCreateNestedOneWithoutViajesInput
+    conductor: UsuarioCreateNestedOneWithoutViajesInput
+    preoperacional?: PreoperacionalCreateNestedOneWithoutViajesInput
+  }
+
+  export type ViajeUncheckedCreateWithoutPuntosGpsInput = {
+    id: string
+    vehiculoId: number
+    conductorId: number
+    preoperacionalId?: number | null
+    horaInicio: Date | string
+    horaFin?: Date | string | null
+    distanciaTotalKm?: number | null
+    velocidadPromedio?: number | null
+    velocidadMaxima?: number | null
+    estado?: $Enums.EstadoViaje
+    archivoRutaUrl?: string | null
+    createdAt?: Date | string
+  }
+
+  export type ViajeCreateOrConnectWithoutPuntosGpsInput = {
+    where: ViajeWhereUniqueInput
+    create: XOR<ViajeCreateWithoutPuntosGpsInput, ViajeUncheckedCreateWithoutPuntosGpsInput>
+  }
+
+  export type ViajeUpsertWithoutPuntosGpsInput = {
+    update: XOR<ViajeUpdateWithoutPuntosGpsInput, ViajeUncheckedUpdateWithoutPuntosGpsInput>
+    create: XOR<ViajeCreateWithoutPuntosGpsInput, ViajeUncheckedCreateWithoutPuntosGpsInput>
+    where?: ViajeWhereInput
+  }
+
+  export type ViajeUpdateToOneWithWhereWithoutPuntosGpsInput = {
+    where?: ViajeWhereInput
+    data: XOR<ViajeUpdateWithoutPuntosGpsInput, ViajeUncheckedUpdateWithoutPuntosGpsInput>
+  }
+
+  export type ViajeUpdateWithoutPuntosGpsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    horaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
+    horaFin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    distanciaTotalKm?: NullableFloatFieldUpdateOperationsInput | number | null
+    velocidadPromedio?: NullableFloatFieldUpdateOperationsInput | number | null
+    velocidadMaxima?: NullableFloatFieldUpdateOperationsInput | number | null
+    estado?: EnumEstadoViajeFieldUpdateOperationsInput | $Enums.EstadoViaje
+    archivoRutaUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    vehiculo?: VehiculoUpdateOneRequiredWithoutViajesNestedInput
+    conductor?: UsuarioUpdateOneRequiredWithoutViajesNestedInput
+    preoperacional?: PreoperacionalUpdateOneWithoutViajesNestedInput
+  }
+
+  export type ViajeUncheckedUpdateWithoutPuntosGpsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    vehiculoId?: IntFieldUpdateOperationsInput | number
+    conductorId?: IntFieldUpdateOperationsInput | number
+    preoperacionalId?: NullableIntFieldUpdateOperationsInput | number | null
+    horaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
+    horaFin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    distanciaTotalKm?: NullableFloatFieldUpdateOperationsInput | number | null
+    velocidadPromedio?: NullableFloatFieldUpdateOperationsInput | number | null
+    velocidadMaxima?: NullableFloatFieldUpdateOperationsInput | number | null
+    estado?: EnumEstadoViajeFieldUpdateOperationsInput | $Enums.EstadoViaje
+    archivoRutaUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type PreoperacionalCreateManyUsuarioInput = {
@@ -10655,6 +14575,20 @@ export namespace Prisma {
     createdAt?: Date | string
   }
 
+  export type ViajeCreateManyConductorInput = {
+    id: string
+    vehiculoId: number
+    preoperacionalId?: number | null
+    horaInicio: Date | string
+    horaFin?: Date | string | null
+    distanciaTotalKm?: number | null
+    velocidadPromedio?: number | null
+    velocidadMaxima?: number | null
+    estado?: $Enums.EstadoViaje
+    archivoRutaUrl?: string | null
+    createdAt?: Date | string
+  }
+
   export type PreoperacionalUpdateWithoutUsuarioInput = {
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     respuestas?: JsonNullValueInput | InputJsonValue
@@ -10663,6 +14597,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     vehiculo?: VehiculoUpdateOneRequiredWithoutPreoperacionalesNestedInput
     solicitud?: SolicitudUpdateOneWithoutPreoperacionalesNestedInput
+    viajes?: ViajeUpdateManyWithoutPreoperacionalNestedInput
   }
 
   export type PreoperacionalUncheckedUpdateWithoutUsuarioInput = {
@@ -10675,6 +14610,7 @@ export namespace Prisma {
     vehiculoId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     solicitudId?: NullableIntFieldUpdateOperationsInput | number | null
+    viajes?: ViajeUncheckedUpdateManyWithoutPreoperacionalNestedInput
   }
 
   export type PreoperacionalUncheckedUpdateManyWithoutUsuarioInput = {
@@ -10780,6 +14716,50 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type ViajeUpdateWithoutConductorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    horaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
+    horaFin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    distanciaTotalKm?: NullableFloatFieldUpdateOperationsInput | number | null
+    velocidadPromedio?: NullableFloatFieldUpdateOperationsInput | number | null
+    velocidadMaxima?: NullableFloatFieldUpdateOperationsInput | number | null
+    estado?: EnumEstadoViajeFieldUpdateOperationsInput | $Enums.EstadoViaje
+    archivoRutaUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    vehiculo?: VehiculoUpdateOneRequiredWithoutViajesNestedInput
+    preoperacional?: PreoperacionalUpdateOneWithoutViajesNestedInput
+    puntosGps?: PuntoGpsUpdateManyWithoutViajeNestedInput
+  }
+
+  export type ViajeUncheckedUpdateWithoutConductorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    vehiculoId?: IntFieldUpdateOperationsInput | number
+    preoperacionalId?: NullableIntFieldUpdateOperationsInput | number | null
+    horaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
+    horaFin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    distanciaTotalKm?: NullableFloatFieldUpdateOperationsInput | number | null
+    velocidadPromedio?: NullableFloatFieldUpdateOperationsInput | number | null
+    velocidadMaxima?: NullableFloatFieldUpdateOperationsInput | number | null
+    estado?: EnumEstadoViajeFieldUpdateOperationsInput | $Enums.EstadoViaje
+    archivoRutaUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    puntosGps?: PuntoGpsUncheckedUpdateManyWithoutViajeNestedInput
+  }
+
+  export type ViajeUncheckedUpdateManyWithoutConductorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    vehiculoId?: IntFieldUpdateOperationsInput | number
+    preoperacionalId?: NullableIntFieldUpdateOperationsInput | number | null
+    horaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
+    horaFin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    distanciaTotalKm?: NullableFloatFieldUpdateOperationsInput | number | null
+    velocidadPromedio?: NullableFloatFieldUpdateOperationsInput | number | null
+    velocidadMaxima?: NullableFloatFieldUpdateOperationsInput | number | null
+    estado?: EnumEstadoViajeFieldUpdateOperationsInput | $Enums.EstadoViaje
+    archivoRutaUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type PreoperacionalCreateManyVehiculoInput = {
     id?: number
     consecutivo?: number
@@ -10803,6 +14783,20 @@ export namespace Prisma {
     createdAt?: Date | string
   }
 
+  export type ViajeCreateManyVehiculoInput = {
+    id: string
+    conductorId: number
+    preoperacionalId?: number | null
+    horaInicio: Date | string
+    horaFin?: Date | string | null
+    distanciaTotalKm?: number | null
+    velocidadPromedio?: number | null
+    velocidadMaxima?: number | null
+    estado?: $Enums.EstadoViaje
+    archivoRutaUrl?: string | null
+    createdAt?: Date | string
+  }
+
   export type PreoperacionalUpdateWithoutVehiculoInput = {
     fecha?: DateTimeFieldUpdateOperationsInput | Date | string
     respuestas?: JsonNullValueInput | InputJsonValue
@@ -10811,6 +14805,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     usuario?: UsuarioUpdateOneRequiredWithoutPreoperacionalesNestedInput
     solicitud?: SolicitudUpdateOneWithoutPreoperacionalesNestedInput
+    viajes?: ViajeUpdateManyWithoutPreoperacionalNestedInput
   }
 
   export type PreoperacionalUncheckedUpdateWithoutVehiculoInput = {
@@ -10823,6 +14818,7 @@ export namespace Prisma {
     usuarioId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     solicitudId?: NullableIntFieldUpdateOperationsInput | number | null
+    viajes?: ViajeUncheckedUpdateManyWithoutPreoperacionalNestedInput
   }
 
   export type PreoperacionalUncheckedUpdateManyWithoutVehiculoInput = {
@@ -10871,6 +14867,108 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type ViajeUpdateWithoutVehiculoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    horaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
+    horaFin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    distanciaTotalKm?: NullableFloatFieldUpdateOperationsInput | number | null
+    velocidadPromedio?: NullableFloatFieldUpdateOperationsInput | number | null
+    velocidadMaxima?: NullableFloatFieldUpdateOperationsInput | number | null
+    estado?: EnumEstadoViajeFieldUpdateOperationsInput | $Enums.EstadoViaje
+    archivoRutaUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    conductor?: UsuarioUpdateOneRequiredWithoutViajesNestedInput
+    preoperacional?: PreoperacionalUpdateOneWithoutViajesNestedInput
+    puntosGps?: PuntoGpsUpdateManyWithoutViajeNestedInput
+  }
+
+  export type ViajeUncheckedUpdateWithoutVehiculoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    conductorId?: IntFieldUpdateOperationsInput | number
+    preoperacionalId?: NullableIntFieldUpdateOperationsInput | number | null
+    horaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
+    horaFin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    distanciaTotalKm?: NullableFloatFieldUpdateOperationsInput | number | null
+    velocidadPromedio?: NullableFloatFieldUpdateOperationsInput | number | null
+    velocidadMaxima?: NullableFloatFieldUpdateOperationsInput | number | null
+    estado?: EnumEstadoViajeFieldUpdateOperationsInput | $Enums.EstadoViaje
+    archivoRutaUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    puntosGps?: PuntoGpsUncheckedUpdateManyWithoutViajeNestedInput
+  }
+
+  export type ViajeUncheckedUpdateManyWithoutVehiculoInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    conductorId?: IntFieldUpdateOperationsInput | number
+    preoperacionalId?: NullableIntFieldUpdateOperationsInput | number | null
+    horaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
+    horaFin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    distanciaTotalKm?: NullableFloatFieldUpdateOperationsInput | number | null
+    velocidadPromedio?: NullableFloatFieldUpdateOperationsInput | number | null
+    velocidadMaxima?: NullableFloatFieldUpdateOperationsInput | number | null
+    estado?: EnumEstadoViajeFieldUpdateOperationsInput | $Enums.EstadoViaje
+    archivoRutaUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ViajeCreateManyPreoperacionalInput = {
+    id: string
+    vehiculoId: number
+    conductorId: number
+    horaInicio: Date | string
+    horaFin?: Date | string | null
+    distanciaTotalKm?: number | null
+    velocidadPromedio?: number | null
+    velocidadMaxima?: number | null
+    estado?: $Enums.EstadoViaje
+    archivoRutaUrl?: string | null
+    createdAt?: Date | string
+  }
+
+  export type ViajeUpdateWithoutPreoperacionalInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    horaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
+    horaFin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    distanciaTotalKm?: NullableFloatFieldUpdateOperationsInput | number | null
+    velocidadPromedio?: NullableFloatFieldUpdateOperationsInput | number | null
+    velocidadMaxima?: NullableFloatFieldUpdateOperationsInput | number | null
+    estado?: EnumEstadoViajeFieldUpdateOperationsInput | $Enums.EstadoViaje
+    archivoRutaUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    vehiculo?: VehiculoUpdateOneRequiredWithoutViajesNestedInput
+    conductor?: UsuarioUpdateOneRequiredWithoutViajesNestedInput
+    puntosGps?: PuntoGpsUpdateManyWithoutViajeNestedInput
+  }
+
+  export type ViajeUncheckedUpdateWithoutPreoperacionalInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    vehiculoId?: IntFieldUpdateOperationsInput | number
+    conductorId?: IntFieldUpdateOperationsInput | number
+    horaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
+    horaFin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    distanciaTotalKm?: NullableFloatFieldUpdateOperationsInput | number | null
+    velocidadPromedio?: NullableFloatFieldUpdateOperationsInput | number | null
+    velocidadMaxima?: NullableFloatFieldUpdateOperationsInput | number | null
+    estado?: EnumEstadoViajeFieldUpdateOperationsInput | $Enums.EstadoViaje
+    archivoRutaUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    puntosGps?: PuntoGpsUncheckedUpdateManyWithoutViajeNestedInput
+  }
+
+  export type ViajeUncheckedUpdateManyWithoutPreoperacionalInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    vehiculoId?: IntFieldUpdateOperationsInput | number
+    conductorId?: IntFieldUpdateOperationsInput | number
+    horaInicio?: DateTimeFieldUpdateOperationsInput | Date | string
+    horaFin?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    distanciaTotalKm?: NullableFloatFieldUpdateOperationsInput | number | null
+    velocidadPromedio?: NullableFloatFieldUpdateOperationsInput | number | null
+    velocidadMaxima?: NullableFloatFieldUpdateOperationsInput | number | null
+    estado?: EnumEstadoViajeFieldUpdateOperationsInput | $Enums.EstadoViaje
+    archivoRutaUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type PreoperacionalCreateManySolicitudInput = {
     id?: number
     consecutivo?: number
@@ -10891,6 +14989,7 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     usuario?: UsuarioUpdateOneRequiredWithoutPreoperacionalesNestedInput
     vehiculo?: VehiculoUpdateOneRequiredWithoutPreoperacionalesNestedInput
+    viajes?: ViajeUpdateManyWithoutPreoperacionalNestedInput
   }
 
   export type PreoperacionalUncheckedUpdateWithoutSolicitudInput = {
@@ -10903,6 +15002,7 @@ export namespace Prisma {
     usuarioId?: IntFieldUpdateOperationsInput | number
     vehiculoId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    viajes?: ViajeUncheckedUpdateManyWithoutPreoperacionalNestedInput
   }
 
   export type PreoperacionalUncheckedUpdateManyWithoutSolicitudInput = {
@@ -10915,6 +15015,26 @@ export namespace Prisma {
     usuarioId?: IntFieldUpdateOperationsInput | number
     vehiculoId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PuntoGpsUpdateWithoutViajeInput = {
+    velocidad?: NullableFloatFieldUpdateOperationsInput | number | null
+    precision?: NullableFloatFieldUpdateOperationsInput | number | null
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PuntoGpsUncheckedUpdateWithoutViajeInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    velocidad?: NullableFloatFieldUpdateOperationsInput | number | null
+    precision?: NullableFloatFieldUpdateOperationsInput | number | null
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type PuntoGpsUncheckedUpdateManyWithoutViajeInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    velocidad?: NullableFloatFieldUpdateOperationsInput | number | null
+    precision?: NullableFloatFieldUpdateOperationsInput | number | null
+    timestamp?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

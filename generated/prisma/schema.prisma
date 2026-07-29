@@ -44,6 +44,8 @@ model Usuario {
 
   solicitudesCreadas   Solicitud[] @relation("SolicitudesCreadas")
   solicitudesAprobadas Solicitud[] @relation("SolicitudesAprobadas")
+
+  viajes Viaje[]
 }
 
 model Vehiculo {
@@ -66,6 +68,8 @@ model Vehiculo {
   preoperacionales Preoperacional[]
 
   solicitudes Solicitud[]
+
+  viajes Viaje[]
 }
 
 model Preoperacional {
@@ -91,6 +95,8 @@ model Preoperacional {
 
   solicitudId Int?
   solicitud   Solicitud? @relation(fields: [solicitudId], references: [id])
+
+  viajes Viaje[]
 }
 
 model RefreshToken {
@@ -135,4 +141,58 @@ model Solicitud {
   preoperacionales Preoperacional[]
 
   createdAt DateTime @default(now())
+}
+
+enum EstadoViaje {
+  en_curso
+  finalizado
+  pendiente_sync
+}
+
+model Viaje {
+  id String @id // UUID generado en el celular
+
+  vehiculoId Int
+  vehiculo   Vehiculo @relation(fields: [vehiculoId], references: [id])
+
+  conductorId Int
+  conductor   Usuario @relation(fields: [conductorId], references: [id])
+
+  preoperacionalId Int?
+  preoperacional   Preoperacional? @relation(fields: [preoperacionalId], references: [id])
+
+  horaInicio DateTime
+  horaFin    DateTime?
+
+  distanciaTotalKm  Float?
+  velocidadPromedio Float?
+  velocidadMaxima   Float?
+
+  estado EstadoViaje @default(en_curso)
+
+  archivoRutaUrl String?
+
+  puntosGps PuntoGps[]
+
+  createdAt DateTime @default(now())
+
+  @@index([conductorId])
+  @@index([vehiculoId])
+  @@index([estado])
+}
+
+model PuntoGps {
+  id Int @id @default(autoincrement())
+
+  viajeId String
+  viaje   Viaje  @relation(fields: [viajeId], references: [id])
+
+  ubicacion Unsupported("geography(Point,4326)")
+
+  velocidad Float?
+  precision Float?
+  timestamp DateTime
+
+  @@index([viajeId])
+  @@index([timestamp])
 }
