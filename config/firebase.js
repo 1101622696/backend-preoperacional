@@ -1,12 +1,18 @@
-import { initializeApp, cert } from "firebase-admin/app";
-import { readFileSync } from "node:fs";
+import admin from "firebase-admin";
+import { readFileSync, existsSync } from "fs";
 
-const serviceAccount = JSON.parse(
-  readFileSync(process.env.FIREBASE_CREDENTIALS_PATH, "utf8")
-);
+let serviceAccount;
 
-const app = initializeApp({
-  credential: cert(serviceAccount),
+if (process.env.FIREBASE_SERVICE_ACCOUNT) {
+  serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
+} else {
+  serviceAccount = JSON.parse(
+    readFileSync("./firebase-credenciales.json", "utf8")
+  );
+}
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
 });
 
-export default app;
+export default admin;
