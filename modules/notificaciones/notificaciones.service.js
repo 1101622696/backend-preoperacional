@@ -1,15 +1,34 @@
-import admin from "../../config/firebase.js";
+// import admin from "../../config/firebase.js";
+
+// export const enviarNotificacion = async (fcmToken, { titulo, cuerpo, data = {} }) => {
+//   if (!fcmToken) return;
+//   try {
+//     await admin.messaging().send({
+//       token: fcmToken,
+//       notification: { title: titulo, body: cuerpo },
+//       data,
+//     });
+//   } catch (error) {
+//     // Nunca debe tumbar el flujo principal (crear/aprobar solicitud) por un push fallido
+//     console.error("Error enviando notificación FCM:", error.message);
+//   }
+// };
+
+import { getMessaging } from "firebase-admin/messaging";
 
 export const enviarNotificacion = async (fcmToken, { titulo, cuerpo, data = {} }) => {
   if (!fcmToken) return;
+
   try {
-    await admin.messaging().send({
+    await getMessaging().send({
       token: fcmToken,
-      notification: { title: titulo, body: cuerpo },
+      notification: {
+        title: titulo,
+        body: cuerpo,
+      },
       data,
     });
   } catch (error) {
-    // Nunca debe tumbar el flujo principal (crear/aprobar solicitud) por un push fallido
     console.error("Error enviando notificación FCM:", error.message);
   }
 };

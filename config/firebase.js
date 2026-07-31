@@ -1,4 +1,4 @@
-import admin from "firebase-admin";
+import { initializeApp, cert } from "firebase-admin/app";
 import { readFileSync, existsSync } from "fs";
 
 let serviceAccount;
@@ -10,9 +10,9 @@ if (process.env.FIREBASE_SERVICE_ACCOUNT) {
     readFileSync("./firebase-credenciales.json", "utf8")
   );
 }
-
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
+const app = initializeApp({
+  credential: cert(serviceAccount),
 });
 
-export default admin;
+export default app;
+
