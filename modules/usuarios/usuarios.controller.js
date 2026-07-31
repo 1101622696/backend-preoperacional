@@ -1,8 +1,12 @@
 import { listarUsuariosActivos, obtenerUsuarioPorId, crearUsuario, actualizarUsuario, cambiarPassword, desactivarUsuario } from "./usuarios.service.js";
 
-export const getUsuarios = async(req,res)=>{
-    const usuarios = await listarUsuariosActivos();
-    res.json(usuarios);
+export const getUsuarios = async (req, res) => {
+  if (req.usuario.rol === "administrador") {
+    return res.json(await listarUsuarios());
+  }
+  // conductor: solo se ve a sí mismo
+  const propio = await obtenerUsuarioPorId(req.usuario.id);
+  res.json([propio]); // array para que el frontend no tenga que manejar dos formatos distintos
 };
 
 export const getUsuarioPorId = async (req, res) => {
@@ -86,4 +90,22 @@ export const patchDesactivar = async (req, res) => {
     console.error(error);
     res.status(500).json({ error: "Error al desactivar usuario" });
   }
+};
+
+export const postTokenFcm = async (req, res) => {
+  try {
+    await registrarTokenFcm(req.usuario.id, req.body.fcmToken);
+    res.status(204).send();
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Error al registrar token" });
+  }
+};
+
+
+export const getPerfilPropio = async (req, res) => {
+  const usuario = await obtenerUsuarioPorId(req.usuario.id);
+  if (!usuario) return res.status(404).json({ error: "Usuario no encontrado" });
+  const { passwordHash, ...datosSeguros } = usuario;
+  res.json(datosSeguros);
 };

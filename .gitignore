@@ -1,5 +1,5 @@
 node_modules/
-
+firebase-credenciales.json
 .env
 .env.*
 !.env.example

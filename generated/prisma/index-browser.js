@@ -129,7 +129,9 @@ exports.Prisma.UsuarioScalarFieldEnum = {
   rol: 'rol',
   origen: 'origen',
   activo: 'activo',
-  createdAt: 'createdAt'
+  createdAt: 'createdAt',
+  fcmToken: 'fcmToken',
+  fcmTokenUpdatedAt: 'fcmTokenUpdatedAt'
 };
 
 exports.Prisma.VehiculoScalarFieldEnum = {

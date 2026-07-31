@@ -1691,6 +1691,8 @@ export namespace Prisma {
     origen: $Enums.Origen | null
     activo: boolean | null
     createdAt: Date | null
+    fcmToken: string | null
+    fcmTokenUpdatedAt: Date | null
   }
 
   export type UsuarioMaxAggregateOutputType = {
@@ -1703,6 +1705,8 @@ export namespace Prisma {
     origen: $Enums.Origen | null
     activo: boolean | null
     createdAt: Date | null
+    fcmToken: string | null
+    fcmTokenUpdatedAt: Date | null
   }
 
   export type UsuarioCountAggregateOutputType = {
@@ -1715,6 +1719,8 @@ export namespace Prisma {
     origen: number
     activo: number
     createdAt: number
+    fcmToken: number
+    fcmTokenUpdatedAt: number
     _all: number
   }
 
@@ -1737,6 +1743,8 @@ export namespace Prisma {
     origen?: true
     activo?: true
     createdAt?: true
+    fcmToken?: true
+    fcmTokenUpdatedAt?: true
   }
 
   export type UsuarioMaxAggregateInputType = {
@@ -1749,6 +1757,8 @@ export namespace Prisma {
     origen?: true
     activo?: true
     createdAt?: true
+    fcmToken?: true
+    fcmTokenUpdatedAt?: true
   }
 
   export type UsuarioCountAggregateInputType = {
@@ -1761,6 +1771,8 @@ export namespace Prisma {
     origen?: true
     activo?: true
     createdAt?: true
+    fcmToken?: true
+    fcmTokenUpdatedAt?: true
     _all?: true
   }
 
@@ -1860,6 +1872,8 @@ export namespace Prisma {
     origen: $Enums.Origen
     activo: boolean
     createdAt: Date
+    fcmToken: string | null
+    fcmTokenUpdatedAt: Date | null
     _count: UsuarioCountAggregateOutputType | null
     _avg: UsuarioAvgAggregateOutputType | null
     _sum: UsuarioSumAggregateOutputType | null
@@ -1891,6 +1905,8 @@ export namespace Prisma {
     origen?: boolean
     activo?: boolean
     createdAt?: boolean
+    fcmToken?: boolean
+    fcmTokenUpdatedAt?: boolean
     preoperacionales?: boolean | Usuario$preoperacionalesArgs<ExtArgs>
     refreshTokens?: boolean | Usuario$refreshTokensArgs<ExtArgs>
     solicitudesCreadas?: boolean | Usuario$solicitudesCreadasArgs<ExtArgs>
@@ -1909,6 +1925,8 @@ export namespace Prisma {
     origen?: boolean
     activo?: boolean
     createdAt?: boolean
+    fcmToken?: boolean
+    fcmTokenUpdatedAt?: boolean
   }, ExtArgs["result"]["usuario"]>
 
   export type UsuarioSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1921,6 +1939,8 @@ export namespace Prisma {
     origen?: boolean
     activo?: boolean
     createdAt?: boolean
+    fcmToken?: boolean
+    fcmTokenUpdatedAt?: boolean
   }, ExtArgs["result"]["usuario"]>
 
   export type UsuarioSelectScalar = {
@@ -1933,9 +1953,11 @@ export namespace Prisma {
     origen?: boolean
     activo?: boolean
     createdAt?: boolean
+    fcmToken?: boolean
+    fcmTokenUpdatedAt?: boolean
   }
 
-  export type UsuarioOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nombre" | "cedula" | "email" | "passwordHash" | "rol" | "origen" | "activo" | "createdAt", ExtArgs["result"]["usuario"]>
+  export type UsuarioOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "nombre" | "cedula" | "email" | "passwordHash" | "rol" | "origen" | "activo" | "createdAt" | "fcmToken" | "fcmTokenUpdatedAt", ExtArgs["result"]["usuario"]>
   export type UsuarioInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     preoperacionales?: boolean | Usuario$preoperacionalesArgs<ExtArgs>
     refreshTokens?: boolean | Usuario$refreshTokensArgs<ExtArgs>
@@ -1966,6 +1988,8 @@ export namespace Prisma {
       origen: $Enums.Origen
       activo: boolean
       createdAt: Date
+      fcmToken: string | null
+      fcmTokenUpdatedAt: Date | null
     }, ExtArgs["result"]["usuario"]>
     composites: {}
   }
@@ -2403,6 +2427,8 @@ export namespace Prisma {
     readonly origen: FieldRef<"Usuario", 'Origen'>
     readonly activo: FieldRef<"Usuario", 'Boolean'>
     readonly createdAt: FieldRef<"Usuario", 'DateTime'>
+    readonly fcmToken: FieldRef<"Usuario", 'String'>
+    readonly fcmTokenUpdatedAt: FieldRef<"Usuario", 'DateTime'>
   }
     
 
@@ -9995,7 +10021,9 @@ export namespace Prisma {
     rol: 'rol',
     origen: 'origen',
     activo: 'activo',
-    createdAt: 'createdAt'
+    createdAt: 'createdAt',
+    fcmToken: 'fcmToken',
+    fcmTokenUpdatedAt: 'fcmTokenUpdatedAt'
   };
 
   export type UsuarioScalarFieldEnum = (typeof UsuarioScalarFieldEnum)[keyof typeof UsuarioScalarFieldEnum]
@@ -10283,6 +10311,8 @@ export namespace Prisma {
     origen?: EnumOrigenFilter<"Usuario"> | $Enums.Origen
     activo?: BoolFilter<"Usuario"> | boolean
     createdAt?: DateTimeFilter<"Usuario"> | Date | string
+    fcmToken?: StringNullableFilter<"Usuario"> | string | null
+    fcmTokenUpdatedAt?: DateTimeNullableFilter<"Usuario"> | Date | string | null
     preoperacionales?: PreoperacionalListRelationFilter
     refreshTokens?: RefreshTokenListRelationFilter
     solicitudesCreadas?: SolicitudListRelationFilter
@@ -10300,6 +10330,8 @@ export namespace Prisma {
     origen?: SortOrder
     activo?: SortOrder
     createdAt?: SortOrder
+    fcmToken?: SortOrderInput | SortOrder
+    fcmTokenUpdatedAt?: SortOrderInput | SortOrder
     preoperacionales?: PreoperacionalOrderByRelationAggregateInput
     refreshTokens?: RefreshTokenOrderByRelationAggregateInput
     solicitudesCreadas?: SolicitudOrderByRelationAggregateInput
@@ -10320,6 +10352,8 @@ export namespace Prisma {
     origen?: EnumOrigenFilter<"Usuario"> | $Enums.Origen
     activo?: BoolFilter<"Usuario"> | boolean
     createdAt?: DateTimeFilter<"Usuario"> | Date | string
+    fcmToken?: StringNullableFilter<"Usuario"> | string | null
+    fcmTokenUpdatedAt?: DateTimeNullableFilter<"Usuario"> | Date | string | null
     preoperacionales?: PreoperacionalListRelationFilter
     refreshTokens?: RefreshTokenListRelationFilter
     solicitudesCreadas?: SolicitudListRelationFilter
@@ -10337,6 +10371,8 @@ export namespace Prisma {
     origen?: SortOrder
     activo?: SortOrder
     createdAt?: SortOrder
+    fcmToken?: SortOrderInput | SortOrder
+    fcmTokenUpdatedAt?: SortOrderInput | SortOrder
     _count?: UsuarioCountOrderByAggregateInput
     _avg?: UsuarioAvgOrderByAggregateInput
     _max?: UsuarioMaxOrderByAggregateInput
@@ -10357,6 +10393,8 @@ export namespace Prisma {
     origen?: EnumOrigenWithAggregatesFilter<"Usuario"> | $Enums.Origen
     activo?: BoolWithAggregatesFilter<"Usuario"> | boolean
     createdAt?: DateTimeWithAggregatesFilter<"Usuario"> | Date | string
+    fcmToken?: StringNullableWithAggregatesFilter<"Usuario"> | string | null
+    fcmTokenUpdatedAt?: DateTimeNullableWithAggregatesFilter<"Usuario"> | Date | string | null
   }
 
   export type VehiculoWhereInput = {
@@ -10853,6 +10891,8 @@ export namespace Prisma {
     origen: $Enums.Origen
     activo?: boolean
     createdAt?: Date | string
+    fcmToken?: string | null
+    fcmTokenUpdatedAt?: Date | string | null
     preoperacionales?: PreoperacionalCreateNestedManyWithoutUsuarioInput
     refreshTokens?: RefreshTokenCreateNestedManyWithoutUsuarioInput
     solicitudesCreadas?: SolicitudCreateNestedManyWithoutUsuarioSolicitanteInput
@@ -10870,6 +10910,8 @@ export namespace Prisma {
     origen: $Enums.Origen
     activo?: boolean
     createdAt?: Date | string
+    fcmToken?: string | null
+    fcmTokenUpdatedAt?: Date | string | null
     preoperacionales?: PreoperacionalUncheckedCreateNestedManyWithoutUsuarioInput
     refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutUsuarioInput
     solicitudesCreadas?: SolicitudUncheckedCreateNestedManyWithoutUsuarioSolicitanteInput
@@ -10886,6 +10928,8 @@ export namespace Prisma {
     origen?: EnumOrigenFieldUpdateOperationsInput | $Enums.Origen
     activo?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    fcmToken?: NullableStringFieldUpdateOperationsInput | string | null
+    fcmTokenUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     preoperacionales?: PreoperacionalUpdateManyWithoutUsuarioNestedInput
     refreshTokens?: RefreshTokenUpdateManyWithoutUsuarioNestedInput
     solicitudesCreadas?: SolicitudUpdateManyWithoutUsuarioSolicitanteNestedInput
@@ -10903,6 +10947,8 @@ export namespace Prisma {
     origen?: EnumOrigenFieldUpdateOperationsInput | $Enums.Origen
     activo?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    fcmToken?: NullableStringFieldUpdateOperationsInput | string | null
+    fcmTokenUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     preoperacionales?: PreoperacionalUncheckedUpdateManyWithoutUsuarioNestedInput
     refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutUsuarioNestedInput
     solicitudesCreadas?: SolicitudUncheckedUpdateManyWithoutUsuarioSolicitanteNestedInput
@@ -10920,6 +10966,8 @@ export namespace Prisma {
     origen: $Enums.Origen
     activo?: boolean
     createdAt?: Date | string
+    fcmToken?: string | null
+    fcmTokenUpdatedAt?: Date | string | null
   }
 
   export type UsuarioUpdateManyMutationInput = {
@@ -10931,6 +10979,8 @@ export namespace Prisma {
     origen?: EnumOrigenFieldUpdateOperationsInput | $Enums.Origen
     activo?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    fcmToken?: NullableStringFieldUpdateOperationsInput | string | null
+    fcmTokenUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type UsuarioUncheckedUpdateManyInput = {
@@ -10943,6 +10993,8 @@ export namespace Prisma {
     origen?: EnumOrigenFieldUpdateOperationsInput | $Enums.Origen
     activo?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    fcmToken?: NullableStringFieldUpdateOperationsInput | string | null
+    fcmTokenUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
   export type VehiculoCreateInput = {
@@ -11464,6 +11516,32 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
   export type PreoperacionalListRelationFilter = {
     every?: PreoperacionalWhereInput
     some?: PreoperacionalWhereInput
@@ -11486,6 +11564,11 @@ export namespace Prisma {
     every?: ViajeWhereInput
     some?: ViajeWhereInput
     none?: ViajeWhereInput
+  }
+
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
   }
 
   export type PreoperacionalOrderByRelationAggregateInput = {
@@ -11514,6 +11597,8 @@ export namespace Prisma {
     origen?: SortOrder
     activo?: SortOrder
     createdAt?: SortOrder
+    fcmToken?: SortOrder
+    fcmTokenUpdatedAt?: SortOrder
   }
 
   export type UsuarioAvgOrderByAggregateInput = {
@@ -11530,6 +11615,8 @@ export namespace Prisma {
     origen?: SortOrder
     activo?: SortOrder
     createdAt?: SortOrder
+    fcmToken?: SortOrder
+    fcmTokenUpdatedAt?: SortOrder
   }
 
   export type UsuarioMinOrderByAggregateInput = {
@@ -11542,6 +11629,8 @@ export namespace Prisma {
     origen?: SortOrder
     activo?: SortOrder
     createdAt?: SortOrder
+    fcmToken?: SortOrder
+    fcmTokenUpdatedAt?: SortOrder
   }
 
   export type UsuarioSumOrderByAggregateInput = {
@@ -11624,7 +11713,7 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
-  export type StringNullableFilter<$PrismaModel = never> = {
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
     notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -11636,12 +11725,24 @@ export namespace Prisma {
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     mode?: QueryMode
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
-  export type SortOrderInput = {
-    sort: SortOrder
-    nulls?: NullsOrder
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type VehiculoCountOrderByAggregateInput = {
@@ -11689,24 +11790,6 @@ export namespace Prisma {
 
   export type VehiculoSumOrderByAggregateInput = {
     id?: SortOrder
-  }
-
-  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
   }
   export type JsonFilter<$PrismaModel = never> =
     | PatchUndefined<
@@ -11967,17 +12050,6 @@ export namespace Prisma {
     _max?: NestedEnumEstadoSolicitudFilter<$PrismaModel>
   }
 
-  export type DateTimeNullableFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
-  }
-
   export type FloatNullableFilter<$PrismaModel = never> = {
     equals?: number | FloatFieldRefInput<$PrismaModel> | null
     in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
@@ -12072,20 +12144,6 @@ export namespace Prisma {
     distanciaTotalKm?: SortOrder
     velocidadPromedio?: SortOrder
     velocidadMaxima?: SortOrder
-  }
-
-  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedDateTimeNullableFilter<$PrismaModel>
-    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type FloatNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -12243,6 +12301,14 @@ export namespace Prisma {
 
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
+  }
+
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
+  }
+
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
   }
 
   export type PreoperacionalUpdateManyWithoutUsuarioNestedInput = {
@@ -12433,10 +12499,6 @@ export namespace Prisma {
     connectOrCreate?: ViajeCreateOrConnectWithoutVehiculoInput | ViajeCreateOrConnectWithoutVehiculoInput[]
     createMany?: ViajeCreateManyVehiculoInputEnvelope
     connect?: ViajeWhereUniqueInput | ViajeWhereUniqueInput[]
-  }
-
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
   }
 
   export type PreoperacionalUpdateManyWithoutVehiculoNestedInput = {
@@ -12749,10 +12811,6 @@ export namespace Prisma {
     connect?: PuntoGpsWhereUniqueInput | PuntoGpsWhereUniqueInput[]
   }
 
-  export type NullableDateTimeFieldUpdateOperationsInput = {
-    set?: Date | string | null
-  }
-
   export type NullableFloatFieldUpdateOperationsInput = {
     set?: number | null
     increment?: number
@@ -12874,6 +12932,31 @@ export namespace Prisma {
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -12960,20 +13043,6 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
-  export type NestedStringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
     in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
@@ -13000,6 +13069,20 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
   export type NestedJsonFilter<$PrismaModel = never> =
     | PatchUndefined<
@@ -13069,36 +13152,11 @@ export namespace Prisma {
     _max?: NestedEnumEstadoSolicitudFilter<$PrismaModel>
   }
 
-  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
-  }
-
   export type NestedEnumEstadoViajeFilter<$PrismaModel = never> = {
     equals?: $Enums.EstadoViaje | EnumEstadoViajeFieldRefInput<$PrismaModel>
     in?: $Enums.EstadoViaje[] | ListEnumEstadoViajeFieldRefInput<$PrismaModel>
     notIn?: $Enums.EstadoViaje[] | ListEnumEstadoViajeFieldRefInput<$PrismaModel>
     not?: NestedEnumEstadoViajeFilter<$PrismaModel> | $Enums.EstadoViaje
-  }
-
-  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel> | null
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedDateTimeNullableFilter<$PrismaModel>
-    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type NestedFloatNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -13599,6 +13657,8 @@ export namespace Prisma {
     origen: $Enums.Origen
     activo?: boolean
     createdAt?: Date | string
+    fcmToken?: string | null
+    fcmTokenUpdatedAt?: Date | string | null
     refreshTokens?: RefreshTokenCreateNestedManyWithoutUsuarioInput
     solicitudesCreadas?: SolicitudCreateNestedManyWithoutUsuarioSolicitanteInput
     solicitudesAprobadas?: SolicitudCreateNestedManyWithoutAprobadoPorInput
@@ -13615,6 +13675,8 @@ export namespace Prisma {
     origen: $Enums.Origen
     activo?: boolean
     createdAt?: Date | string
+    fcmToken?: string | null
+    fcmTokenUpdatedAt?: Date | string | null
     refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutUsuarioInput
     solicitudesCreadas?: SolicitudUncheckedCreateNestedManyWithoutUsuarioSolicitanteInput
     solicitudesAprobadas?: SolicitudUncheckedCreateNestedManyWithoutAprobadoPorInput
@@ -13748,6 +13810,8 @@ export namespace Prisma {
     origen?: EnumOrigenFieldUpdateOperationsInput | $Enums.Origen
     activo?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    fcmToken?: NullableStringFieldUpdateOperationsInput | string | null
+    fcmTokenUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     refreshTokens?: RefreshTokenUpdateManyWithoutUsuarioNestedInput
     solicitudesCreadas?: SolicitudUpdateManyWithoutUsuarioSolicitanteNestedInput
     solicitudesAprobadas?: SolicitudUpdateManyWithoutAprobadoPorNestedInput
@@ -13764,6 +13828,8 @@ export namespace Prisma {
     origen?: EnumOrigenFieldUpdateOperationsInput | $Enums.Origen
     activo?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    fcmToken?: NullableStringFieldUpdateOperationsInput | string | null
+    fcmTokenUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutUsuarioNestedInput
     solicitudesCreadas?: SolicitudUncheckedUpdateManyWithoutUsuarioSolicitanteNestedInput
     solicitudesAprobadas?: SolicitudUncheckedUpdateManyWithoutAprobadoPorNestedInput
@@ -13869,6 +13935,8 @@ export namespace Prisma {
     origen: $Enums.Origen
     activo?: boolean
     createdAt?: Date | string
+    fcmToken?: string | null
+    fcmTokenUpdatedAt?: Date | string | null
     preoperacionales?: PreoperacionalCreateNestedManyWithoutUsuarioInput
     solicitudesCreadas?: SolicitudCreateNestedManyWithoutUsuarioSolicitanteInput
     solicitudesAprobadas?: SolicitudCreateNestedManyWithoutAprobadoPorInput
@@ -13885,6 +13953,8 @@ export namespace Prisma {
     origen: $Enums.Origen
     activo?: boolean
     createdAt?: Date | string
+    fcmToken?: string | null
+    fcmTokenUpdatedAt?: Date | string | null
     preoperacionales?: PreoperacionalUncheckedCreateNestedManyWithoutUsuarioInput
     solicitudesCreadas?: SolicitudUncheckedCreateNestedManyWithoutUsuarioSolicitanteInput
     solicitudesAprobadas?: SolicitudUncheckedCreateNestedManyWithoutAprobadoPorInput
@@ -13916,6 +13986,8 @@ export namespace Prisma {
     origen?: EnumOrigenFieldUpdateOperationsInput | $Enums.Origen
     activo?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    fcmToken?: NullableStringFieldUpdateOperationsInput | string | null
+    fcmTokenUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     preoperacionales?: PreoperacionalUpdateManyWithoutUsuarioNestedInput
     solicitudesCreadas?: SolicitudUpdateManyWithoutUsuarioSolicitanteNestedInput
     solicitudesAprobadas?: SolicitudUpdateManyWithoutAprobadoPorNestedInput
@@ -13932,6 +14004,8 @@ export namespace Prisma {
     origen?: EnumOrigenFieldUpdateOperationsInput | $Enums.Origen
     activo?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    fcmToken?: NullableStringFieldUpdateOperationsInput | string | null
+    fcmTokenUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     preoperacionales?: PreoperacionalUncheckedUpdateManyWithoutUsuarioNestedInput
     solicitudesCreadas?: SolicitudUncheckedUpdateManyWithoutUsuarioSolicitanteNestedInput
     solicitudesAprobadas?: SolicitudUncheckedUpdateManyWithoutAprobadoPorNestedInput
@@ -13947,6 +14021,8 @@ export namespace Prisma {
     origen: $Enums.Origen
     activo?: boolean
     createdAt?: Date | string
+    fcmToken?: string | null
+    fcmTokenUpdatedAt?: Date | string | null
     preoperacionales?: PreoperacionalCreateNestedManyWithoutUsuarioInput
     refreshTokens?: RefreshTokenCreateNestedManyWithoutUsuarioInput
     solicitudesAprobadas?: SolicitudCreateNestedManyWithoutAprobadoPorInput
@@ -13963,6 +14039,8 @@ export namespace Prisma {
     origen: $Enums.Origen
     activo?: boolean
     createdAt?: Date | string
+    fcmToken?: string | null
+    fcmTokenUpdatedAt?: Date | string | null
     preoperacionales?: PreoperacionalUncheckedCreateNestedManyWithoutUsuarioInput
     refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutUsuarioInput
     solicitudesAprobadas?: SolicitudUncheckedCreateNestedManyWithoutAprobadoPorInput
@@ -14017,6 +14095,8 @@ export namespace Prisma {
     origen: $Enums.Origen
     activo?: boolean
     createdAt?: Date | string
+    fcmToken?: string | null
+    fcmTokenUpdatedAt?: Date | string | null
     preoperacionales?: PreoperacionalCreateNestedManyWithoutUsuarioInput
     refreshTokens?: RefreshTokenCreateNestedManyWithoutUsuarioInput
     solicitudesCreadas?: SolicitudCreateNestedManyWithoutUsuarioSolicitanteInput
@@ -14033,6 +14113,8 @@ export namespace Prisma {
     origen: $Enums.Origen
     activo?: boolean
     createdAt?: Date | string
+    fcmToken?: string | null
+    fcmTokenUpdatedAt?: Date | string | null
     preoperacionales?: PreoperacionalUncheckedCreateNestedManyWithoutUsuarioInput
     refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutUsuarioInput
     solicitudesCreadas?: SolicitudUncheckedCreateNestedManyWithoutUsuarioSolicitanteInput
@@ -14099,6 +14181,8 @@ export namespace Prisma {
     origen?: EnumOrigenFieldUpdateOperationsInput | $Enums.Origen
     activo?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    fcmToken?: NullableStringFieldUpdateOperationsInput | string | null
+    fcmTokenUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     preoperacionales?: PreoperacionalUpdateManyWithoutUsuarioNestedInput
     refreshTokens?: RefreshTokenUpdateManyWithoutUsuarioNestedInput
     solicitudesAprobadas?: SolicitudUpdateManyWithoutAprobadoPorNestedInput
@@ -14115,6 +14199,8 @@ export namespace Prisma {
     origen?: EnumOrigenFieldUpdateOperationsInput | $Enums.Origen
     activo?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    fcmToken?: NullableStringFieldUpdateOperationsInput | string | null
+    fcmTokenUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     preoperacionales?: PreoperacionalUncheckedUpdateManyWithoutUsuarioNestedInput
     refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutUsuarioNestedInput
     solicitudesAprobadas?: SolicitudUncheckedUpdateManyWithoutAprobadoPorNestedInput
@@ -14181,6 +14267,8 @@ export namespace Prisma {
     origen?: EnumOrigenFieldUpdateOperationsInput | $Enums.Origen
     activo?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    fcmToken?: NullableStringFieldUpdateOperationsInput | string | null
+    fcmTokenUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     preoperacionales?: PreoperacionalUpdateManyWithoutUsuarioNestedInput
     refreshTokens?: RefreshTokenUpdateManyWithoutUsuarioNestedInput
     solicitudesCreadas?: SolicitudUpdateManyWithoutUsuarioSolicitanteNestedInput
@@ -14197,6 +14285,8 @@ export namespace Prisma {
     origen?: EnumOrigenFieldUpdateOperationsInput | $Enums.Origen
     activo?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    fcmToken?: NullableStringFieldUpdateOperationsInput | string | null
+    fcmTokenUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     preoperacionales?: PreoperacionalUncheckedUpdateManyWithoutUsuarioNestedInput
     refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutUsuarioNestedInput
     solicitudesCreadas?: SolicitudUncheckedUpdateManyWithoutUsuarioSolicitanteNestedInput
@@ -14262,6 +14352,8 @@ export namespace Prisma {
     origen: $Enums.Origen
     activo?: boolean
     createdAt?: Date | string
+    fcmToken?: string | null
+    fcmTokenUpdatedAt?: Date | string | null
     preoperacionales?: PreoperacionalCreateNestedManyWithoutUsuarioInput
     refreshTokens?: RefreshTokenCreateNestedManyWithoutUsuarioInput
     solicitudesCreadas?: SolicitudCreateNestedManyWithoutUsuarioSolicitanteInput
@@ -14278,6 +14370,8 @@ export namespace Prisma {
     origen: $Enums.Origen
     activo?: boolean
     createdAt?: Date | string
+    fcmToken?: string | null
+    fcmTokenUpdatedAt?: Date | string | null
     preoperacionales?: PreoperacionalUncheckedCreateNestedManyWithoutUsuarioInput
     refreshTokens?: RefreshTokenUncheckedCreateNestedManyWithoutUsuarioInput
     solicitudesCreadas?: SolicitudUncheckedCreateNestedManyWithoutUsuarioSolicitanteInput
@@ -14379,6 +14473,8 @@ export namespace Prisma {
     origen?: EnumOrigenFieldUpdateOperationsInput | $Enums.Origen
     activo?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    fcmToken?: NullableStringFieldUpdateOperationsInput | string | null
+    fcmTokenUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     preoperacionales?: PreoperacionalUpdateManyWithoutUsuarioNestedInput
     refreshTokens?: RefreshTokenUpdateManyWithoutUsuarioNestedInput
     solicitudesCreadas?: SolicitudUpdateManyWithoutUsuarioSolicitanteNestedInput
@@ -14395,6 +14491,8 @@ export namespace Prisma {
     origen?: EnumOrigenFieldUpdateOperationsInput | $Enums.Origen
     activo?: BoolFieldUpdateOperationsInput | boolean
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    fcmToken?: NullableStringFieldUpdateOperationsInput | string | null
+    fcmTokenUpdatedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     preoperacionales?: PreoperacionalUncheckedUpdateManyWithoutUsuarioNestedInput
     refreshTokens?: RefreshTokenUncheckedUpdateManyWithoutUsuarioNestedInput
     solicitudesCreadas?: SolicitudUncheckedUpdateManyWithoutUsuarioSolicitanteNestedInput

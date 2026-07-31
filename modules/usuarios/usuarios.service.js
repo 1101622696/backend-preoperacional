@@ -76,3 +76,11 @@ export const desactivarUsuario = async (id) => {
     select: { id: true, activo: true },
   });
 };
+
+export const registrarTokenFcm = async (usuarioId, fcmToken) => {
+  return prisma.usuario.update({
+    where: { id: usuarioId },
+    data: { fcmToken, fcmTokenUpdatedAt: new Date() },
+    select: { id: true },
+  });
+};

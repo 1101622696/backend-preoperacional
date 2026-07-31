@@ -51,6 +51,10 @@ model Usuario {
   solicitudesAprobadas Solicitud[] @relation("SolicitudesAprobadas")
 
   viajes Viaje[]
+
+  fcmToken          String?
+  fcmTokenUpdatedAt DateTime?
+
 }
 
 model Vehiculo {
