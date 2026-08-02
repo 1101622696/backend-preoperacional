@@ -15,4 +15,5 @@ router.post("/registrar-token-fcm", autenticar, postTokenFcm);
 router.put("/:id", autenticar, autorizar("administrador"), validarActualizarUsuario, validar, putUsuario);
 router.patch("/:id/password", autenticar, autorizar("administrador"), validarCambiarPassword, validar, patchPassword);
 router.patch("/:id/desactivar", autenticar, autorizar("administrador"), patchDesactivar);
+
 export default router;

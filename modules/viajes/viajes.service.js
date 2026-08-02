@@ -2,13 +2,24 @@ import { prisma } from "../../config/prisma.js";
 
 const PRECISION_MAXIMA_ACEPTABLE = 100; // metros; puntos con peor precisión se descartan
 
+// viajes.service.js — modificar iniciarViaje
 export const iniciarViaje = async ({ id, vehiculoId, conductorId, preoperacionalId, horaInicio }) => {
+  const vehiculo = await prisma.vehiculo.findUnique({ where: { id: vehiculoId } });
+  if (!vehiculo || !vehiculo.activo) throw { status: 404, message: "Vehículo no encontrado o inactivo" };
+  if (vehiculo.tieneGpsFisico)
+    throw { status: 409, message: "Este vehículo ya cuenta con GPS físico, no requiere tracking por app" };
+
+  const inicioDelDia = new Date(); inicioDelDia.setHours(0, 0, 0, 0);
+  const preoperacionalHoy = await prisma.preoperacional.findFirst({
+    where: { usuarioId: conductorId, vehiculoId, fecha: { gte: inicioDelDia } },
+  });
+  if (!preoperacionalHoy)
+    throw { status: 409, message: "Debes completar el preoperacional de hoy antes de iniciar un viaje" };
+
   return prisma.viaje.create({
     data: {
-      id,
-      vehiculoId,
-      conductorId,
-      preoperacionalId: preoperacionalId ?? null,
+      id, vehiculoId, conductorId,
+      preoperacionalId: preoperacionalId ?? preoperacionalHoy.id, // se autocompleta si no lo mandan
       horaInicio: new Date(horaInicio),
       estado: "en_curso",
     },

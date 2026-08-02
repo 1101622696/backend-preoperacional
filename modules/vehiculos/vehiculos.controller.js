@@ -5,6 +5,8 @@ import {
   actualizarVehiculo,
   desactivarVehiculo,
 } from "./vehiculos.service.js";
+import Papa from "papaparse";
+import { readFileSync } from "fs";
 
 export const getVehiculos = async (req, res) => {
   const vehiculos = await listarVehiculos();
@@ -79,5 +81,19 @@ export const patchDesactivarVehiculo = async (req, res) => {
     }
     console.error(error);
     res.status(500).json({ error: "Error al desactivar vehículo" });
+  }
+};
+
+export const postCargaMasiva = async (req, res) => {
+  if (!req.file) return res.status(400).json({ error: "No se recibió ningún archivo" });
+
+  try {
+    const contenido = readFileSync(req.file.path, "utf-8");
+    const { data } = Papa.parse(contenido, { header: true, skipEmptyLines: true });
+    const resultado = await cargarVehiculosMasivo(data);
+    res.json(resultado);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Error al procesar el archivo" });
   }
 };
